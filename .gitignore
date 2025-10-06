@@ -1,0 +1,52 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Executables
+*.exe
+*.out
+*.app
+a.out
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Editor files
+.vscode/
+*.swp
+*.swo
+*~
+
+# Slurm output files
+slurm-*.out
+slurm-*.err
+
+# Data and results
+*.data
+*.dat
+timing.pdf
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Build directories
+build/
+bin/

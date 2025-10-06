@@ -1,0 +1,75 @@
+\documentclass[unicode,11pt,a4paper,oneside,numbers=endperiod,openany]{scrartcl}
+
+\input{assignment.sty}
+\begin{document}
+
+
+\setassignment
+
+\serieheader{High-Performance Computing Lab}{Institute of Computing}{Student: Paolo Deidda}{Discussed with: FULL NAME}{Solution for Project 1}{}
+\newline
+
+\assignmentpolicy
+In this project you will practice memory access optimization, performance-oriented programming, and OpenMP parallelizaton 
+on the Rosa Cluster .  
+
+\section{Rosa Warm-Up \punkte{5}}
+
+\begin{enumerate}
+    \item % 1
+    The \textbf{module system} is a utility that allows the user to dynamically manage their software environment on the Rosa HPC cluster and to load different compilers, libraries and applications in order to modify environment variagles (like PATH, LD LIBRARY PATH, MANPATH, etc.) without creating conflicts between different software versions or dependencies.    
+
+    As riported in the USI resource page the module system provides several commands to manage the environment.
+
+    \begin{itemize}
+        \item \texttt{module avail} -- lists all available modules (on the current system)
+        \item \texttt{module list} -- lists all currently loaded modules
+        \item \texttt{module show} -- display information about
+        \item \texttt{module load} -- loads module
+        \item \texttt{module switch} -- unloads, loads
+        \item \texttt{module rm} -- unloads module
+        \item \texttt{module purge} -- unloads all loaded modules
+    \end{itemize}
+
+    \item % 2
+    The \textbf{Slurm} (Simple Linux Utility for Resource Management) is a job scheduler for Linux clusters.
+    Main features of Slurm are:
+    \begin{itemize}
+        \item Job scheduling and resource management
+        \item Framework for starting, executing, and monitoring work (jobs) on a set of allocated nodes
+        \item Queuing management to handle multiple users and jobs
+    \end{itemize}
+
+    The two main components are:
+    \begin{itemize}
+        \item \textit{sulurmd}: the deamnon that runs on each compute node responsible for launching, monitoring, and terminating jobs
+        \item \textit{slurmctld}: the central management daemon that manages job queues and allocates resources
+    \end{itemize}
+
+    Main commands:
+    \begin{itemize}
+        \item \texttt{srun}: submit a job for execution
+        \item \texttt{sbatch}: submit a batch job
+        \item \texttt{squeue}: view the status of jobs in the queue
+        \item \texttt{scancel}: cancel a job
+        \item \texttt{salloc}: allocate resources for an interactive job
+    \end{itemize}
+
+    \item % 3
+    
+    
+\end{enumerate}
+
+
+
+
+\section{Performance Characteristics \punkte{30}}
+
+
+\section{Optimize Square Matrix-Matrix Multiplication  \punkte{50}}
+
+
+\section{Quality of the Report  \punkte{15}}
+
+
+\end{document}

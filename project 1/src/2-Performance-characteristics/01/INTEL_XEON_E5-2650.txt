@@ -1,0 +1,7 @@
+Intel Xeon E5-2650 v3 @ 2.30GHz:
+
+P_{core} = ? x ? x ? x 2.30 GHz = ? GFlops/s
+P_{CPU}  = ? x P_{core}         = ? GFlops/s
+P_{node} = ? x P_{CPU}          = ? GFlops/s
+P_{EVII} = ? x P_{node}         = ? GFlops/s
+                                = ? TFlops/s

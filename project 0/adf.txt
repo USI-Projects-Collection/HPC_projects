@@ -1,0 +1,35 @@
+__Theoretical Skills__                                                                                                                                         
+
+• Programming Languages: Python (adv), C/C++, Rust, Java, JavaScript, Matlab                                                                              
+
+• Labraries: Python, PyTorch, NumPy, Scikit-Learn, Torchvision, Matplotlib, Seaborn                                                                                                
+
+• Tools & Platforms: Google Colab, Kaggle, TensorFlow, Neptune, HuggingFace, NLTK                                                                      
+
+• Hardware: GPU/CPU, CUDA, Apple M1/M2 con backend mps                                                                                        
+             
+• Embedded / IoT: Arduino, TensorFlow, C,C++                                                                                                                                                                                                       
+                                                                                    
+• Robotics & Automation: ROS 2, rviz2, CoppeliaSim                                                                                                                                              
+                                                      
+• AI & Data Science: PyTorch, TensorFlow, OpenCV, NumPy/SciPy                                                                                                          
+                                                                                                                                          
+• Web & UI: Vue.js, Qt (Python), Android Studio, REST API, Protocol Buffer                                                                               
+                                                                                                                                             
+• Databases: PostgreSQL, MySQL                                                                                                                                                               
+                                                                         
+• DevOps & Tools: Git/GitHub, GitLab, Bitbucket, Docker, Conda, Linux                                                                                                  
+                                    
+• Documentation: LaTeX, Markdown                                                                                                                                                
+
+.                                                                                                                                                                                                                                                                                                                              
+                                                                                                                                       
+__ML/DL Models__                                                                                                                                                     
+
+• Neural Networks: FFNN/MLP, CNN, RNN, LSTM, Transformers                                                                                                                    
+
+• Generative Models: GAN, Diffusion models, Autoencoder, VAE                                                                                                                   
+
+• Classical Models: Linear Regression, Logistic Regression, kNN, SVM, GMM                                                                                                                            
+
+• Reinforcement Learning: DQN                                                                                                                        
