@@ -5,6 +5,7 @@
 #SBATCH --ntasks=1                    # Number of tasks
 #SBATCH --cpus-per-task=1             # Number of CPUs per task
 #SBATCH --time=00:01:00               # Wall clock time limit
+#SBATCH --partition=gpu               # Partition name
 
 # load some modules & list loaded modules
 module load gcc

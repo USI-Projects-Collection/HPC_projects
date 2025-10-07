@@ -1,0 +1,12 @@
+PARTITION  AVAIL  TIMELIMIT  NODES  STATE NODELIST
+slim*         up 2-00:00:00      7    mix icsnode[22,27-28,32-35]
+slim*         up 2-00:00:00     12  alloc icsnode[17-21,23-26,29-31]
+slim*         up 2-00:00:00      2   idle icsnode[36-37]
+lr-slim       up 30-00:00:0      1   idle icsnode38
+gpu           up 2-00:00:00      8    mix icsnode[05-06,08-13]
+gpu           up 2-00:00:00      2   idle icsnode[14-15]
+fat           up 2-00:00:00      4   idle icsnode[01-04]
+bigMem        up 2-00:00:00      2   idle icsnode[07,15]
+debug-slim    up    4:00:00      1   idle icsnode39
+debug-gpu     up    4:00:00      1   idle icsnode16
+multi_gpu     up 2-00:00:00      2   idle icsnode[41-42]
