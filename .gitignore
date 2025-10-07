@@ -5,7 +5,7 @@
 
 # Executables
 *.exe
-*.out
+# *.out
 *.app
 a.out
 
@@ -34,8 +34,8 @@ a.out
 *~
 
 # Slurm output files
-slurm-*.out
-slurm-*.err
+# slurm-*.out
+# slurm-*.err
 
 # Data and results
 *.data
@@ -50,3 +50,13 @@ temp/
 # Build directories
 build/
 bin/
+
+# LaTeX intermediate files
+*.aux
+*.bbl
+*.blg
+*.brf
+*.idx
+*.ind
+*.lof
+*.pdf
