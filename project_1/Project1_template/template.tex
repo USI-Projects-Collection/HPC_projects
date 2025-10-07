@@ -1,6 +1,7 @@
 \documentclass[unicode,11pt,a4paper,oneside,numbers=endperiod,openany]{scrartcl}
 
 \input{assignment.sty}
+\usepackage{listings}
 \begin{document}
 
 
@@ -56,6 +57,13 @@ on the Rosa Cluster .
     \end{itemize}
 
     \item % 3
+    The program is at \texttt{src/1-Rosa-warm-up/hello\_world.c} and the code is the following:
+    % import file content
+    \lstinputlisting[language=C]{../src/1-Rosa-warm-up/hello_world.c}
+
+    \item % 4
+    We can see the output of the command sinfo here below: 
+    \lstinputlisting[language=bash]{../src/1-Rosa-warm-up/sinfo_output.txt}
     
     
 \end{enumerate}
