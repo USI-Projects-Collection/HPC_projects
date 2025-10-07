@@ -1,0 +1,10 @@
+\contentsline {section}{\numberline {1}Rosa Warm-Up \hspace {1ex}\emph {\mdseries \hfill (5~{Points})}}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}exercise 1}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}exercise 2}{2}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}exercise 3}{3}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}exercise 4}{3}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}exercise 5}{4}{subsection.1.5}%
+\contentsline {section}{\numberline {2}Performance Characteristics \hspace {1ex}\emph {\mdseries \hfill (30~{Points})}}{4}{section.2}%
+\contentsline {section}{\numberline {3}Optimize Square Matrix-Matrix Multiplication \hspace {1ex}\emph {\mdseries \hfill (50~{Points})}}{4}{section.3}%
+\contentsline {section}{\numberline {4}Quality of the Report \hspace {1ex}\emph {\mdseries \hfill (15~{Points})}}{4}{section.4}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

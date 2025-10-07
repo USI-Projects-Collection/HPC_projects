@@ -1,8 +1,9 @@
 # Fdb version 4
-["pdflatex"] 1759854701.2928 "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_1/Project1_template/template.tex" "template.pdf" "template" 1759854702.29427 0
+["pdflatex"] 1759856958.93617 "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_1/Project1_template/template.tex" "template.pdf" "template" 1759856959.95145 0
   "../src/1-Rosa-warm-up/hello_world.c" 1759762102.36695 180 f8a8bb474a26c4e2f66d7e92f948214f ""
+  "../src/1-Rosa-warm-up/hello_worldc.out" 1759856220.49695 33 ba867c219f4506a281ae1b7b977ac343 ""
   "../src/1-Rosa-warm-up/sinfo_out" 1759847759.35531 690 589d5807aa2cc05e7e7d8d5ad5f56335 ""
-  "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_1/Project1_template/template.tex" 1759854700.13023 4063 63a445f97332e91f070d6ac3bd0436d9 ""
+  "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_1/Project1_template/template.tex" 1759856957.77299 4301 38ad9ad905f75bd61d0b9aa5b0d592e0 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm" 1136768653 1536 02c06700a42be0f5a28664c7273f82e7 ""
@@ -17,6 +18,7 @@
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmr8.tfm" 1136768653 1292 21c1c5bfeaebccffdb478fd231a0997d ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmss10.tfm" 1136768653 1316 b636689f1933f24d1294acdf6041daaa ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm" 1136768653 1272 e2d13f0df30bf3ad990bb9d028e37f34 ""
+  "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmssi10.tfm" 1136768653 1520 ca2bb4b78ac9800bd686e30c6d19ef95 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmssi12.tfm" 1136768653 1532 48589e216c7fb787d0f3ee1a3047705d ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm" 1136768653 1124 6c73e740cf17375f03eec0ee63599741 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm" 1136768653 1116 933a60c408fc0a863a92debe84b2d294 ""
@@ -29,6 +31,7 @@
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1248133631 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb" 1248133631 28902 2f5c04fd2884d1878057baa5aad22765 ""
+  "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb" 1248133631 25150 e0d09798d232ab9d00c5c0a8df6cc22d ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb" 1248133631 25095 0ff1f6d531b320ecbbd6ea84d875816c ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb" 1248133631 37944 359e864bd06cde3b1cf57bb20757fb06 ""
@@ -99,13 +102,15 @@
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1728315754 8221418 945d7397e00084dab441d5a55918a929 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
   "assignment.sty" 1759139977 3156 918d96c5ca2f3a4c45ce278608ba580f ""
-  "template.aux" 1759854702.24597 3296 acf3742f91580c5e402d97659375920d "pdflatex"
-  "template.out" 1759854702.0067 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "template.tex" 1759854700.13023 4063 63a445f97332e91f070d6ac3bd0436d9 ""
+  "template.aux" 1759856959.90264 5214 f185911b5c5f7e7560459f2cff2878f4 "pdflatex"
+  "template.out" 1759856959.65567 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "template.tex" 1759856957.77299 4301 38ad9ad905f75bd61d0b9aa5b0d592e0 ""
+  "template.toc" 1759856959.90386 980 5ece9f1859c87d8005578f4b98ad8f4e "pdflatex"
   "usi_inf.png" 1726162814 99334 1f4e71c330319964e6349d99194dd493 ""
   (generated)
   "template.aux"
   "template.log"
   "template.out"
   "template.pdf"
+  "template.toc"
   (rewritten before read)

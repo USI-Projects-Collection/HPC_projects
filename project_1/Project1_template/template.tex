@@ -14,83 +14,91 @@
 In this project you will practice memory access optimization, performance-oriented programming, and OpenMP parallelizaton 
 on the Rosa Cluster .  
 
+\tableofcontents
+\newpage
+
 \section{Rosa Warm-Up \punkte{5}}
 
-\begin{enumerate}
-    \item % 1
-    The \textbf{module system} is a utility that allows the user to dynamically manage their software environment on the Rosa HPC cluster and to load different compilers, libraries and applications in order to modify environment variagles (like PATH, LD LIBRARY PATH, MANPATH, etc.) without creating conflicts between different software versions or dependencies.    
+\subsection{exercise 1}
+The \textbf{module system} is a utility that allows the user to dynamically manage their software environment on the Rosa HPC cluster and to load different compilers, libraries and applications in order to modify environment variagles (like PATH, LD LIBRARY PATH, MANPATH, etc.) without creating conflicts between different software versions or dependencies.    
 
-    As riported in the USI resource page the module system provides several commands to manage the environment.
+As riported in the USI resource page the module system provides several commands to manage the environment.
 
-    \begin{itemize}
-        \item \texttt{module avail} -- lists all available modules (on the current system)
-        \item \texttt{module list} -- lists all currently loaded modules
-        \item \texttt{module show} -- display information about
-        \item \texttt{module load} -- loads module
-        \item \texttt{module switch} -- unloads, loads
-        \item \texttt{module rm} -- unloads module
-        \item \texttt{module purge} -- unloads all loaded modules
-    \end{itemize}
+\begin{itemize}
+    \item \texttt{module avail} -- lists all available modules (on the current system)
+    \item \texttt{module list} -- lists all currently loaded modules
+    \item \texttt{module show} -- display information about
+    \item \texttt{module load} -- loads module
+    \item \texttt{module switch} -- unloads, loads
+    \item \texttt{module rm} -- unloads module
+    \item \texttt{module purge} -- unloads all loaded modules
+\end{itemize}
 
-    \item % 2
-    The \textbf{Slurm} (Simple Linux Utility for Resource Management) is a job scheduler for Linux clusters.
-    Main features of Slurm are:
-    \begin{itemize}
-        \item Job scheduling and resource management
-        \item Framework for starting, executing, and monitoring work (jobs) on a set of allocated nodes
-        \item Queuing management to handle multiple users and jobs
-    \end{itemize}
+\subsection{exercise 2}
+The \textbf{Slurm} (Simple Linux Utility for Resource Management) is a job scheduler for Linux clusters.
+Main features of Slurm are:
+\begin{itemize}
+    \item Job scheduling and resource management
+    \item Framework for starting, executing, and monitoring work (jobs) on a set of allocated nodes
+    \item Queuing management to handle multiple users and jobs
+\end{itemize}
 
-    The two main components are:
-    \begin{itemize}
-        \item \textit{sulurmd}: the deamnon that runs on each compute node responsible for launching, monitoring, and terminating jobs
-        \item \textit{slurmctld}: the central management daemon that manages job queues and allocates resources
-    \end{itemize}
+The two main components are:
+\begin{itemize}
+    \item \textit{sulurmd}: the deamnon that runs on each compute node responsible for launching, monitoring, and terminating jobs
+    \item \textit{slurmctld}: the central management daemon that manages job queues and allocates resources
+\end{itemize}
 
-    Main commands:
-    \begin{itemize}
-        \item \texttt{srun}: submit a job for execution
-        \item \texttt{sbatch}: submit a batch job
-        \item \texttt{squeue}: view the status of jobs in the queue
-        \item \texttt{scancel}: cancel a job
-        \item \texttt{salloc}: allocate resources for an interactive job
-    \end{itemize}
+Main commands:
+\begin{itemize}
+    \item \texttt{srun}: submit a job for execution
+    \item \texttt{sbatch}: submit a batch job
+    \item \texttt{squeue}: view the status of jobs in the queue
+    \item \texttt{scancel}: cancel a job
+    \item \texttt{salloc}: allocate resources for an interactive job
+\end{itemize}
 
-    \item % 3
-    The program is at \texttt{src/1-Rosa-warm-up/hello\_world.c} and the code is the following:
-    % import file content
-    \lstinputlisting[language=C]{../src/1-Rosa-warm-up/hello_world.c}
+\subsection{exercise 3}
+The program is at \texttt{src/1-Rosa-warm-up/hello\_world.c} and the code is the following:
+% import file content
+\lstinputlisting[language=C]{../src/1-Rosa-warm-up/hello_world.c}
 
-    \item % 4
-    We can see the output of the command sinfo here below: 
-    \lstinputlisting{../src/1-Rosa-warm-up/sinfo_out}
+We can process the script with the following command:    
+\begin{verbatim}
+srun -N1 --time=00:01:00 ./hello_worldc > hello_worldc.out 2> hello_worldc.err
+\end{verbatim}
+and we can see from the output that the program has been correctly compiled and executed on the cluster on node \texttt{icsnode22} from the \textit{slim} partion.
 
-    As we can see nodes are divided in partitions with names that already give us some information about their characteristics.
-    As explained in the sbatch guide on slurm \href{https://slurm.schedmd.com/sbatch.html}{website}, we can use different flags on the sbatch command to specify the partition to use with different commands.
+\lstinputlisting{../src/1-Rosa-warm-up/hello_worldc.out}
 
+\subsection{exercise 4}
+We can see the output of the command sinfo here below: 
+\lstinputlisting{../src/1-Rosa-warm-up/sinfo_out}
 
-    The flag that applies to our case is:
-
-    \quad\quad\texttt{sbatch --partition=fat job\_script.sh}
-    
-    Submit with bigMem partition to run on nodes with very large memory:
-
-    \quad\quad\texttt{sbatch --partition=bigMem job\_script.sh}
-    
-    Similarly, for GPU partitions:
-    
-    \quad\quad\texttt{sbatch --partition=gpu job\_script.sh}
-
-    For example, we can modify the script file \texttt{slurm\_job\_one.sh} to specify the partition with the gpu partition with the following line:
-    \begin{verbatim}
-    #SBATCH --partition=gpu
-    \end{verbatim}
-
-    
+As we can see nodes are divided in partitions with names that already give us some information about their characteristics.
+As explained in the sbatch guide on slurm \href{https://slurm.schedmd.com/sbatch.html}{website}, we can use different flags on the sbatch command to specify the partition to use with different commands.
 
 
-\end{enumerate}
+The flag that applies to our case is:
 
+\quad\quad\texttt{sbatch --partition=fat job\_script.sh}
+
+Submit with bigMem partition to run on nodes with very large memory:
+
+\quad\quad\texttt{sbatch --partition=bigMem job\_script.sh}
+
+Similarly, for GPU partitions:
+
+\quad\quad\texttt{sbatch --partition=gpu job\_script.sh}
+
+For example, we can modify the script file \texttt{slurm\_job\_one.sh} to specify the partition with the gpu partition with the following line:
+\begin{verbatim}
+#SBATCH --partition=gpu
+\end{verbatim}
+
+
+
+\subsection{exercise 5}
 
 
 

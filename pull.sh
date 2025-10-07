@@ -1,3 +1,7 @@
+
+#!/bin/bash
+# Script per updatare la repo remota
+
 echo "Fetching remoto..."
 git fetch origin
 
