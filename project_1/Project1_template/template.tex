@@ -59,9 +59,14 @@ Main commands:
 \end{itemize}
 
 \subsection{exercise 3}
-The program is at \texttt{src/1-Rosa-warm-up/hello\_world.c} and the code is the following:
-% import file content
-\lstinputlisting[language=C]{../src/1-Rosa-warm-up/hello_world.c}
+Here below is the code of the C program that prints "Hello World" and the information about the system where it is executed.
+\lstinputlisting[
+    caption={Hello World C Program - \textit{src/1-Rosa-warm-up/hello\_world.c}},
+    captionpos=b,
+    label={lst:hello_world_c},
+    language=C,
+    ]
+{../src/1-Rosa-warm-up/hello_world.c}
 
 We can process the script with the following command:    
 \begin{verbatim}
@@ -72,8 +77,13 @@ and we can see from the output that the program has been correctly compiled and 
 \lstinputlisting{../src/1-Rosa-warm-up/hello_worldc.out}
 
 \subsection{exercise 4}
-We can see the output of the command sinfo here below: 
-\lstinputlisting{../src/1-Rosa-warm-up/sinfo_out}
+We can see the output of the command \texttt{sinfo} here below: 
+\lstinputlisting[
+    caption={Output of line command \texttt{sinfo}},
+    captionpos=b,
+    label={lst:sinfo},
+]{../src/1-Rosa-warm-up/sinfo_out}
+
 
 As we can see nodes are divided in partitions with names that already give us some information about their characteristics.
 As explained in the sbatch guide on slurm \href{https://slurm.schedmd.com/sbatch.html}{website}, we can use different flags on the sbatch command to specify the partition to use with different commands.
@@ -96,9 +106,19 @@ For example, we can modify the script file \texttt{slurm\_job\_one.sh} to specif
 #SBATCH --partition=gpu
 \end{verbatim}
 
+After inserting the line into the file and reprocessing the script, we can see the following result:
 
+\lstinputlisting [
+    caption={Output of the job script \texttt{slurm\_job\_one.sh} after specifying the partition},
+    captionpos=b,
+    label={lst:slurm_job_one_out},
+]
+{../src/1-Rosa-warm-up/slurm_job_one-51063.out}
+
+From the very last line we can assert that the job has been submitted to node \texttt{icsnode08}, and from the \texttt{sinfo} output before (\ref{lst:sinfo}) we can see that this node belongs to the \textit{gpu} partition instead of the \textit{slim} partition as before (\ref{lst:hello_world_c}).
 
 \subsection{exercise 5}
+
 
 
 

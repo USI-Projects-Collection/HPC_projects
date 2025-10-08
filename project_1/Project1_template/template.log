@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.7)  7 OCT 2025 19:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.7)  8 OCT 2025 00:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -450,20 +450,35 @@ File: omscmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 4.
-) [2] (../src/1-Rosa-warm-up/hello_worldc.out) (../src/1-Rosa-warm-up/sinfo_out)
+ [2]) (../src/1-Rosa-warm-up/hello_worldc.out) (../src/1-Rosa-warm-up/sinfo_out) (../src/1-Rosa-warm-up/slurm_job_one-51063.out [3]
+Overfull \hbox (29.85474pt too wide) in paragraph at lines 7--8
+[][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (10.14453pt too wide) in paragraph at lines 8--9
+[][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (10.14453pt too wide) in paragraph at lines 9--10
+[][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+)
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\hfill' on input line 105.
+(hyperref)                removing `\hfill' on input line 125.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\hfill' on input line 108.
+(hyperref)                removing `\hfill' on input line 128.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\hfill' on input line 111.
+(hyperref)                removing `\hfill' on input line 131.
 
-[3] [4] (./template.aux)
+[4] (./template.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -476,18 +491,18 @@ Package rerunfilecheck Info: File `template.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 13582 strings out of 474116
- 235868 string characters out of 5743682
- 1975187 words of memory out of 5000000
- 35752 multiletter control sequences out of 15000+600000
+ 13666 strings out of 474116
+ 236969 string characters out of 5743682
+ 1978187 words of memory out of 5000000
+ 35820 multiletter control sequences out of 15000+600000
  565083 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 108i,11n,107p,11016b,1445s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 108i,11n,107p,11016b,2078s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on template.pdf (4 pages, 249934 bytes).
+Output written on template.pdf (4 pages, 254002 bytes).
 PDF statistics:
- 172 PDF objects out of 1000 (max. 8388607)
- 138 compressed objects within 2 object streams
- 39 named destinations out of 1000 (max. 500000)
+ 189 PDF objects out of 1000 (max. 8388607)
+ 155 compressed objects within 2 object streams
+ 52 named destinations out of 1000 (max. 500000)
  78 words of extra memory for PDF output out of 10000 (max. 10000000)
 
