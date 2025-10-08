@@ -2,6 +2,8 @@
 
 \input{assignment.sty}
 \usepackage{listings}
+\usepackage{hyperref}
+
 \begin{document}
 
 
@@ -10,154 +12,23 @@
 \serieheader{High-Performance Computing Lab}{Institute of Computing}{Student: Paolo Deidda}{Discussed with: FULL NAME}{Solution for Project 1}{}
 \newline
 
-\assignmentpolicy
-In this project you will practice memory access optimization, performance-oriented programming, and OpenMP parallelizaton 
-on the Rosa Cluster .  
+% \assignmentpolicy
+% In this project you will practice memory access optimization, performance-oriented programming, and OpenMP parallelizaton 
+% on the Rosa Cluster .  
 
 \tableofcontents
 \newpage
 
 \section{Rosa Warm-Up \punkte{5}}
-
-\subsection{exercise 1}
-The \textbf{module system} is a utility that allows the user to dynamically manage their software environment on the Rosa HPC cluster and to load different compilers, libraries and applications in order to modify environment variagles (like PATH, LD LIBRARY PATH, MANPATH, etc.) without creating conflicts between different software versions or dependencies.    
-
-As riported in the USI resource page the module system provides several commands to manage the environment.
-
-\begin{itemize}
-    \item \texttt{module avail} -- lists all available modules (on the current system)
-    \item \texttt{module list} -- lists all currently loaded modules
-    \item \texttt{module show} -- display information about
-    \item \texttt{module load} -- loads module
-    \item \texttt{module switch} -- unloads, loads
-    \item \texttt{module rm} -- unloads module
-    \item \texttt{module purge} -- unloads all loaded modules
-\end{itemize}
-
-\subsection{exercise 2}
-The \textbf{Slurm} (Simple Linux Utility for Resource Management) is a job scheduler for Linux clusters.
-Main features of Slurm are:
-\begin{itemize}
-    \item Job scheduling and resource management
-    \item Framework for starting, executing, and monitoring work (jobs) on a set of allocated nodes
-    \item Queuing management to handle multiple users and jobs
-\end{itemize}
-
-The two main components are:
-\begin{itemize}
-    \item \textit{sulurmd}: the deamnon that runs on each compute node responsible for launching, monitoring, and terminating jobs
-    \item \textit{slurmctld}: the central management daemon that manages job queues and allocates resources
-\end{itemize}
-
-Main commands:
-\begin{itemize}
-    \item \texttt{srun}: submit a job for execution
-    \item \texttt{sbatch}: submit a batch job
-    \item \texttt{squeue}: view the status of jobs in the queue
-    \item \texttt{scancel}: cancel a job
-    \item \texttt{salloc}: allocate resources for an interactive job
-\end{itemize}
-
-\subsection{exercise 3}
-Here below is the code of the C program that prints "Hello World" and the information about the system where it is executed.
-\lstinputlisting[
-    caption={Hello World C Program - \textit{src/1-Rosa-warm-up/hello\_world.c}},
-    captionpos=b,
-    label={lst:hello_world_c},
-    language=C,
-    numbers=left,
-    ]
-{../src/1-Rosa-warm-up/hello_world.c}
-
-We can process the script with the following command:    
-\begin{verbatim}
-srun -N1 --time=00:01:00 ./hello_worldc > hello_worldc.out 2> hello_worldc.err
-\end{verbatim}
-and we can see from the output that the program has been correctly compiled and executed on the cluster on node \texttt{icsnode22} from the \textit{slim} partion.
-
-\lstinputlisting{../src/1-Rosa-warm-up/hello_worldc.out}
-
-\subsection{exercise 4}
-We can see the output of the command \texttt{sinfo} here below: 
-\lstinputlisting[
-    caption={Output of line command \texttt{sinfo}},
-    captionpos=b,
-    label={lst:sinfo},
-]{../src/1-Rosa-warm-up/sinfo_out}
-
-
-As we can see nodes are divided in partitions with names that already give us some information about their characteristics.
-As explained in the sbatch guide on slurm \href{https://slurm.schedmd.com/sbatch.html}{website}, we can use different flags on the sbatch command to specify the partition to use with different commands.
-
-
-The flag that applies to our case is:
-
-\quad\quad\texttt{sbatch --partition=fat job\_script.sh}
-
-Submit with bigMem partition to run on nodes with very large memory:
-
-\quad\quad\texttt{sbatch --partition=bigMem job\_script.sh}
-
-Similarly, for GPU partitions:
-
-\quad\quad\texttt{sbatch --partition=gpu job\_script.sh}
-
-For example, we can modify the script file \texttt{slurm\_job\_one.sh} to specify the partition with the gpu partition with the following line:
-\begin{verbatim}
-#SBATCH --partition=gpu
-\end{verbatim}
-
-After inserting the line into the file and reprocessing the script, we can see the following result:
-
-\lstinputlisting [
-    caption={Output of the job script \texttt{slurm\_job\_one.sh} after specifying the partition},
-    captionpos=b,
-    label={lst:slurm_job_one_out},
-]
-{../src/1-Rosa-warm-up/slurm_job_one-51063.out}
-
-From the very last line we can assert that the job has been submitted to node \texttt{icsnode08}, and from the \texttt{sinfo} output before (\ref{lst:sinfo}) we can see that this node belongs to the \textit{gpu} partition instead of the \textit{slim} partition as before (\ref{lst:hello_world_c}).
-
-\subsection{exercise 5}
-
-In order to run our program on two nodes is sufficient to add the following line of our script:
-\begin{verbatim}
-#SBATCH --nodes=2                     # Number of nodes
-\end{verbatim}
-This line is already implemented in the script \texttt{slurm\_job\_two.sh} provided in the src folder. Once we process the script with the command we get the the message Submitted batch job 51103 and after a while we can check the output file \texttt{slurm\_job\_two-51103.out} (\ref{lst:slurm_job_two_out}) to see the result of our job.
-
-\lstinputlisting[
-    caption={Output of the job script \texttt{slurm\_job\_two.sh}},
-    captionpos=b,
-    label={lst:slurm_job_two_out},
-]{../src/1-Rosa-warm-up/slurm_job_two-51103.out}
-
-From the output we can see that the job has been submitted to two different nodes \texttt{icsnode22} and \texttt{icsnode21} confirming that the command has been correctly processed twice on two different nodes.
+\input{inputs/part1.tex}
 
 
 \section{Performance Characteristics \punkte{30}}
-
-\subsection{Peak floating-point throughput}
-\label{subsec:peak_fp}
-Rosa's nodes are equipped with dual-socket Intel Xeon E5-2650 v3 processors, 10 cores and AVX2 units that operates with 256-bit vectors\cite{intel-e5-2650v3,usi-rosa-hardware}. Haswell micro-architecture have two 256-bit FMA instructions per cycle meaning that each core performs four double-precision at 2.30~GHz \cite{intel-optimization-manual}.
-
-The Rosa documentation (and also the output from command \texttt{sinfo} \ref{lst:sinfo}) shows 42 compute nodes (icsnode01--icsnode42).\cite{usi-rosa-hardware} \\ 
-The calculations for the aggregate peak throughput for the partition is written in the provided file at \texttt{../src/2-Performance-characteristics/01/INTEL\_XEON\_E5-2650.txt}
-and reported here below:
-
-\lstinputlisting[
-    caption={Peak throughput breakdown for Intel Xeon E5-2650 v3},
-    captionpos=b,
-    label={lst:e5-2650-peak},
-]{../src/2-Performance-characteristics/01/INTEL_XEON_E5-2650.txt}
-
-
-\subsection{Node topology and memory hierarchy}
-
+\input{inputs/part2.tex}
 
 
 \section{Optimize Square Matrix-Matrix Multiplication  \punkte{50}}
-
+\input{inputs/part3.tex}
 
 \section{Quality of the Report  \punkte{15}}
 

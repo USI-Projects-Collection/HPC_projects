@@ -5,8 +5,13 @@
 \contentsline {subsection}{\numberline {1.4}exercise 4}{3}{subsection.1.4}%
 \contentsline {subsection}{\numberline {1.5}exercise 5}{4}{subsection.1.5}%
 \contentsline {section}{\numberline {2}Performance Characteristics \hspace {1ex}\emph {\mdseries \hfill (30~{Points})}}{4}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Peak floating-point throughput}{4}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Node topology and memory hierarchy}{5}{subsection.2.2}%
-\contentsline {section}{\numberline {3}Optimize Square Matrix-Matrix Multiplication \hspace {1ex}\emph {\mdseries \hfill (50~{Points})}}{5}{section.3}%
-\contentsline {section}{\numberline {4}Quality of the Report \hspace {1ex}\emph {\mdseries \hfill (15~{Points})}}{5}{section.4}%
+\contentsline {subsection}{\numberline {2.1}Peak performance}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Memory Hierarchies}{5}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Bandwidth: STREAM benchmark}{6}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Performance model: A simple roofline model}{6}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Optimize Square Matrix-Matrix Multiplication \hspace {1ex}\emph {\mdseries \hfill (50~{Points})}}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Motivation}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Importance of data access optimization}{6}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Optimizing square matrix multiplication}{6}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Quality of the Report \hspace {1ex}\emph {\mdseries \hfill (15~{Points})}}{6}{section.4}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
