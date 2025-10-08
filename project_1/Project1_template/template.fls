@@ -201,6 +201,9 @@ INPUT ../src/1-Rosa-warm-up/sinfo_out
 INPUT ../src/1-Rosa-warm-up/slurm_job_one-51063.out
 INPUT ../src/1-Rosa-warm-up/slurm_job_one-51063.out
 INPUT ../src/1-Rosa-warm-up/slurm_job_one-51063.out
+INPUT ../src/1-Rosa-warm-up/slurm_job_two-51103.out
+INPUT ../src/1-Rosa-warm-up/slurm_job_two-51103.out
+INPUT ../src/1-Rosa-warm-up/slurm_job_two-51103.out
 INPUT template.aux
 INPUT ./template.out
 INPUT ./template.out

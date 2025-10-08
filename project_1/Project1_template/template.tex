@@ -65,6 +65,7 @@ Here below is the code of the C program that prints "Hello World" and the inform
     captionpos=b,
     label={lst:hello_world_c},
     language=C,
+    numbers=left,
     ]
 {../src/1-Rosa-warm-up/hello_world.c}
 
@@ -119,7 +120,19 @@ From the very last line we can assert that the job has been submitted to node \t
 
 \subsection{exercise 5}
 
+In order to run our program on two nodes is sufficient to add the following line of our script:
+\begin{verbatim}
+#SBATCH --nodes=2                     # Number of nodes
+\end{verbatim}
+This line is already implemented in the script \texttt{slurm\_job\_two.sh} provided in the src folder. Once we process the script with the command we get the the message Submitted batch job 51103 and after a while we can check the output file \texttt{slurm\_job\_two-51103.out} to see the result of our job.
 
+\lstinputlisting[
+    caption={Output of the job script \texttt{slurm\_job\_two.sh}},
+    captionpos=b,
+    label={lst:slurm_job_two_out},
+]{../src/1-Rosa-warm-up/slurm_job_two-51103.out}
+
+From the output we can see that the job has been submitted to two different nodes \texttt{icsnode22} and \texttt{icsnode21} confirming that the command has been correctly processed twice on two different nodes.
 
 
 \section{Performance Characteristics \punkte{30}}
