@@ -124,7 +124,7 @@ In order to run our program on two nodes is sufficient to add the following line
 \begin{verbatim}
 #SBATCH --nodes=2                     # Number of nodes
 \end{verbatim}
-This line is already implemented in the script \texttt{slurm\_job\_two.sh} provided in the src folder. Once we process the script with the command we get the the message Submitted batch job 51103 and after a while we can check the output file \texttt{slurm\_job\_two-51103.out} to see the result of our job.
+This line is already implemented in the script \texttt{slurm\_job\_two.sh} provided in the src folder. Once we process the script with the command we get the the message Submitted batch job 51103 and after a while we can check the output file \texttt{slurm\_job\_two-51103.out} (\ref{lst:slurm_job_two_out}) to see the result of our job.
 
 \lstinputlisting[
     caption={Output of the job script \texttt{slurm\_job\_two.sh}},
@@ -137,11 +137,31 @@ From the output we can see that the job has been submitted to two different node
 
 \section{Performance Characteristics \punkte{30}}
 
+\subsection{Peak floating-point throughput}
+\label{subsec:peak_fp}
+Rosa's nodes are equipped with dual-socket Intel Xeon E5-2650 v3 processors, 10 cores and AVX2 units that operates with 256-bit vectors\cite{intel-e5-2650v3,usi-rosa-hardware}. Haswell micro-architecture have two 256-bit FMA instructions per cycle meaning that each core performs four double-precision at 2.30~GHz \cite{intel-optimization-manual}.
+
+The Rosa documentation (and also the output from command \texttt{sinfo} \ref{lst:sinfo}) shows 42 compute nodes (icsnode01--icsnode42).\cite{usi-rosa-hardware} \\ 
+The calculations for the aggregate peak throughput for the partition is written in the provided file at \texttt{../src/2-Performance-characteristics/01/INTEL\_XEON\_E5-2650.txt}
+and reported here below:
+
+\lstinputlisting[
+    caption={Peak throughput breakdown for Intel Xeon E5-2650 v3},
+    captionpos=b,
+    label={lst:e5-2650-peak},
+]{../src/2-Performance-characteristics/01/INTEL_XEON_E5-2650.txt}
+
+
+\subsection{Node topology and memory hierarchy}
+
+
 
 \section{Optimize Square Matrix-Matrix Multiplication  \punkte{50}}
 
 
 \section{Quality of the Report  \punkte{15}}
 
+\bibliographystyle{plain}
+\bibliography{references}
 
 \end{document}

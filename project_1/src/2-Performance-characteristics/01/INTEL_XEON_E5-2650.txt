@@ -1,7 +1,7 @@
 Intel Xeon E5-2650 v3 @ 2.30GHz:
 
-P_{core} = ? x ? x ? x 2.30 GHz = ? GFlops/s
-P_{CPU}  = ? x P_{core}         = ? GFlops/s
-P_{node} = ? x P_{CPU}          = ? GFlops/s
-P_{EVII} = ? x P_{node}         = ? GFlops/s
-                                = ? TFlops/s
+P_{core} = 4 lanes x 2 flop x 2 FMA x 2.30 GHz = 36.8 GFlops/s
+P_{CPU}  = 10 cores x P_{core}                 = 368 GFlops/s
+P_{node} = 2 sockets x P_{CPU}                 = 736 GFlops/s
+P_{EVII} = 42 nodes x P_{node}                 = 30,912 GFlops/s
+                                               = 30.912 TFlops/s
