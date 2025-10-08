@@ -45,8 +45,7 @@ Here below is a simple program in C that prints "Hello World" and the informatio
     label={lst:hello_world_c},
     language=C,
     numbers=left,
-    ]
-{../src/1-Rosa-warm-up/hello_world.c}
+]{../src/1-Rosa-warm-up/hello_world.c}
 
 We can process the script with the following command:    
 \begin{verbatim}
@@ -54,7 +53,11 @@ srun -N1 --time=00:01:00 ./hello_worldc > hello_worldc.out 2> hello_worldc.err
 \end{verbatim}
 and we can see from the output that the program has been correctly compiled and executed on the cluster on node \texttt{icsnode22} from the \textit{slim} partion.
 
-\lstinputlisting{../src/1-Rosa-warm-up/hello_worldc.out}
+\lstinputlisting[
+    caption={Output of the program \texttt{hello\_world.c}},
+    captionpos=b,
+    label={lst:hello_world_c_out},
+]{../src/1-Rosa-warm-up/hello_worldc.out}
 
 \subsection{exercise 4}
 We can see the output of the command \texttt{sinfo} here below: 
@@ -95,7 +98,7 @@ After inserting the line into the file and reprocessing the script, we can see t
 ]
 {../src/1-Rosa-warm-up/slurm_job_one-51063.out}
 
-From the very last line we can assert that the job has been submitted to node \texttt{icsnode08}, and from the \texttt{sinfo} output before (\ref{lst:sinfo}) we can see that this node belongs to the \textit{gpu} partition instead of the \textit{slim} partition as before (\ref{lst:hello_world_c}).
+From the very last line we can assert that the job has been submitted to node \texttt{icsnode08}, and from the \texttt{sinfo} output before (\ref{lst:sinfo}) we can see that this node belongs to the \textit{gpu} partition instead of the default \textit{slim} partition as before (\ref{lst:hello_world_c_out}).
 
 \subsection{exercise 5}
 
@@ -103,7 +106,7 @@ In order to run our program on two nodes is sufficient to add the following line
 \begin{verbatim}
 #SBATCH --nodes=2                     # Number of nodes
 \end{verbatim}
-This line is already implemented in the script \texttt{slurm\_job\_two.sh} provided in the src folder. Once we process the script with the command we get the the message Submitted batch job 51103 and after a while we can check the output file \texttt{slurm\_job\_two-51103.out} (\ref{lst:slurm_job_two_out}) to see the result of our job.
+This line is already implemented in the script \texttt{slurm\_job\_two.sh} provided in the src folder. Once we process the script with the command we get the the message Submitted batch job 51103 and after a while we can check the output file \href{../src/1-Rosa-warm-up/slurm\_job\_two-51103.out}{slurm\_job\_two-51103.out} (\ref{lst:slurm_job_two_out}) to see the result of our job.
 
 \lstinputlisting[
     caption={Output of the job script \texttt{slurm\_job\_two.sh}},

@@ -46,7 +46,49 @@ The graphical representation of the memory hierarchy is shown in Figure~\ref{fig
 \label{fig:memory_topology}
 \end{figure}
 
-\subsection{Bandwidth: STREAM benchmark}
 
+\subsection{Bandwidth: STREAM benchmark}
+\label{subsec:stream}
+
+The STREAM benchmark was executed on a single core of a Rosa consisting of four simple vector operations: Copy, Scale, Add, and Triad.
+
+As required I runned the command:
+\begin{verbatim}
+    gcc -O3 -march=native -DSTREAM_TYPE=double -DSTREAM_ARRAY_SIZE=128000000 
+        -DNTIMES=20 stream.c -o stream_c.exe
+\end{verbatim}
+
+So the array size is configured to 128,000,000 elements (~3GB) which significantly exceeds the L3 cache size (25MB), ensuring that the operations always "fall" out of the cache and therefore forcing the use main memory. This is done to \textbf{measure the bandwidth of main memory rather than cache performance.} Each kernel has been executed 20 times, and the best time (excluding the first iteration) I used to compute the reported bandwidth.
+
+The complete output is available in the submission folder. The key results are shown below:
+
+\lstinputlisting[
+    caption={STREAM benchmark output on Rosa compute node (single-core)},
+    captionpos=b,
+    label={lst:stream-output},
+]{../src/2-Performance-characteristics/03/slurm-52026.out}
+
+The Copy operation shows substantially higher bandwidth (approximately 19GB/s) compared to the others.
+
+The \textbf{Triad kernel bandwidth} of approximately 12.3 GB/s will be the average representative as memory bandwidth for a single core on Rosa compute nodes.
 
 \subsection{Performance model: A simple roofline model}
+\label{subsec:roofline}
+
+Using the values obtained from the previous sections:
+\begin{itemize}
+    \item Peak performance per core: $P_{max} = 36.8$ GFlops/s (Section~\ref{subsec:peak_fp})
+    \item Memory bandwidth per core: $b_{max} = 12.3$ GB/s (Section~\ref{subsec:stream})
+\end{itemize}
+
+The ridge point (performance transitions from memory-bound to compute-bound) occurs at:
+\[
+I_{ridge} = \frac{P_{max}}{b_{max}} = \frac{36.8}{12.3} \approx 2.99~\mathrm{Flops/Byte}
+\]
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../src/2-Performance-characteristics/04/roofline.pdf}
+    \caption{Roofline model for Intel Xeon E5-2650 v3 (single core) on Rosa compute node.}
+    \label{fig:roofline}
+\end{figure}

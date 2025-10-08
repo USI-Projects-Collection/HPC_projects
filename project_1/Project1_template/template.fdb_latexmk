@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex template"] 1759962692.13661 "template.aux" "template.bbl" "template" 1759962960.95239 0
+["bibtex template"] 1759967416.55799 "template.aux" "template.bbl" "template" 1759967442.23749 0
   "./references.bib" 1759956705.43323 959 5b9ca14c0960b3e9d7c07bd06d7eba03 ""
   "/usr/local/texlive/2024/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "template.aux" 1759962960.73682 10763 a3dfd9179015bbc6fee6c5c0e35912d8 "pdflatex"
+  "template.aux" 1759967442.01538 11606 7d0832334e93e0ff263d1f2806c5f1ca "pdflatex"
   (generated)
   "template.bbl"
   "template.blg"
   (rewritten before read)
-["pdflatex"] 1759962959.61128 "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_1/Project1_template/template.tex" "template.pdf" "template" 1759962960.95251 0
+["pdflatex"] 1759967440.87955 "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_1/Project1_template/template.tex" "template.pdf" "template" 1759967442.23761 0
   "../src/1-Rosa-warm-up/hello_world.c" 1759762102.36695 180 f8a8bb474a26c4e2f66d7e92f948214f ""
   "../src/1-Rosa-warm-up/hello_worldc.out" 1759856220.49695 33 ba867c219f4506a281ae1b7b977ac343 ""
   "../src/1-Rosa-warm-up/sinfo_out" 1759847759.35531 690 589d5807aa2cc05e7e7d8d5ad5f56335 ""
@@ -15,6 +15,8 @@
   "../src/1-Rosa-warm-up/slurm_job_two-51103.out" 1759914917.86873 692 f08f8667e1ca8ffca640f1cc22d8df67 ""
   "../src/2-Performance-characteristics/01/INTEL_XEON_E5-2650.txt" 1759960240.28972 351 6a9a8283c42808a5bb1374d3f0ec3592 ""
   "../src/2-Performance-characteristics/02/XEON_E5-2650.png" 1759958412.00685 181338 30d0e7b0e665756d0ca9f0d22064c33a ""
+  "../src/2-Performance-characteristics/03/slurm-52026.out" 1759964475.25721 1644 bad03826f8c8bc42b0769d4de74218c6 ""
+  "../src/2-Performance-characteristics/04/roofline.pdf" 1759966518.72608 18219 682b1a2f5bae0d10d768281fc185e797 ""
   "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_1/Project1_template/template.tex" 1759962736.66302 885 956147559603e46d2b97607f28ef2058 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -41,6 +43,7 @@
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb" 1248133631 34811 78b52f49e893bcba91bd7581cdc144c0 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1248133631 32080 340ef9bf63678554ee606688e7b5339d ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1248133631 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
+  "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1248133631 35469 70d41d2b9ea31d5d813066df7c99281c ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1248133631 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb" 1248133631 28902 2f5c04fd2884d1878057baa5aad22765 ""
@@ -116,14 +119,14 @@
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1728315754 8221418 945d7397e00084dab441d5a55918a929 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
   "assignment.sty" 1759139977 3156 918d96c5ca2f3a4c45ce278608ba580f ""
-  "inputs/part1.tex" 1759962959.40385 5389 3126981f5f1c84ca3e0d238e04404c81 ""
-  "inputs/part2.tex" 1759962606.98221 2418 e58cdafd6f43158c65d260a2988b07f9 ""
+  "inputs/part1.tex" 1759967440.645 5560 5ccd04292b45d5cd9e060586c57592c2 ""
+  "inputs/part2.tex" 1759966872.04352 4506 40e1cbab5f7b485d8aa1b95f6f77b90b ""
   "inputs/part3.tex" 1759962009.25165 135 14927ab5c231af341e66a8e5d969b24f ""
-  "template.aux" 1759962960.73682 10763 a3dfd9179015bbc6fee6c5c0e35912d8 "pdflatex"
-  "template.bbl" 1759962692.21164 530 dc7e937d760118e9e20beb154f05c75c "bibtex template"
-  "template.out" 1759962960.34746 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "template.aux" 1759967442.01538 11606 7d0832334e93e0ff263d1f2806c5f1ca "pdflatex"
+  "template.bbl" 1759967416.63024 530 dc7e937d760118e9e20beb154f05c75c "bibtex template"
+  "template.out" 1759967441.61067 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   "template.tex" 1759962736.66302 885 956147559603e46d2b97607f28ef2058 ""
-  "template.toc" 1759962960.73882 1632 1d92c752caeab0cd41ac296d4901a6c3 "pdflatex"
+  "template.toc" 1759967442.01768 1632 19de5c11013a39dfd190ecc5735ddeb8 "pdflatex"
   "usi_inf.png" 1726162814 99334 1f4e71c330319964e6349d99194dd493 ""
   (generated)
   "template.aux"
