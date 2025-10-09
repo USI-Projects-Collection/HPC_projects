@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex template"] 1760026154.33609 "template.aux" "template.bbl" "template" 1760026161.83836 0
+["bibtex template"] 1760027764.4508 "template.aux" "template.bbl" "template" 1760027765.91222 0
   "./references.bib" 1759956705.43323 959 5b9ca14c0960b3e9d7c07bd06d7eba03 ""
   "/usr/local/texlive/2024/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "template.aux" 1760026161.61746 12139 ea6d218ccc923cd8ccff7dc16c5b4814 "pdflatex"
+  "template.aux" 1760027765.69702 12139 ea6d218ccc923cd8ccff7dc16c5b4814 "pdflatex"
   (generated)
   "template.bbl"
   "template.blg"
   (rewritten before read)
-["pdflatex"] 1760026160.45889 "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_1/Project1_template/template.tex" "template.pdf" "template" 1760026161.8385 0
+["pdflatex"] 1760027764.54247 "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_1/Project1_template/template.tex" "template.pdf" "template" 1760027765.91234 0
   "../src/1-Rosa-warm-up/hello_world.c" 1759762102.36695 180 f8a8bb474a26c4e2f66d7e92f948214f ""
   "../src/1-Rosa-warm-up/hello_worldc.out" 1759856220.49695 33 ba867c219f4506a281ae1b7b977ac343 ""
   "../src/1-Rosa-warm-up/sinfo_out" 1759847759.35531 690 589d5807aa2cc05e7e7d8d5ad5f56335 ""
@@ -17,12 +17,12 @@
   "../src/2-Performance-characteristics/02/XEON_E5-2650.png" 1759958412.00685 181338 30d0e7b0e665756d0ca9f0d22064c33a ""
   "../src/2-Performance-characteristics/03/slurm-52026.out" 1759964475.25721 1644 bad03826f8c8bc42b0769d4de74218c6 ""
   "../src/2-Performance-characteristics/04/roofline.pdf" 1759966518.72608 18219 682b1a2f5bae0d10d768281fc185e797 ""
-  "../src/3-Optimize-Matrix-Matrix-Mult/basic-dgemm-blocked/timing-02.pdf" 1760023607.40707 14290 80c52a5f4a44dc3234ea9de0edfb8608 ""
-  "../src/3-Optimize-Matrix-Matrix-Mult/basic-dgemm-blocked/timing-04.pdf" 1760023607.76497 14291 4bc09b0988ab2500dd4bccc396434282 ""
-  "../src/3-Optimize-Matrix-Matrix-Mult/basic-dgemm-blocked/timing-08.pdf" 1760023608.11515 14343 83938ef6ef40f410da3029194f68774b ""
-  "../src/3-Optimize-Matrix-Matrix-Mult/basic-dgemm-blocked/timing-16.pdf" 1760023608.45392 14323 a4122d771a499069dc06038618955667 ""
-  "../src/3-Optimize-Matrix-Matrix-Mult/basic-dgemm-blocked/timing-32.pdf" 1760023608.79744 14337 27446afc989aa655d917cfedb1ccf9b2 ""
-  "../src/3-Optimize-Matrix-Matrix-Mult/basic-dgemm-blocked/timing-64.pdf" 1760023609.37419 14307 7e8ef3260967d7bd8d9d937d60684d70 ""
+  "../src/3-Optimize-Matrix-Matrix-Mult/dgemm-blocked/timing-02.pdf" 1760023607.40707 14290 80c52a5f4a44dc3234ea9de0edfb8608 ""
+  "../src/3-Optimize-Matrix-Matrix-Mult/dgemm-blocked/timing-04.pdf" 1760023607.76497 14291 4bc09b0988ab2500dd4bccc396434282 ""
+  "../src/3-Optimize-Matrix-Matrix-Mult/dgemm-blocked/timing-08.pdf" 1760023608.11515 14343 83938ef6ef40f410da3029194f68774b ""
+  "../src/3-Optimize-Matrix-Matrix-Mult/dgemm-blocked/timing-16.pdf" 1760023608.45392 14323 a4122d771a499069dc06038618955667 ""
+  "../src/3-Optimize-Matrix-Matrix-Mult/dgemm-blocked/timing-32.pdf" 1760023608.79744 14337 27446afc989aa655d917cfedb1ccf9b2 ""
+  "../src/3-Optimize-Matrix-Matrix-Mult/dgemm-blocked/timing-64.pdf" 1760023609.37419 14307 7e8ef3260967d7bd8d9d937d60684d70 ""
   "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_1/Project1_template/template.tex" 1760024976.51877 933 ca0250bab265b96bc561b1b1d1b09900 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -132,12 +132,12 @@
   "assignment.sty" 1759139977 3156 918d96c5ca2f3a4c45ce278608ba580f ""
   "inputs/part1.tex" 1759967440.645 5560 5ccd04292b45d5cd9e060586c57592c2 ""
   "inputs/part2.tex" 1759966872.04352 4506 40e1cbab5f7b485d8aa1b95f6f77b90b ""
-  "inputs/part3.tex" 1760026160.26889 3176 7dfc437b814722c27f32389dd62c7066 ""
-  "template.aux" 1760026161.61746 12139 ea6d218ccc923cd8ccff7dc16c5b4814 "pdflatex"
-  "template.bbl" 1760026154.41253 530 dc7e937d760118e9e20beb154f05c75c "bibtex template"
-  "template.out" 1760026161.20637 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "inputs/part3.tex" 1760027762.76503 3140 d8177411fd74ee87f14c742bdbcd9ee6 ""
+  "template.aux" 1760027765.69702 12139 ea6d218ccc923cd8ccff7dc16c5b4814 "pdflatex"
+  "template.bbl" 1760027764.54038 530 dc7e937d760118e9e20beb154f05c75c "bibtex template"
+  "template.out" 1760027765.27903 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   "template.tex" 1760024976.51877 933 ca0250bab265b96bc561b1b1d1b09900 ""
-  "template.toc" 1760026161.61957 1432 d90e6312fcd8ee5de1e6d9364c37a420 "pdflatex"
+  "template.toc" 1760027765.6995 1432 d90e6312fcd8ee5de1e6d9364c37a420 "pdflatex"
   "usi_inf.png" 1726162814 99334 1f4e71c330319964e6349d99194dd493 ""
   (generated)
   "template.aux"
