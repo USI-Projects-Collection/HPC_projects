@@ -49,7 +49,7 @@ benchmark-blas: benchmark.o dgemm-blas.o
 
 .PHONY: clean
 clean:
-	$(RM) $(targets) $(objects)
+	$(RM) $(targets) $(objects) .err .out .pdf
 
 .PHONY: cleanall
 cleanall: clean

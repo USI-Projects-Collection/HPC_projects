@@ -1,7 +1,7 @@
 const char* dgemm_desc = "Blocked dgemm.";
 
 #ifndef BLOCK_SIZE
-#define BLOCK_SIZE 32
+#define BLOCK_SIZE 2
 #endif
 
 /* This routine performs a dgemm operation on a block
