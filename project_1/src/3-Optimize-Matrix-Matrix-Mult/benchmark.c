@@ -122,7 +122,7 @@ int main(int argc, char **argv) {
       /* Benchmark n_iterations runs of square_dgemm */
       seconds = -wall_time();
       for (int it = 0; it < n_iterations; ++it) {
-	square_dgemm(n, A, B, C);
+        square_dgemm(n, A, B, C);
       }
       seconds += wall_time();
 
@@ -158,7 +158,7 @@ int main(int argc, char **argv) {
        square_dgemm */
     for (int i = 0; i < n * n; ++i) {
       if (C[i] > 0)
-	die("Error in matrix multiply exceeds componentwise error bounds.\n");
+      die("Error in matrix multiply exceeds componentwise error bounds.\n");
     }
   }
 
