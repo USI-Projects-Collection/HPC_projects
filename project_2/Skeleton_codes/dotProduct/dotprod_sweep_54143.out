@@ -1,0 +1,113 @@
+Loading gcc/13.2.0-gcc-8.5.0-5hqhkwo
+  Loading requirement: gcc-runtime/8.5.0-gcc-8.5.0-7fyorqa
+    gmp/6.2.1-gcc-8.5.0-lrpcvy5 mpfr/4.2.1-gcc-8.5.0-ybeybcx
+    mpc/1.3.1-gcc-8.5.0-cv2gjfw zlib-ng/2.1.6-gcc-8.5.0-ztbc5xt
+    zstd/1.5.5-gcc-8.5.0-azepnn7
+rm -rf dotProduct
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/g++ -O3 -fopenmp -DN=100000 dotProduct.cpp -o dotProduct
+chmod +x dotProduct
+Running N=100000, OMP_NUM_THREADS=1
+Serial execution time = 0.0116884 sec
+Parallel reduction dot product = 3.33328e+13, time = 0.0117965 sec
+Parallel critical dot product = 3.33328e+13, time = 0.0117772 sec
+Running N=100000, OMP_NUM_THREADS=2
+Serial execution time = 0.0117026 sec
+Parallel reduction dot product = 3.33328e+13, time = 0.00617544 sec
+Parallel critical dot product = 3.33328e+13, time = 0.00614193 sec
+Running N=100000, OMP_NUM_THREADS=4
+Serial execution time = 0.0117013 sec
+Parallel reduction dot product = 3.33328e+13, time = 0.00343048 sec
+Parallel critical dot product = 3.33328e+13, time = 0.0033833 sec
+Running N=100000, OMP_NUM_THREADS=8
+Serial execution time = 0.0116908 sec
+Parallel reduction dot product = 3.33328e+13, time = 0.00237895 sec
+Parallel critical dot product = 3.33328e+13, time = 0.00225117 sec
+Running N=100000, OMP_NUM_THREADS=16
+Serial execution time = 0.0117119 sec
+Parallel reduction dot product = 3.33328e+13, time = 0.0026889 sec
+Parallel critical dot product = 3.33328e+13, time = 0.00243808 sec
+Running N=100000, OMP_NUM_THREADS=20
+Serial execution time = 0.0117145 sec
+Parallel reduction dot product = 3.33328e+13, time = 0.00444707 sec
+Parallel critical dot product = 3.33328e+13, time = 0.00295008 sec
+rm -rf dotProduct
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/g++ -O3 -fopenmp -DN=1000000 dotProduct.cpp -o dotProduct
+chmod +x dotProduct
+Running N=1000000, OMP_NUM_THREADS=1
+Serial execution time = 0.116768 sec
+Parallel reduction dot product = 3.33333e+16, time = 0.116815 sec
+Parallel critical dot product = 3.33333e+16, time = 0.116803 sec
+Running N=1000000, OMP_NUM_THREADS=2
+Serial execution time = 0.116771 sec
+Parallel reduction dot product = 3.33333e+16, time = 0.0589228 sec
+Parallel critical dot product = 3.33333e+16, time = 0.058645 sec
+Running N=1000000, OMP_NUM_THREADS=4
+Serial execution time = 0.117338 sec
+Parallel reduction dot product = 3.33333e+16, time = 0.0299948 sec
+Parallel critical dot product = 3.33333e+16, time = 0.0296598 sec
+Running N=1000000, OMP_NUM_THREADS=8
+Serial execution time = 0.116805 sec
+Parallel reduction dot product = 3.33333e+16, time = 0.0158977 sec
+Parallel critical dot product = 3.33333e+16, time = 0.015388 sec
+Running N=1000000, OMP_NUM_THREADS=16
+Serial execution time = 0.116912 sec
+Parallel reduction dot product = 3.33333e+16, time = 0.010177 sec
+Parallel critical dot product = 3.33333e+16, time = 0.00908306 sec
+Running N=1000000, OMP_NUM_THREADS=20
+Serial execution time = 0.116849 sec
+Parallel reduction dot product = 3.33333e+16, time = 0.00886344 sec
+Parallel critical dot product = 3.33333e+16, time = 0.0081563 sec
+rm -rf dotProduct
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/g++ -O3 -fopenmp -DN=10000000 dotProduct.cpp -o dotProduct
+chmod +x dotProduct
+Running N=10000000, OMP_NUM_THREADS=1
+Serial execution time = 1.35766 sec
+Parallel reduction dot product = 3.33333e+19, time = 1.35635 sec
+Parallel critical dot product = 3.33333e+19, time = 1.35635 sec
+Running N=10000000, OMP_NUM_THREADS=2
+Serial execution time = 1.36134 sec
+Parallel reduction dot product = 3.33333e+19, time = 0.881812 sec
+Parallel critical dot product = 3.33333e+19, time = 0.8824 sec
+Running N=10000000, OMP_NUM_THREADS=4
+Serial execution time = 1.36898 sec
+Parallel reduction dot product = 3.33333e+19, time = 0.647867 sec
+Parallel critical dot product = 3.33333e+19, time = 0.647773 sec
+Running N=10000000, OMP_NUM_THREADS=8
+Serial execution time = 1.34123 sec
+Parallel reduction dot product = 3.33333e+19, time = 0.475308 sec
+Parallel critical dot product = 3.33333e+19, time = 0.537329 sec
+Running N=10000000, OMP_NUM_THREADS=16
+Serial execution time = 1.35081 sec
+Parallel reduction dot product = 3.33333e+19, time = 0.535657 sec
+Parallel critical dot product = 3.33333e+19, time = 0.532416 sec
+Running N=10000000, OMP_NUM_THREADS=20
+Serial execution time = 1.35908 sec
+Parallel reduction dot product = 3.33333e+19, time = 0.552778 sec
+Parallel critical dot product = 3.33333e+19, time = 0.555511 sec
+rm -rf dotProduct
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/g++ -O3 -fopenmp -DN=100000000 dotProduct.cpp -o dotProduct
+chmod +x dotProduct
+Running N=100000000, OMP_NUM_THREADS=1
+Serial execution time = 13.5464 sec
+Parallel reduction dot product = 3.33333e+22, time = 13.553 sec
+Parallel critical dot product = 3.33333e+22, time = 13.5546 sec
+Running N=100000000, OMP_NUM_THREADS=2
+Serial execution time = 13.5756 sec
+Parallel reduction dot product = 3.33333e+22, time = 7.00817 sec
+Parallel critical dot product = 3.33333e+22, time = 7.00806 sec
+Running N=100000000, OMP_NUM_THREADS=4
+Serial execution time = 13.387 sec
+Parallel reduction dot product = 3.33333e+22, time = 6.37761 sec
+Parallel critical dot product = 3.33333e+22, time = 6.37645 sec
+Running N=100000000, OMP_NUM_THREADS=8
+Serial execution time = 13.5496 sec
+Parallel reduction dot product = 3.33333e+22, time = 5.63409 sec
+Parallel critical dot product = 3.33333e+22, time = 5.63308 sec
+Running N=100000000, OMP_NUM_THREADS=16
+Serial execution time = 13.4534 sec
+Parallel reduction dot product = 3.33333e+22, time = 4.45106 sec
+Parallel critical dot product = 3.33333e+22, time = 4.45442 sec
+Running N=100000000, OMP_NUM_THREADS=20
+Serial execution time = 13.5956 sec
+Parallel reduction dot product = 3.33333e+22, time = 5.21296 sec
+Parallel critical dot product = 3.33333e+22, time = 5.23867 sec
