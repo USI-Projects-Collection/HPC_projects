@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.7)  16 OCT 2025 12:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.7)  21 OCT 2025 17:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_1/Project1_template/template.tex
-(/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_1/Project1_template/template.tex
+**/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_2/Project2_template/template.tex
+(/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_2/Project2_template/template.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
 (/usr/local/texlive/2024/texmf-dist/tex/latex/koma-script/scrartcl.cls
@@ -375,33 +375,33 @@ LaTeX Warning: Unused global option(s):
 (./template.aux)
 \openout1 = `template.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-Package scrbase Info: activating english \abstractname on input line 34.
-Package scrbase Info: activating english \partname on input line 34.
-Package scrbase Info: activating english \figurename on input line 34.
-Package scrbase Info: activating english \tablename on input line 34.
-Package scrbase Info: activating english \contentsname on input line 34.
-Package scrbase Info: activating english \listfigurename on input line 34.
-Package scrbase Info: activating english \listtablename on input line 34.
-Package scrbase Info: activating english \refname on input line 34.
-Package scrbase Info: activating english \indexname on input line 34.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+Package scrbase Info: activating english \abstractname on input line 33.
+Package scrbase Info: activating english \partname on input line 33.
+Package scrbase Info: activating english \figurename on input line 33.
+Package scrbase Info: activating english \tablename on input line 33.
+Package scrbase Info: activating english \contentsname on input line 33.
+Package scrbase Info: activating english \listfigurename on input line 33.
+Package scrbase Info: activating english \listtablename on input line 33.
+Package scrbase Info: activating english \refname on input line 33.
+Package scrbase Info: activating english \indexname on input line 33.
  (/usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count292
@@ -427,7 +427,7 @@ Package grfext Info: Graphics extension search list:
  (/usr/local/texlive/2024/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring OFF on input line 34.
+Package hyperref Info: Link coloring OFF on input line 33.
  (./template.out) (./template.out)
 \@outlinefile=\write3
 \openout3 = `template.out'.
@@ -439,7 +439,7 @@ Class scrartcl Info: loading recommended package `bookmark'.
 (scrartcl)           `bookmarkpackage=false' before \begin{document} and
 (scrartcl)           you can avoid this message adding:
 (scrartcl)             \usepackage{bookmark}
-(scrartcl)           before \begin{document} on input line 34.
+(scrartcl)           before \begin{document} on input line 33.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/bookmark/bookmark.sty
 Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
  (/usr/local/texlive/2024/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
@@ -448,7 +448,7 @@ File: bkm-pdftex.def 2023-12-10 v1.31 bookmark driver for pdfTeX and luaTeX (HO)
 ))
 \c@lstlisting=\count299
 Package tocbasic Info: omitting babel extension for `lol'
-(tocbasic)             because of missing \bbl@set@language on input line 34.
+(tocbasic)             because of missing \bbl@set@language on input line 33.
 \scr@dte@lstlisting@maxnumwidth=\skip67
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
@@ -459,45 +459,45 @@ Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verbat
 <usi_inf.png, id=4, 1850.915pt x 871.255pt>
 File: usi_inf.png Graphic file (type png)
 <use usi_inf.png>
-Package pdftex.def Info: usi_inf.png  used on input line 39.
+Package pdftex.def Info: usi_inf.png  used on input line 38.
 (pdftex.def)             Requested size: 187.78531pt x 88.39355pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 39--39
+Underfull \hbox (badness 10000) in paragraph at lines 38--38
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 39--41
+Underfull \hbox (badness 10000) in paragraph at lines 38--40
 
  []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 42.
+(Font)              <10.95> on input line 41.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 42.
+(Font)              <8> on input line 41.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 42.
+(Font)              <6> on input line 41.
 
-Overfull \hbox (4.87477pt too wide) in paragraph at lines 42--42
+Overfull \hbox (4.87477pt too wide) in paragraph at lines 41--41
 []\TS1/cmr/m/n/10.95 ˆ| 
  []
 
 
-Overfull \hbox (4.87477pt too wide) in paragraph at lines 42--42
+Overfull \hbox (4.87477pt too wide) in paragraph at lines 41--41
 []\TS1/cmr/m/n/10.95 ˆ| 
  []
 
 
-Overfull \hbox (4.87477pt too wide) in paragraph at lines 42--42
+Overfull \hbox (4.87477pt too wide) in paragraph at lines 41--41
 []\TS1/cmr/m/n/10.95 ˆ| 
  []
 
 
-Overfull \hbox (4.87477pt too wide) in paragraph at lines 42--42
+Overfull \hbox (4.87477pt too wide) in paragraph at lines 41--41
 []\TS1/cmr/m/n/10.95 ˆ| 
  []
 
-LaTeX Font Info:    Trying to load font information for T1+cmss on input line 46.
+LaTeX Font Info:    Trying to load font information for T1+cmss on input line 44.
 (/usr/local/texlive/2024/texmf-dist/tex/latex/base/t1cmss.fd
 File: t1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 ) (./template.toc)
@@ -509,124 +509,29 @@ File: t1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 {/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./usi_inf.png>]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\hfill' on input line 47.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\hfill' on input line 49.
 
-(./inputs/part1.tex
-LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 7.
- (/usr/local/texlive/2024/texmf-dist/tex/latex/inconsolata/t1zi4.fd
-File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
-)
-LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 10.95pt on input line 7.
- (/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2024/02/21 1.10 listings language file
-) (/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2024/02/21 1.10 (Carsten Heinz)
-)
-LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 9.0pt on input line 48.
- (../src/1-Rosa-warm-up/hello_world.c
-LaTeX Font Info:    Font shape `T1/zi4/b/n' will be
-(Font)              scaled to size 9.0pt on input line 1.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 1.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 1.
- [2{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}]) (../src/1-Rosa-warm-up/hello_worldc.out) (../src/1-Rosa-warm-up/sinfo_out) (../src/1-Rosa-warm-up/slurm_job_one-51063.out [3]) (../src/1-Rosa-warm-up/slurm_job_two-51103.out))
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\hfill' on input line 51.
+
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\hfill' on input line 53.
 
-(./inputs/part2.tex (../src/2-Performance-characteristics/01/INTEL_XEON_E5-2650.txt [4])
-<../src/2-Performance-characteristics/02/XEON_E5-2650.png, id=138, 1222.5675pt x 667.49374pt>
-File: ../src/2-Performance-characteristics/02/XEON_E5-2650.png Graphic file (type png)
-<use ../src/2-Performance-characteristics/02/XEON_E5-2650.png>
-Package pdftex.def Info: ../src/2-Performance-characteristics/02/XEON_E5-2650.png  used on input line 44.
-(pdftex.def)             Requested size: 422.52054pt x 230.68282pt.
- [5 <../src/2-Performance-characteristics/02/XEON_E5-2650.png>] (../src/2-Performance-characteristics/03/slurm-52026.out)
-<../src/2-Performance-characteristics/04/roofline.pdf, id=156, 462.52798pt x 346.89601pt>
-File: ../src/2-Performance-characteristics/04/roofline.pdf Graphic file (type pdf)
-<use ../src/2-Performance-characteristics/04/roofline.pdf>
-Package pdftex.def Info: ../src/2-Performance-characteristics/04/roofline.pdf  used on input line 91.
-(pdftex.def)             Requested size: 422.52054pt x 316.90388pt.
 
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\hfill' on input line 55.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-)
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\hfill' on input line 57.
 
-(./inputs/part3.tex [6]
-
-pdfTeX warning: pdflatex (file ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-02.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../src/3-Optimize-Matrix-Matrix-Mult/results/timing-02.pdf, id=199, 361.35pt x 216.81pt>
-File: ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-02.pdf Graphic file (type pdf)
-<use ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-02.pdf>
-Package pdftex.def Info: ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-02.pdf  used on input line 11.
-(pdftex.def)             Requested size: 225.34381pt x 135.20816pt.
-
-
-pdfTeX warning: pdflatex (file ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-04.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../src/3-Optimize-Matrix-Matrix-Mult/results/timing-04.pdf, id=200, 361.35pt x 216.81pt>
-File: ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-04.pdf Graphic file (type pdf)
-<use ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-04.pdf>
-Package pdftex.def Info: ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-04.pdf  used on input line 18.
-(pdftex.def)             Requested size: 225.34381pt x 135.20816pt.
-
-
-pdfTeX warning: pdflatex (file ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-08.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../src/3-Optimize-Matrix-Matrix-Mult/results/timing-08.pdf, id=201, 361.35pt x 216.81pt>
-File: ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-08.pdf Graphic file (type pdf)
-<use ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-08.pdf>
-Package pdftex.def Info: ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-08.pdf  used on input line 27.
-(pdftex.def)             Requested size: 225.34381pt x 135.20816pt.
-
-
-pdfTeX warning: pdflatex (file ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-16.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../src/3-Optimize-Matrix-Matrix-Mult/results/timing-16.pdf, id=202, 361.35pt x 216.81pt>
-File: ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-16.pdf Graphic file (type pdf)
-<use ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-16.pdf>
-Package pdftex.def Info: ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-16.pdf  used on input line 34.
-(pdftex.def)             Requested size: 225.34381pt x 135.20816pt.
-
-
-pdfTeX warning: pdflatex (file ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-32.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../src/3-Optimize-Matrix-Matrix-Mult/results/timing-32.pdf, id=203, 361.35pt x 216.81pt>
-File: ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-32.pdf Graphic file (type pdf)
-<use ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-32.pdf>
-Package pdftex.def Info: ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-32.pdf  used on input line 43.
-(pdftex.def)             Requested size: 225.34381pt x 135.20816pt.
-
-
-pdfTeX warning: pdflatex (file ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-64.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../src/3-Optimize-Matrix-Matrix-Mult/results/timing-64.pdf, id=204, 361.35pt x 216.81pt>
-File: ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-64.pdf Graphic file (type pdf)
-<use ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-64.pdf>
-Package pdftex.def Info: ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-64.pdf  used on input line 50.
-(pdftex.def)             Requested size: 225.34381pt x 135.20816pt.
-[7 <../src/2-Performance-characteristics/04/roofline.pdf>] [8 <../src/3-Optimize-Matrix-Matrix-Mult/results/timing-02.pdf> <../src/3-Optimize-Matrix-Matrix-Mult/results/timing-04.pdf
-
-pdfTeX warning: pdflatex (file ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-04.pdf): PDF inclusion: multiple pdfs with page group included in a single page
-> <../src/3-Optimize-Matrix-Matrix-Mult/results/timing-08.pdf
-
-pdfTeX warning: pdflatex (file ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-08.pdf): PDF inclusion: multiple pdfs with page group included in a single page
-> <../src/3-Optimize-Matrix-Matrix-Mult/results/timing-16.pdf
-
-pdfTeX warning: pdflatex (file ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-16.pdf): PDF inclusion: multiple pdfs with page group included in a single page
-> <../src/3-Optimize-Matrix-Matrix-Mult/results/timing-32.pdf
-
-pdfTeX warning: pdflatex (file ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-32.pdf): PDF inclusion: multiple pdfs with page group included in a single page
-> <../src/3-Optimize-Matrix-Matrix-Mult/results/timing-64.pdf
-
-pdfTeX warning: pdflatex (file ../src/3-Optimize-Matrix-Matrix-Mult/results/timing-64.pdf): PDF inclusion: multiple pdfs with page group included in a single page
->])
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\hfill' on input line 60.
-
-(./template.bbl) [9] (./template.aux)
+[2] (./template.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -635,18 +540,18 @@ Package rerunfilecheck Info: File `template.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 16733 strings out of 474116
- 292506 string characters out of 5743682
- 2284187 words of memory out of 5000000
- 38719 multiletter control sequences out of 15000+600000
- 577387 words of font info for 71 fonts, out of 8000000 for 9000
+ 15652 strings out of 474116
+ 275477 string characters out of 5743682
+ 1942187 words of memory out of 5000000
+ 37809 multiletter control sequences out of 15000+600000
+ 571317 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 108i,11n,107p,11016b,2266s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4b.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsi1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsi1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb>
-Output written on template.pdf (9 pages, 678986 bytes).
+ 108i,11n,107p,11016b,441s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsi1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsi1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb>
+Output written on template.pdf (2 pages, 243320 bytes).
 PDF statistics:
- 601 PDF objects out of 1000 (max. 8388607)
- 442 compressed objects within 5 object streams
- 124 named destinations out of 1000 (max. 500000)
- 150 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 106 PDF objects out of 1000 (max. 8388607)
+ 80 compressed objects within 1 object stream
+ 11 named destinations out of 1000 (max. 500000)
+ 54 words of extra memory for PDF output out of 10000 (max. 10000000)
 

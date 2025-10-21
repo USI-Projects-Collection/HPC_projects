@@ -1,0 +1,272 @@
+                                                                                High-Performance Computing, Fall 2025
+                                                                                Lecturer: Dr. A. Eftekhari
+                                                                                Assistants: V. Karpenko, L. Migliari, D. Vega
+                                                                       Project 2
+                                           Parallel Programming using OpenMP
+                                                              Duedate: See iCorsi submission
+            In this project, we will use OpenMP. If OpenMP is new to you, we highly recommend the LLNL tutorial. See also the iCorsi
+            page for further resources. For reference, we also recommend Chapters four to eight of the book [1].
+            All tests and simulation results must be run on the compute nodes of the Rosa cluster. However, feel free to try and develop on
+            other available systems (e.g., your workstation or laptop) and compilers (the final code must compile and run on Rosa cluster).
+            Youwill find all the skeleton source codes for the project on the course iCorsi page.
+            To help you get started with OpenMP, here is a sample OpenMP program that you can run using interactive jobs. The source
+            code for the sample program is available in skeleton_codes/hello_omp.cpp
+        1    #include <iostream>
+        2    #ifdef _OPENMP
+        3    #include <omp.h>
+        4    #endif
+        5
+        6    int main() {
+        7    #ifdef _OPENMP
+        8          #pragma omp parallel
+        9          {
+       10                if (omp_get_thread_num() == 0) {
+       11                       std::cout << "OpenMP threads=" << omp_get_num_threads() << std::endl;
+       12                }
+       13          }
+       14    #else
+       15          std::cout << "OpenMP is not available." << std::endl;
+       16    #endif
+       17          return 0;
+       18    }
+            You can compile the code using using, for example, g++ -fopenmp hello_omp.cpp -o hello_omp . Don’t forget
+            the -fopenmp flag! We recommend using a makefile (either provided or from other in-class examples) and adjusting
+            them as needed. While developing/debugging your code, it can be useful to work in an interactive session (you can use the
+            -reservation=hpc-tuesdayor-reservation=hpc-wednesdayforbetterpriority)asfollows:
+        1    [user@icslogin01 Test]$ srun --nodes=1 --exclusive --time=00:01:00 --pty bash -i
+        2                srun: job 9737 queued and waiting for resources
+        3                srun: job 9737 has been allocated resources
+        4    [user@icsnodeXX Test]$ export OMP_NUM_THREADS=2
+        5    [user@icsnodeXX Test]$ ./hello_omp
+        6    OpenMP threads=2
+                                                                                                                                1 / 8
+            This allocates an interactive session on 1 node of the Rosa clusterfor 1 minutes. The program sets the number of threads for
+            parallel regions according to the value of the environment variable OMP_NUM_THREADS which is assigned before executing the
+            code.
+            Note: Using -exclusivegrantsyouexclusiveaccesstothenode,meaningthatthereisnosharingofresources—itsallyours!
+            It is very important to use exclusive allocation sparingly, as it restricts others from accessing the node. It is recommended to use,
+            for example, srun --nodes=1 --time=00:20:00 --pty bash -i for code compilation and testing. When you
+            are ready to run larger tests and collect results, such as strong scaling results, you would use
+             srun --nodes=1 --exclusive --time=00:01:00 --pty bash -i.
+            1     Parallel reduction operations with OpenMP[20 points]
+            1.1    DotProduct
+            The file dotProduct/dotProduct.cpp contains the serial implementation of a C/C++ program that computes the dot
+                           T                           N             N
+            product α = a ·b of two vectors a ∈ R         and b ∈ R . A snippet of the code is shown below:
+       42       time_start = wall_time();
+       43       for (int iterations = 0; iterations < NUM_ITERATIONS; iterations++) {
+       44          alpha = 0.0;
+       45          for (int i = 0; i < N; i++) {
+       46             alpha += a[i] * b[i];
+       47          }
+       48       }
+       49       time_serial = wall_time() - time_start;
+       50       cout << "Serial execution time = " << time_serial << " sec" << endl;
+       51
+       52       long double alpha_parallel = 0;
+       53       double time_red = 0;
+            Solve the following tasks (Dot Product):
+               1. Implement two parallel versions of the dot product using OpenMP: (i) one using the reduction clause, and (ii) another
+                   using the critical directive.
+               2. Perform a strong scaling analysis on the Rosa clusterfor both parallel implementations, using different numbers of threads
+                                                                                5    6    7    8        9
+                   t = 1,2,4,8,16and20forvariousvectorlengthsN = 10 ,10 ,10 ,10 and10 (provideastrongscalingplotusinglog-
+                   axis where applicable). Discuss the observed differences between the implementation that uses the critical directive
+                   and the reductionclause. Keep all output of the code, these results will be used in the next question.
+               3. Perform an analysis on the parallel efficiency between the two parallel implementations (using the results from the above,
+                   provide a parallel efficiency plot using log-axis where applicable). Discuss OpenMP overhead and the relation between
+                   thread count, parallel efficiency, and workload (in this case the size of the vectors N). At what size of N does it become
+                   beneficial to use a multi-threaded version of the dot product?
+            1.2    Approximatingπ
+            Fromelementary calculus we know that for
+                                                                             Z 1                           
+                                                         4                                                  1
+                                             f(x) =           , we have that     f(x) dx = 4 arctan(x) = π.
+                                                      1+x2                                                 
+                                                                               0                            0
+            Wecanapproximatetheintegral with the midpoint rule as
+                                                                Z 1               N
+                                                                 0 f(x)dx ≈ Xf(xi)∆x,
+                                                                                 i=1
+                                                                                                                                2 / 8
+           where the integration interval [0,1] is uniformly partitioned into N subintervals of size ∆x =  1 and subinterval centers
+           x =(i+ 1)∆x(i=1,...,N).                                                                         N
+            i        2
+           The file pi/pi.cpp serves as a template (it does not implement the C/C++ program that approximates π). Your goal is to
+           implement both a serial version of the approximation and a parallelized one using OpenMP.
+           Solve the following tasks (Approximating π):
+              1. Implement serial and parallel versions of the π approximation method shown, using any parallelization scheme you prefer.
+                                                                10
+                 Discuss your choice. Use a fixed value of N = 10 .
+              2. Showthespeedupbetweenyourparallelimplementation and the serial version for t = 1,2,4,and 8 (include the plot using
+                 log-axis where applicable). Discuss the concept of speedup in relation to strong scaling and its connection to parallel
+                 efficiency (you don’t need to create a strong scaling or parallel efficiency plot here; just discuss it).
+                                                                                                                  3 / 8
+            2     TheMandelbrotsetusingOpenMP[20points]
+            Write a sequential code in C/C++ to visualize the Mandelbrot set. The set bears the name of the “Father of Fractal Geometry,”
+                                                                                                                       2        2     2         2
+            Benoit Mandelbrot. The Mandelbrot set is the set of complex numbers c for which the sequence (z,z +c,(z +c) +c,((z +
+            c)2 + c)2 + c,(((z2 + c)2 + c)2 + c)2 + c,...) tends toward infinity. Mandelbrot set images are made by sampling complex
+            numbers and determining for each whether the result tends towards infinity when a particular mathematical operation is iterated
+            onit. Treating the real and imaginary parts of each number as image coordinates, pixels are colored according to how rapidly the
+            sequence diverges, if at all. More precisely, the Mandelbrot set is the set of values of c in the complex plane for which the orbit
+            of 0 under iteration of the complex quadratic polynomial zn+1 = z2 +c remains bounded. That is, a complex number c is part of
+                                                                                   n
+            the Mandelbrot set if, when starting with z = 0 and applying the iteration repeatedly, the absolute value of z remains bounded
+                                                         0                                                                      n
+            however large n gets. For example, letting c = 1 gives the sequence 0,1,2,5,26,... which tends to infinity. As this sequence is
+            unbounded, 1 is not an element of the Mandelbrot set. On the other hand, c = −1 gives the sequence 0,−1,0,−1,0,... which
+            is bounded, and so −1 belongs to the Mandelbrot set.
+            Theset is defined as follows:
+                                            M:={c∈C:theorbitz,f (z),f2(z),f3(z),... staysbounded}
+                                                                           c      c      c
+            where f is a complex function, usually f (z) = z2 + c with z,c ∈ C. One can prove that if for a c once a point of the series
+                    c                                    c
+            z,f (z),f2(z),... gets farther away from the origin than a distance of 2, the orbit will be unbounded, hence c does not belong
+                c      c
+            to M. Plotting the points whose orbits remain within the disk of radius 2 after MAX_ITERS iterations gives an approximation
+            of the Mandelbrot set. Usually a color image is obtained by interpreting the number of iterations until the orbit “escapes” as a
+            color value. This is done in the following pseudo code:
+        1    for all c in a certain range do
+        2                z = 0
+        3                n = 0
+        4                while |c| < 2 and n < MAX_ITERS do
+        5                             z = z^2 + c
+        6                             n = n + 1
+        7                end while
+        8                plot n at position c
+        9    end for
+                                                                Figure 1: The Mandelbrot set
+                                                                                                                                4 / 8
+            The entire Mandelbrot set in Fig. 1 is contained in the rectangle −2.1 ≤ ℜ(c) ≤ 0.7, −1.4 ≤ ℑ(c) ≤ 1.4. To create an image
+            file, use the routines from mandel/pngwriter.c found in the provided sources like so:
+        1    #include "pngwriter.h"
+        2    png_data        pPng = png_create (width, height); // create the graphic
+                         *
+        3    // plot a point at (x, y) in the color (r, g, b) (0 <= r, g, b < 256)
+        4    png_plot (pPng, x, y, r, g, b);
+        5    png_write (pPng, filename); // write to file
+            Youneedtolinkwith-lpng. YoucansettheRBGcolortowhite(r,g,b) = (255,255,255)ifthepointat(x,y)belongstothe
+            Mandelbrot set, otherwise it can be (r,g,b) = (0,0,0)
+       40    int c = ((long)n * 255) / MAX_ITERS;
+       41    png_plot(pPng, i, j, c, c, c);
+             Record the time used to compute the Mandelbrot set. How many iterations could you perform per second? What is the
+            performance in MFlop/s (assume that 1 iteration requires 8 floating point operations)? Try different image sizes. Please use the
+            following C code fragment to report these statistics.
+       48    // print benchmark data
+       49    printf("Total time:                                      %g seconds\n",
+       50               (time_end - time_start));
+       51    printf("Image size:                                      %ld x %ld = %ld Pixels\n",
+       52               (long)IMAGE_WIDTH, (long)IMAGE_HEIGHT,
+       53               (long)(IMAGE_WIDTH * IMAGE_HEIGHT));
+       54    printf("Total number of iterations: %ld\n", nTotalIterationsCount);
+       55    printf("Avg. time per pixel:                             %g seconds\n",
+       56               (time_end - time_start) / (double)(IMAGE_WIDTH * IMAGE_HEIGHT));
+       57    printf("Avg. time per iteration:                         %g seconds\n",
+       58               (time_end - time_start) / (double)nTotalIterationsCount);
+       59    printf("Iterations/second:                               %g\n",
+       60               nTotalIterationsCount / (time_end - time_start));
+       61    // assume there are 8 floating point operations per iteration
+       62    printf("MFlop/s:                                         %g\n",
+       63               nTotalIterationsCount * 8.0 / (time_end - time_start) * 1.e-6);
+       64
+       65    png_write(pPng, "mandel.png");
+                                                                                                                                5 / 8
+            Solve the following problems:
+               1. Implement the computation kernel of the Mandelbrot set in mandel/mandel_seq.c:
+              21   // do the calculation
+              22   cy = MIN_Y;
+              23   for (j = 0; j < IMAGE_HEIGHT; j++) {
+              24       cx = MIN_X;
+              25       for (i = 0; i < IMAGE_WIDTH; i++) {
+              26          x = cx;
+              27          y = cy;
+              28          x2 = x * x;
+              29          y2 = y * y;
+              30          // compute the orbit z, f(z), f^2(z), f^3(z), ...
+              31          // count the iterations until the orbit leaves the circle |z|=2.
+              32          // stop if the number of iterations exceeds the bound MAX_ITERS.
+              33          int n = 0;
+              34          // TODO
+              35          // >>>>>>>> CODE IS MISSING
+              36
+              37          // <<<<<<<< CODE IS MISSING
+              38          // n indicates if the point belongs to the mandelbrot set
+              39          // plot the number of iterations at point (i, j)
+              40          int c = ((long)n * 255) / MAX_ITERS;
+              41          png_plot(pPng, i, j, c, c, c);
+              42          cx += fDeltaX;
+              43       }
+              44       cy += fDeltaY;
+              45   }
+               2. Count the total number of iterations in order to correctly compute the benchmark statistics. Use the variable
+                   nTotalIterationsCount .
+               3. Parallelize the Mandelbrot code that you have written using OpenMP. Compile the program using the GNU C compiler
+                   (gcc) with the option -fopenmp. Perform benchmarking for a strong scaling analysis of your implementation and
+                   provide a plot for your results as well as a discussion.
+            3     Bughunt[15points]
+            Youcanfind in the code directory for this project a number of short OpenMP programs (bugs/omp_bug1-5.c), which all contain
+            compile-time or run-time bugs. Identify the bugs, explain what is the problem, and suggest how to fix it (there is no need to
+            submit the correct modified code).
+            Hints:
+               1. bug1.c: check tid
+               2. bug2.c: check shared vs. private
+               3. bug3.c: check barrier
+               4. bug4.c: stacksize http://stackoverflow.com/questions/13264274
+               5. bug5.c: locking order.
+                                                                                                                                6 / 8
+            4     Parallel histogram calculation using OpenMP [15 points]
+            The following code fragment computes a histogram dist containing 16 bins over the VEC_SIZE values in a large array of
+            integers vec that are all in the range {0,...,15}:
+       37       for (long i = 0; i < VEC_SIZE; ++i) {
+       38          dist[vec[i]]++;
+       39       }
+             You find the sequential implementation in hist/hist_seq.cpp. Parallelize the histogram computations using OpenMP
+            (skeleton code is provided in hist/hist_omp.cpp). Report runtimes for the original (serial) code, the 1-thread and the N-
+            thread parallel versions. Document and discuss the strong scaling behaviour in your report (i.e., keeping the size VEC_SIZE
+            of the large array fixed at its original value).
+            Hint: “False sharing” can strongly affect parallel performance (see, e.g., [1, Sec. 7.2.4]).
+            5     Parallel loop dependencies with OpenMP [15 points]
+            Parallelize the loop in the following code snippet from loop-dependencies/recur_seq.c (available in the provided
+            sources) using OpenMP:
+        1                double up = 1.00001;
+        2                double Sn = 1.0;
+        3                double opt[N+1];
+        4                int n;
+        5                for (n=0; n<=N; ++n) {
+        6                             opt[n] = Sn;
+        7                             Sn = up;
+                                           *
+        8                }
+            The parallelized code should work independently of the OpenMP schedule pragma that you will use. Please also try to avoid
+            – as far as possible – expensive operations that might harm serial performance. To solve this problem you might want to use
+            the firstprivate and lastprivate OpenMPclauses. The former acts like private with the important difference that
+            the value of the global variable is copied to the privatized instances. The latter has the effect that the listed variables values are
+            copied from the lexically last loop iteration to the global variable when the parallel loop exits. Comment on your parallelisation
+            briefly in the report.
+            6     Quality of the Report [15 Points]
+            Each project will have 100 points (out of 15 point will be given to the general written quality of the report).
+            Additional notes and submission details
+            Submit the source code files (together with your used Makefile) in an archive file (tar, zip, etc.) and summarize your results
+            and the observations for all exercises by writing an extended Latex report. Use the Latex template from the webpage and upload
+            the Latex summary as a PDF to iCorsi.
+                • Your submission should be a gzipped tar archive, formatted like project_number_lastname_firstname.zip or
+                   project_number_lastname_firstname.tgz. It should contain:
+                      – All the source codes of your solutions.
+                                                                                                                                7 / 8
+           – Build files and scripts. If you have modified the provided build files or scripts, make sure they still build the sources
+            an run correctly. We will use them to grade your submission.
+           – project_number_lastname_firstname.pdf, your write-up with your name.
+           – Follow the provided guidelines for the report.
+        • Submit your .tgz through iCorsi.
+      CodeofConductandPolicy
+        • Donotuseorotherwiseaccessanyon-linesourceorserviceotherthantheiCorsisystemforyoursubmission. Inparticular,
+         youmaynotconsultsites such as GitHub Co-Pilot or ChatGPT.
+        • Youmustacknowledgeanycodeyouobtainfromanysource,includingexamplesinthedocumentationorcoursematerial.
+         Usecodecommentstoacknowledgesources.
+        • Your code must compile with a standard-configuration C/C++ compiler.
+      References
+      [1] Georg Hager and Gerhard Wellein. Introduction to high performance computing for scientists and engineers. Chapman &
+        Hall/CRC Computational Science, July 2010. ISSN 2154-4492. doi: 10.1201/ebk1439811924. URL http://dx.doi.
+        org/10.1201/EBK1439811924.
+                                                              8 / 8

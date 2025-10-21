@@ -12,4 +12,7 @@ plot "timing_basic_dgemm.data"   using 2:4 title "Naive dgemm"     \
      "timing_blocked_dgemm.data" using 2:4 title "Blocked dgemm"   \
                                  with linespoints,                 \
      "timing_blas_dgemm.data"    using 2:4 title "Ref. BLAS dgemm" \
+                                 with linespoints,                 \
+     "timing_blocked_omp_dgemm.data" using 2:4 title "Blocked + OMP" \
                                  with linespoints
+

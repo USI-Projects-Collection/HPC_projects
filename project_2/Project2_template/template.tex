@@ -1,0 +1,60 @@
+\documentclass[unicode,11pt,a4paper,oneside,numbers=endperiod,openany]{scrartcl}
+
+\input{assignment.sty}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{xcolor}
+
+\usepackage[T1]{fontenc}
+\usepackage{inconsolata}
+
+\lstdefinestyle{hpcblock}{
+    basicstyle=\ttfamily\footnotesize,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    rulecolor=\color{gray!60},
+    xleftmargin=1.5em,
+    xrightmargin=1.5em,
+    aboveskip=1em,
+    belowskip=1em,
+    showstringspaces=false,
+    columns=fullflexible,
+    keepspaces=true,
+    breaklines=true,
+    postbreak=\mbox{\textcolor{gray}{$\hookrightarrow$}\space}
+}
+\lstset{style=hpcblock}
+
+
+
+\begin{document}
+
+
+\setassignment
+
+\serieheader{High-Performance Computing Lab}{Institute of Computing}{Student: FULL NAME}{Discussed with: FULL NAME}{Solution for Project 2}{}
+\newline
+
+\assignmentpolicy
+This project will introduce you to parallel programming using OpenMP. 
+
+\tableofcontents
+\newpage
+
+\section{Parallel reduction operations using OpenMP \punkte{20}}
+
+\section{The Mandelbrot set using OpenMP \punkte{20}}
+
+\section{Bug hunt \punkte{15}}
+
+\section{Parallel histogram calculation using OpenMP \punkte{15}}
+
+\section{Parallel loop dependencies with OpenMP \punkte{15}}
+
+\section{Quality of the Report \punkte{15}}
+
+
+\end{document}
