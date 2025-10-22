@@ -6,6 +6,7 @@
 #include "walltime.h"
 
 int main(int argc, char **argv) {
+  const char *output_name = (argc > 1) ? argv[1] : "mandel.png";
   png_data *pPng = png_create(IMAGE_WIDTH, IMAGE_HEIGHT);
 
   double x, y, x2, y2, cx, cy;
@@ -14,6 +15,12 @@ int main(int argc, char **argv) {
   double fDeltaY = (MAX_Y - MIN_Y) / (double)IMAGE_HEIGHT;
 
   long nTotalIterationsCount = 0;
+  long total_pixels = (long)IMAGE_WIDTH * (long)IMAGE_HEIGHT;
+  int *colors = (int *)malloc(sizeof(int) * total_pixels);
+  if (!colors) {
+    fprintf(stderr, "Failed to allocate color buffer\n");
+    return 1;
+  }
 
   long i, j;
 
@@ -21,9 +28,9 @@ int main(int argc, char **argv) {
   // do the calculation
   cy = MIN_Y;
   for (j = 0; j < IMAGE_HEIGHT; j++) {
-    cx = MIN_X;
-#pragma omp parallel for schedule(static) reduction(+ : nTotalIterationsCount) private(x, y, x2, y2)
+#pragma omp parallel for schedule(static) reduction(+ : nTotalIterationsCount) private(x, y, x2, y2, cx)
     for (i = 0; i < IMAGE_WIDTH; i++) {
+      cx = MIN_X + i * fDeltaX;
       x = cx;
       y = cy;
       x2 = x * x;
@@ -44,8 +51,7 @@ int main(int argc, char **argv) {
       // n indicates if the point belongs to the mandelbrot set
       // plot the number of iterations at point (i, j)
       int c = ((long)n * 255) / MAX_ITERS;
-      png_plot(pPng, i, j, c, c, c);
-      cx += fDeltaX;
+      colors[j * IMAGE_WIDTH + i] = c;
     }
     cy += fDeltaY;
   }
@@ -68,6 +74,15 @@ int main(int argc, char **argv) {
   printf("MFlop/s:                    %g\n",
          nTotalIterationsCount * 8.0 / (time_end - time_start) * 1.e-6);
 
-  png_write(pPng, "mandel.png");
+  for (j = 0; j < IMAGE_HEIGHT; j++) {
+    for (i = 0; i < IMAGE_WIDTH; i++) {
+      int c = colors[j * IMAGE_WIDTH + i];
+      png_plot(pPng, i, j, c, c, c);
+    }
+  }
+
+  free(colors);
+
+  png_write(pPng, output_name);
   return 0;
 }

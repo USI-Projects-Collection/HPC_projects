@@ -1,0 +1,8 @@
+Running with OMP_NUM_THREADS=16
+Total time:                 161.998 seconds
+Image size:                 4096 x 4096 = 16777216 Pixels
+Total number of iterations: 32337668137
+Avg. time per pixel:        9.65581e-06 seconds
+Avg. time per iteration:    5.00956e-09 seconds
+Iterations/second:          1.99618e+08
+MFlop/s:                    1596.95
