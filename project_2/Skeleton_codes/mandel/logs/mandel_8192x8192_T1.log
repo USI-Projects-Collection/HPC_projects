@@ -1,0 +1,8 @@
+Running size=8192x8192, threads=1
+Total time:                 647.714 seconds
+Image size:                 8192 x 8192 = 67108864 Pixels
+Total number of iterations: 129356643126
+Avg. time per pixel:        9.65169e-06 seconds
+Avg. time per iteration:    5.0072e-09 seconds
+Iterations/second:          1.99713e+08
+MFlop/s:                    1597.7

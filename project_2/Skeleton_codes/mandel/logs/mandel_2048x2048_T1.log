@@ -1,0 +1,8 @@
+Running size=2048x2048, threads=1
+Total time:                 40.4836 seconds
+Image size:                 2048 x 2048 = 4194304 Pixels
+Total number of iterations: 8084465203
+Avg. time per pixel:        9.65205e-06 seconds
+Avg. time per iteration:    5.00758e-09 seconds
+Iterations/second:          1.99697e+08
+MFlop/s:                    1597.58

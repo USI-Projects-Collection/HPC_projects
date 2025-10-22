@@ -33,8 +33,9 @@ int main(int argc, char **argv) {
   // do the calculation
   cy = MIN_Y;
   for (j = 0; j < IMAGE_HEIGHT; j++) {
-    cx = MIN_X;
+#pragma omp parallel for schedule(static) reduction(+ : nTotalIterationsCount) private(x, y, x2, y2, cx)
     for (i = 0; i < IMAGE_WIDTH; i++) {
+      cx = MIN_X + i * fDeltaX;
       x = cx;
       y = cy;
       x2 = x * x;
@@ -56,7 +57,6 @@ int main(int argc, char **argv) {
       // plot the number of iterations at point (i, j)
       int c = ((long)n * 255) / MAX_ITERS;
       colors[j * IMAGE_WIDTH + i] = c;
-      cx += fDeltaX;
     }
     cy += fDeltaY;
   }
