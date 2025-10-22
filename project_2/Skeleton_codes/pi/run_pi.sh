@@ -3,17 +3,13 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
-#SBATCH --time=00:20:00
-#SBATCH --partition=debug
+#SBATCH --time=01:00:00
 #SBATCH --output=pi_midpoint_%j.out
 #SBATCH --error=pi_midpoint_%j.err
 
 module load gcc
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-cd "${SCRIPT_DIR}"
-
-LOG_DIR="logs"
+LOG_DIR=$(pwd)/logs
 mkdir -p "${LOG_DIR}"
 
 make clean
