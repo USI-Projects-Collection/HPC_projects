@@ -1,0 +1,78 @@
+\subsection{Dot product}
+
+\subsubsection{Implementation}
+I compiled \texttt{Skeleton\_codes/dotProduct/dotProduct.cpp} with \texttt{g++ -fopenmp}. The Makefile exposes the vector size through the variable \texttt{N}, injected at compile time (``\texttt{-DN=\$(N)}''). The batch script \texttt{run\_jobs.sh} rebuilds the binary for each $N \in \{10^5,10^6,10^7,10^8\}$ and runs both OpenMP variants.
+
+\lstinputlisting[
+    caption={Reduction-based OpenMP dot product},
+    captionpos=b,
+    label={lst:dotprod_reduction},
+    language=C++,
+    numbers=left,
+    linerange={57-67},
+    firstnumber=57
+]{../Skeleton_codes/dotProduct/dotProduct.cpp}
+
+Listing~\ref{lst:dotprod_reduction} lets OpenMP handle partial sums via the \texttt{reduction} clause, avoiding explicit synchronisation. The alternative keeps thread-local buffers and merges them inside a \texttt{critical} region, shown in Listing~\ref{lst:dotprod_critical}.
+
+\lstinputlisting[
+    caption={Critical-based OpenMP dot product},
+    captionpos=b,
+    label={lst:dotprod_critical},
+    language=C++,
+    numbers=left,
+    linerange={69-84},
+    firstnumber=69
+]{../Skeleton_codes/dotProduct/dotProduct.cpp}
+
+
+\subsubsection{Testing}
+For each size the script sweeps \texttt{OMP\_NUM\_THREADS} in $\{1,2,4,8,16,20\}$, exporting the value before invoking the executable. Each run stores its stdout to \texttt{logs/dotprod\_N\ldots\_T\ldots.log}; a Python helper converts the logs into the plots below and verifies that the reduction and critical versions match the serial dot product within a relative tolerance of $10^{-6}$.
+
+\subsubsection{Discussion}
+Figures~\ref{fig:dotprod_n1e5}--\ref{fig:dotprod_n1e8} show that even the smallest test ($N = 10^5$) benefits from parallelism: two threads reduce the runtime from $11.7\,\mathrm{ms}$ to $6.2\,\mathrm{ms}$ and eight threads reach $2.4\,\mathrm{ms}$. The efficiency plot in Figure~\ref{fig:dotprod_eff} highlights how OpenMP overhead grows with the thread count: efficiency is defined as $E = T_1 /(p \cdot T_p)$, so every time the speedup grows sub-linearly the per-core return decreases (e.g.\ speedup $\approx 2$ on two threads gives $E \approx 1$, speedup $\approx 4.9$ on eight threads gives $E \approx 0.6$). Beyond eight threads the serial portion and the \texttt{critical} synchronisation dominate, so efficiencies fall below $0.3$, even though the absolute runtime still drops (e.g.\ $T_{16} = 0.54\,\mathrm{s}$ for $N = 10^7$). The reduction variant consistently retains $5{-}10\%$ higher efficiency because it avoids serialised updates. Overall, multi-threading is worth, provided that the thread count remains modest (up to eight) to keep overhead under control for the smaller vectors; for $N \ge 10^7$ the reduction version scales well up to sixteen threads.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../Skeleton_codes/dotProduct/plots/dotprod_N100000.png}
+        \caption{$N = 10^5$}
+        \label{fig:dotprod_n1e5}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../Skeleton_codes/dotProduct/plots/dotprod_N1000000.png}
+        \caption{$N = 10^6$}
+        \label{fig:dotprod_n1e6}
+    \end{subfigure}
+
+    \vspace{1em}
+
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../Skeleton_codes/dotProduct/plots/dotprod_N10000000.png}
+        \caption{$N = 10^7$}
+        \label{fig:dotprod_n1e7}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../Skeleton_codes/dotProduct/plots/dotprod_N100000000.png}
+        \caption{$N = 10^8$}
+        \label{fig:dotprod_n1e8}
+    \end{subfigure}
+    \caption{Execution time vs. threads for different vector sizes.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \IfFileExists{../Skeleton_codes/dotProduct/plots/dotprod_efficiency.png}{
+        \includegraphics[width=0.75\linewidth]{../Skeleton_codes/dotProduct/plots/dotprod_efficiency.png}
+    }{\fbox{Generate \texttt{dotprod\_efficiency.png} via \texttt{plot\_results.py}}}
+    \caption{Parallel efficiency $E = T_1 / (p \cdot T_p)$ for the two OpenMP variants.}
+    \label{fig:dotprod_eff}
+\end{figure}
+
+\subsection{Approximating $\pi$}

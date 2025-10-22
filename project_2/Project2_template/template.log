@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.7)  21 OCT 2025 17:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.7)  22 OCT 2025 02:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -375,33 +375,33 @@ LaTeX Warning: Unused global option(s):
 (./template.aux)
 \openout1 = `template.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-Package scrbase Info: activating english \abstractname on input line 33.
-Package scrbase Info: activating english \partname on input line 33.
-Package scrbase Info: activating english \figurename on input line 33.
-Package scrbase Info: activating english \tablename on input line 33.
-Package scrbase Info: activating english \contentsname on input line 33.
-Package scrbase Info: activating english \listfigurename on input line 33.
-Package scrbase Info: activating english \listtablename on input line 33.
-Package scrbase Info: activating english \refname on input line 33.
-Package scrbase Info: activating english \indexname on input line 33.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+Package scrbase Info: activating english \abstractname on input line 31.
+Package scrbase Info: activating english \partname on input line 31.
+Package scrbase Info: activating english \figurename on input line 31.
+Package scrbase Info: activating english \tablename on input line 31.
+Package scrbase Info: activating english \contentsname on input line 31.
+Package scrbase Info: activating english \listfigurename on input line 31.
+Package scrbase Info: activating english \listtablename on input line 31.
+Package scrbase Info: activating english \refname on input line 31.
+Package scrbase Info: activating english \indexname on input line 31.
  (/usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count292
@@ -427,7 +427,7 @@ Package grfext Info: Graphics extension search list:
  (/usr/local/texlive/2024/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring OFF on input line 33.
+Package hyperref Info: Link coloring OFF on input line 31.
  (./template.out) (./template.out)
 \@outlinefile=\write3
 \openout3 = `template.out'.
@@ -439,7 +439,7 @@ Class scrartcl Info: loading recommended package `bookmark'.
 (scrartcl)           `bookmarkpackage=false' before \begin{document} and
 (scrartcl)           you can avoid this message adding:
 (scrartcl)             \usepackage{bookmark}
-(scrartcl)           before \begin{document} on input line 33.
+(scrartcl)           before \begin{document} on input line 31.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/bookmark/bookmark.sty
 Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
  (/usr/local/texlive/2024/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
@@ -448,7 +448,7 @@ File: bkm-pdftex.def 2023-12-10 v1.31 bookmark driver for pdfTeX and luaTeX (HO)
 ))
 \c@lstlisting=\count299
 Package tocbasic Info: omitting babel extension for `lol'
-(tocbasic)             because of missing \bbl@set@language on input line 33.
+(tocbasic)             because of missing \bbl@set@language on input line 31.
 \scr@dte@lstlisting@maxnumwidth=\skip67
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
@@ -459,45 +459,45 @@ Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verbat
 <usi_inf.png, id=4, 1850.915pt x 871.255pt>
 File: usi_inf.png Graphic file (type png)
 <use usi_inf.png>
-Package pdftex.def Info: usi_inf.png  used on input line 38.
+Package pdftex.def Info: usi_inf.png  used on input line 35.
 (pdftex.def)             Requested size: 187.78531pt x 88.39355pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 38--38
+Underfull \hbox (badness 10000) in paragraph at lines 35--35
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 38--40
+Underfull \hbox (badness 10000) in paragraph at lines 35--37
 
  []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 41.
+(Font)              <10.95> on input line 38.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 41.
+(Font)              <8> on input line 38.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 41.
+(Font)              <6> on input line 38.
 
-Overfull \hbox (4.87477pt too wide) in paragraph at lines 41--41
+Overfull \hbox (4.87477pt too wide) in paragraph at lines 38--38
 []\TS1/cmr/m/n/10.95 ˆ| 
  []
 
 
-Overfull \hbox (4.87477pt too wide) in paragraph at lines 41--41
+Overfull \hbox (4.87477pt too wide) in paragraph at lines 38--38
 []\TS1/cmr/m/n/10.95 ˆ| 
  []
 
 
-Overfull \hbox (4.87477pt too wide) in paragraph at lines 41--41
+Overfull \hbox (4.87477pt too wide) in paragraph at lines 38--38
 []\TS1/cmr/m/n/10.95 ˆ| 
  []
 
 
-Overfull \hbox (4.87477pt too wide) in paragraph at lines 41--41
+Overfull \hbox (4.87477pt too wide) in paragraph at lines 38--38
 []\TS1/cmr/m/n/10.95 ˆ| 
  []
 
-LaTeX Font Info:    Trying to load font information for T1+cmss on input line 44.
+LaTeX Font Info:    Trying to load font information for T1+cmss on input line 41.
 (/usr/local/texlive/2024/texmf-dist/tex/latex/base/t1cmss.fd
 File: t1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 ) (./template.toc)
@@ -511,47 +511,129 @@ File: t1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\hfill' on input line 47.
 
+(./inputs/section1.tex
+LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 4.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/inconsolata/t1zi4.fd
+File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
+)
+LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
+(Font)              scaled to size 10.95pt on input line 4.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2024/02/21 1.10 listings language file
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2024/02/21 1.10 listings language file
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2024/02/21 1.10 (Carsten Heinz)
+)
+LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
+(Font)              scaled to size 9.0pt on input line 14.
+ (../Skeleton_codes/dotProduct/dotProduct.cpp
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 57.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 57.
+
+
+LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
+(Font)              using `T1/zi4/m/n' instead on input line 57.
+
+LaTeX Font Info:    Font shape `T1/zi4/m/it' will be
+(Font)              scaled to size 9.0pt on input line 57.
+LaTeX Font Info:    Font shape `T1/zi4/b/n' will be
+(Font)              scaled to size 9.0pt on input line 59.
+) (../Skeleton_codes/dotProduct/dotProduct.cpp) [2{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}]
+<../Skeleton_codes/dotProduct/plots/dotprod_N100000.png, id=97, 433.62pt x 289.08pt>
+File: ../Skeleton_codes/dotProduct/plots/dotprod_N100000.png Graphic file (type png)
+<use ../Skeleton_codes/dotProduct/plots/dotprod_N100000.png>
+Package pdftex.def Info: ../Skeleton_codes/dotProduct/plots/dotprod_N100000.png  used on input line 39.
+(pdftex.def)             Requested size: 211.26027pt x 140.84322pt.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 40.
+<../Skeleton_codes/dotProduct/plots/dotprod_N1000000.png, id=98, 433.62pt x 289.08pt>
+File: ../Skeleton_codes/dotProduct/plots/dotprod_N1000000.png Graphic file (type png)
+<use ../Skeleton_codes/dotProduct/plots/dotprod_N1000000.png>
+Package pdftex.def Info: ../Skeleton_codes/dotProduct/plots/dotprod_N1000000.png  used on input line 46.
+(pdftex.def)             Requested size: 211.26027pt x 140.84322pt.
+<../Skeleton_codes/dotProduct/plots/dotprod_N10000000.png, id=99, 433.62pt x 289.08pt>
+File: ../Skeleton_codes/dotProduct/plots/dotprod_N10000000.png Graphic file (type png)
+<use ../Skeleton_codes/dotProduct/plots/dotprod_N10000000.png>
+Package pdftex.def Info: ../Skeleton_codes/dotProduct/plots/dotprod_N10000000.png  used on input line 55.
+(pdftex.def)             Requested size: 211.26027pt x 140.84322pt.
+<../Skeleton_codes/dotProduct/plots/dotprod_N100000000.png, id=100, 433.62pt x 289.08pt>
+File: ../Skeleton_codes/dotProduct/plots/dotprod_N100000000.png Graphic file (type png)
+<use ../Skeleton_codes/dotProduct/plots/dotprod_N100000000.png>
+Package pdftex.def Info: ../Skeleton_codes/dotProduct/plots/dotprod_N100000000.png  used on input line 62.
+(pdftex.def)             Requested size: 211.26027pt x 140.84322pt.
+<../Skeleton_codes/dotProduct/plots/dotprod_efficiency.png, id=101, 722.7pt x 433.62pt>
+File: ../Skeleton_codes/dotProduct/plots/dotprod_efficiency.png Graphic file (type png)
+<use ../Skeleton_codes/dotProduct/plots/dotprod_efficiency.png>
+Package pdftex.def Info: ../Skeleton_codes/dotProduct/plots/dotprod_efficiency.png  used on input line 73.
+(pdftex.def)             Requested size: 352.10284pt x 211.26483pt.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 78.
+
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\hfill' on input line 49.
+(hyperref)                removing `math shift' on input line 78.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\hfill' on input line 51.
+(hyperref)                removing `\pi' on input line 78.
 
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 78.
+
+)
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\hfill' on input line 50.
+
+(./inputs/section2.tex)
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\hfill' on input line 53.
 
+(./inputs/section3.tex)
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\hfill' on input line 55.
+(hyperref)                removing `\hfill' on input line 56.
 
+(./inputs/section4.tex)
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\hfill' on input line 57.
+(hyperref)                removing `\hfill' on input line 59.
 
-[2] (./template.aux)
+(./inputs/section5.tex)
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\hfill' on input line 62.
+
+[3 <../Skeleton_codes/dotProduct/plots/dotprod_N100000.png> <../Skeleton_codes/dotProduct/plots/dotprod_N1000000.png> <../Skeleton_codes/dotProduct/plots/dotprod_N10000000.png> <../Skeleton_codes/dotProduct/plots/dotprod_N100000000.png> <../Skeleton_codes/dotProduct/plots/dotprod_efficiency.png>] [4] (./template.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
 Package rerunfilecheck Info: File `template.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 15652 strings out of 474116
- 275477 string characters out of 5743682
- 1942187 words of memory out of 5000000
- 37809 multiletter control sequences out of 15000+600000
- 571317 words of font info for 59 fonts, out of 8000000 for 9000
+ 16329 strings out of 474116
+ 286225 string characters out of 5743682
+ 2193187 words of memory out of 5000000
+ 38404 multiletter control sequences out of 15000+600000
+ 576370 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 108i,11n,107p,11016b,441s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsi1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsi1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb>
-Output written on template.pdf (2 pages, 243320 bytes).
+ 108i,11n,107p,11016b,1510s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4b.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsi1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsi1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb>
+Output written on template.pdf (4 pages, 645016 bytes).
 PDF statistics:
- 106 PDF objects out of 1000 (max. 8388607)
- 80 compressed objects within 1 object stream
- 11 named destinations out of 1000 (max. 500000)
- 54 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 261 PDF objects out of 1000 (max. 8388607)
+ 196 compressed objects within 2 object streams
+ 49 named destinations out of 1000 (max. 500000)
+ 119 words of extra memory for PDF output out of 10000 (max. 10000000)
 
