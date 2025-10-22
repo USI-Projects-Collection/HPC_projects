@@ -6,7 +6,12 @@
 #include "walltime.h"
 
 int main(int argc, char **argv) {
-  const char *output_name = (argc > 1) ? argv[1] : "mandel.png";
+  char output_name[256];
+  if (argc > 1) {
+    snprintf(output_name, sizeof(output_name), "%s", argv[1]);
+  } else {
+    snprintf(output_name, sizeof(output_name), "mandel.png");
+  }
   png_data *pPng = png_create(IMAGE_WIDTH, IMAGE_HEIGHT);
 
   double x, y, x2, y2, cx, cy;
