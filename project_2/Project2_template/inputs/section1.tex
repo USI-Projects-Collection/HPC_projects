@@ -75,4 +75,56 @@ Figures~\ref{fig:dotprod_n1e5}--\ref{fig:dotprod_n1e8} show that even the smalle
     \label{fig:dotprod_eff}
 \end{figure}
 
+
+
+
 \subsection{Approximating $\pi$}
+
+\subsubsection{Implementation}
+I keep $N = 10^{10}$ as mandated. The serial loop in Listing~\ref{lst:pi_serial} walks through all indices with a single accumulator, while the OpenMP variant in Listing~\ref{lst:pi_parallel} retains the same structure but distributes iterations across threads using a reduction clause.
+
+\lstinputlisting[
+    caption={Serial midpoint integration for $\pi$},
+    captionpos=b,
+    label={lst:pi_serial},
+    language=C++,
+    numbers=left,
+    linerange={18-25},
+    firstnumber=18
+]{../Skeleton_codes/pi/pi.cpp}
+
+\lstinputlisting[
+    caption={Parallel midpoint integration with OpenMP reduction},
+    captionpos=b,
+    label={lst:pi_parallel},
+    language=C++,
+    numbers=left,
+    linerange={29-37},
+    firstnumber=29
+]{../Skeleton_codes/pi/pi.cpp}
+
+The \texttt{reduction(+:\,sum)} clause is the natural choice here: it is an embarrassingly parallel loop, so each thread can integrate its chunk independently and OpenMP combines the private partial integrals at the end. This avoids serial bottlenecks (e.g., critical sections) and preserves the numerical result for the fixed $N = 10^{10}$.
+
+\subsubsection{Results}
+
+\begin{figure}[H]
+    \IfFileExists{../Skeleton_codes/pi/plots/pi_speedup.csv}{
+        \begin{subfigure}{0.45\textwidth}
+            \centering
+            \csvautotabular{../Skeleton_codes/pi/plots/pi_speedup.csv}
+        \end{subfigure}
+    }{\fbox{Generate \texttt{pi\_speedup.csv} via \texttt{plot\_speedup\_pi.py}}}
+    \hfill
+    \IfFileExists{../Skeleton_codes/pi/plots/pi_speedup.png}{
+        \begin{subfigure}{0.45\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{../Skeleton_codes/pi/plots/pi_speedup.png}
+            \vspace{-7em}
+        \end{subfigure}
+    }{\fbox{Generate \texttt{pi\_speedup.png} via \texttt{plot\_speedup\_pi.py}}}
+    \vspace{2em}
+    \caption{Timings and speedup for the midpoint $\pi$ approximation with $N = 10^{10}$ (left) parallel speedup vs. serial baseline (right).}
+    \label{fig:pi_speedup}
+\end{figure}
+
+Speedup ($S_p = T_1/T_p$) captures strong scaling: how much faster the fixed workload runs as threads increase. In this kernel each time the number of cores doubles the runtime halves (Table~\ref{fig:pi_speedup}), so the parallel efficiency $E_p = S_p/p$ stays essentially at one (e.g., $E_8 \approx 0.9997$). The loop is embarrassingly parallel and the OpenMP reduction introduces negligible overhead, so the dominant costs are the per-iteration arithmetic and loop control, which scale linearly with thread count. This demonstrates that the midpoint integration benefits directly from more cores while maintaining accuracy for the prescribed $N = 10^{10}$; an additional efficiency plot is unnecessary because the near-perfect speedup already shows the tight link between strong scaling and efficiency here.
