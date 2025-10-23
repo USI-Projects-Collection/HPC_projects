@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
 
   // ----------- Chunk Division (Manual) -----------
   double time_start_chunk = walltime();
-  #pragma omp parallel firstprivate(Sn) lastprivate(Sn)
+  #pragma omp parallel firstprivate(Sn)
   {
     int num_threads = omp_get_max_threads();
     int tid = omp_get_thread_num();
@@ -28,6 +28,8 @@ int main(int argc, char *argv[]) {
     int start = tid * chunk_size;
     int end = (tid == num_threads - 1) ? (N + 1) : ((tid + 1) * chunk_size);
     double Sn_local = Sn * pow(up, start);
+    
+    #pragma omp for lastprivate(Sn)
     for (int n = start; n < end; ++n) {
       opt_chunk[n] = Sn_local;
       Sn_local *= up;
@@ -37,8 +39,8 @@ int main(int argc, char *argv[]) {
 
   // ----------- Dynamic Schedule with Check -----------
   double time_start_check = walltime();
-  #pragma omp parallel firstprivate(Sn) lastprivate(Sn)
-  #pragma omp for schedule(dynamic)
+  #pragma omp parallel firstprivate(Sn)
+  #pragma omp for schedule(dynamic) lastprivate(Sn)
   for (int i = 0; i <= N; ++i) {
     double Sn_local = Sn;
     int last_i = -2;
