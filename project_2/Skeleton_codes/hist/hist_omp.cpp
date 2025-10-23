@@ -37,7 +37,8 @@ int main() {
 
   // with private histograms for each thread ===================
   time_start_critical = walltime();
-  #pragma omp parallel {
+  #pragma omp parallel 
+  {
     long dist_private[BINS];
     for (int i = 0; i < BINS; ++i) {
       dist_private[i] = 0;
@@ -48,7 +49,8 @@ int main() {
       dist_private[vec[i]]++;
     }
 
-    #pragma omp critical {
+    #pragma omp critical 
+    {
       for (int i = 0; i < BINS; ++i) {
         dist_crit[i] += dist_private[i];
       }
