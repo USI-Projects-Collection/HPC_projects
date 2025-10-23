@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1761218600.28503 "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_2/Project2_template/template.tex" "template.pdf" "template" 1761218604.76725 0
+["pdflatex"] 1761234795.8287 "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_2/Project2_template/template.tex" "template.pdf" "template" 1761234800.40375 0
   "../Skeleton_codes/dotProduct/dotProduct.cpp" 1761087497.4863 2948 21e07da0bb9e12e4e63402feb65fa37b ""
   "../Skeleton_codes/dotProduct/plots/dotprod_N100000.png" 1761089950.59999 54303 cd89f2864ed25092d83c51ded4586a41 ""
   "../Skeleton_codes/dotProduct/plots/dotprod_N1000000.png" 1761089950.65154 52943 820d1718b29cb6b46cf4fb1c83c230ce ""
@@ -8,6 +8,9 @@
   "../Skeleton_codes/dotProduct/plots/dotprod_efficiency.png" 1761089950.90242 109020 682ade33543e6d5d32a19137726cd8b6 ""
   "../Skeleton_codes/hist/hist_omp.cpp" 1761180741.30013 3243 a7572f9201d3614ed6698ea9f682b17e ""
   "../Skeleton_codes/hist/plots/hist_runtime_scaling.png" 1761181377.45114 60699 32b3d5145009b4d12be81e098e59906b ""
+  "../Skeleton_codes/loop-dependencies/plots/recur_runtime_scaling.png" 1761234433.19879 53631 fde497b3b7864a5bf0f8245dd4943c46 ""
+  "../Skeleton_codes/loop-dependencies/recur_omp.c" 1761234567.77962 2081 b40de30a23f8d8f30c27b70bc161f338 ""
+  "../Skeleton_codes/loop-dependencies/recur_seq.c" 1761234296.13601 789 c190288d5861791c490a6ccee86ecbc3 ""
   "../Skeleton_codes/mandel/plots/mandel_runtime_scaling.png" 1761156690.23732 89759 aa06b53c72046055070c1d29ffe7ae38 ""
   "../Skeleton_codes/mandel/png/mandel_4096x4096_T20.png" 1761154507.92864 477479 a21dd91a203242ab9afcb2ed5db039cf ""
   "../Skeleton_codes/mandel/png/mandel_8192x8192_T20.png" 1761154529.51955 1642902 c419a2461dc8ec47a9be73e78cda4e7f ""
@@ -173,11 +176,11 @@
   "inputs/section2.tex" 1761160566.77498 3678 514f753908650629c47bf3e112a8db3e ""
   "inputs/section3.tex" 1761171393.64725 2515 399d4a0794deed5434e347d27fa4d340 ""
   "inputs/section4.tex" 1761218521.74194 3754 d7654a5273541b7adba11adfa8650782 ""
-  "inputs/section5.tex" 1761218599.99479 62 3de25a6afe029ce2b9a96be706c7b8af ""
-  "template.aux" 1761218604.66073 11868 384a89e7cdd2054e9cfa5a2054504d3f "pdflatex"
-  "template.out" 1761218601.08428 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "inputs/section5.tex" 1761234790.82791 3603 b66a2fb6ba1f816664e5bf6fcb3025f0 ""
+  "template.aux" 1761234800.30574 12973 eee1cc2a4b9b03e4a832346cd3f55958 "pdflatex"
+  "template.out" 1761234796.62285 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   "template.tex" 1761159426.30976 1307 2dbd369f11c3e2cee923b02d2ee25616 ""
-  "template.toc" 1761218604.66259 1493 345893f6c62c62258ecd9eef80088b7b "pdflatex"
+  "template.toc" 1761234800.30775 1493 999d5442006965a6ba3e95c2abe6b1f4 "pdflatex"
   "usi_inf.png" 1757507497 99334 1f4e71c330319964e6349d99194dd493 ""
   (generated)
   "template.aux"

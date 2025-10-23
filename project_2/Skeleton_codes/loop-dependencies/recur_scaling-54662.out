@@ -1,0 +1,53 @@
+Loading gcc/13.2.0-gcc-8.5.0-5hqhkwo
+  Loading requirement: gcc-runtime/8.5.0-gcc-8.5.0-7fyorqa
+    gmp/6.2.1-gcc-8.5.0-lrpcvy5 mpfr/4.2.1-gcc-8.5.0-ybeybcx
+    mpc/1.3.1-gcc-8.5.0-cv2gjfw zlib-ng/2.1.6-gcc-8.5.0-ztbc5xt
+    zstd/1.5.5-gcc-8.5.0-azepnn7
+rm -f *.o recur_seq recur_omp
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -c -O3 recur_seq.c
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -c walltime.c
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -O3 recur_seq.o walltime.o -lm -o recur_seq
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -O3 -fopenmp recur_omp.c walltime.o -lm -o recur_omp
+OMP_NUM_THREADS=1
+OMP_NUM_THREADS=1
+----------------------------------------
+rm -f *.o recur_seq recur_omp
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -c -O3 recur_seq.c
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -c walltime.c
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -O3 recur_seq.o walltime.o -lm -o recur_seq
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -O3 -fopenmp recur_omp.c walltime.o -lm -o recur_omp
+OMP_NUM_THREADS=2
+----------------------------------------
+rm -f *.o recur_seq recur_omp
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -c -O3 recur_seq.c
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -c walltime.c
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -O3 recur_seq.o walltime.o -lm -o recur_seq
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -O3 -fopenmp recur_omp.c walltime.o -lm -o recur_omp
+OMP_NUM_THREADS=4
+----------------------------------------
+rm -f *.o recur_seq recur_omp
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -c -O3 recur_seq.c
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -c walltime.c
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -O3 recur_seq.o walltime.o -lm -o recur_seq
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -O3 -fopenmp recur_omp.c walltime.o -lm -o recur_omp
+OMP_NUM_THREADS=8
+----------------------------------------
+rm -f *.o recur_seq recur_omp
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -c -O3 recur_seq.c
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -c walltime.c
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -O3 recur_seq.o walltime.o -lm -o recur_seq
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -O3 -fopenmp recur_omp.c walltime.o -lm -o recur_omp
+OMP_NUM_THREADS=16
+----------------------------------------
+rm -f *.o recur_seq recur_omp
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -c -O3 recur_seq.c
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -c walltime.c
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -O3 recur_seq.o walltime.o -lm -o recur_seq
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -O3 -fopenmp recur_omp.c walltime.o -lm -o recur_omp
+OMP_NUM_THREADS=20
+----------------------------------------
+rm -f *.o recur_seq recur_omp
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -c -O3 recur_seq.c
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -c walltime.c
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -O3 recur_seq.o walltime.o -lm -o recur_seq
+/apps/spack/opt/spack/linux-oracle8-haswell/gcc-8.5.0/gcc-13.2.0-5hqhkwos6l3mv7jxsxpwiab7zpjpimxr/bin/gcc -O3 -fopenmp recur_omp.c walltime.o -lm -o recur_omp

@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
   }
   double time_chunk = walltime() - time_start_chunk;
 
-  // ----------- Dynamic Schedule with Check -----------
+  // ----------- Schedule with Check -----------
   double time_start_check = walltime();
   #pragma omp parallel
   #pragma omp for schedule(dynamic) firstprivate(Sn) lastprivate(Sn)
@@ -53,7 +53,6 @@ int main(int argc, char *argv[]) {
   double time_check = walltime() - time_start_check;
 
 
-  // non toccare questo!!!
   double temp = 0.0;
   for (n = 0; n <= N; ++n) {
     temp += opt_chunk[n] * opt_chunk[n];
