@@ -5,7 +5,7 @@ The code fails to compile because the directive
 \texttt{\#pragma omp parallel for} is followed by a brace instead of the loop itself.
 After fixing the syntax, the call to \texttt{omp\_get\_thread\_num()} inside the loop
 creates unnecessary overhead.  
-\textbf{Fix:} move the call outside the loop and correctly nest the \texttt{for} directive:
+\textbf{Fix:} I moved the call outside the loop and correctly nest the \texttt{for} directive:
 \begin{lstlisting}[language=C]
 #pragma omp parallel shared(a,b,c,chunk) private(i,tid)
 {
@@ -17,7 +17,7 @@ creates unnecessary overhead.
 
 \subsection*{Bug 2 – \texttt{omp\_bug2.c}}
 The variable \texttt{total} is shared by default and updated by all threads,
-causing a race condition. Moreover, printing \texttt{tid} and \texttt{total}
+causing a race condition. And also printing \texttt{tid} and \texttt{total}
 outside the parallel region uses invalid data.  
 \textbf{Fix:} either use a reduction for a global total or declare variables as private:
 \begin{lstlisting}[language=C]
@@ -30,17 +30,12 @@ A runtime deadlock occurs because a \texttt{\#pragma omp barrier}
 inside \texttt{print\_results()} is reached only by threads executing the
 \texttt{sections}. Threads without a section never reach the barrier.
 Sometimes the code terminates, sometimes it hangs.  
-\textbf{Fix:} remove the internal barrier and keep synchronization outside:
-\begin{lstlisting}[language=C]
-void print_results(...) {
-  #pragma omp critical { /* ordered output */ }
-}
-\end{lstlisting}
+\textbf{Fix:} remove the internal barrier and keep synchronization outside.
 
 \subsection*{Bug 4 – \texttt{omp\_bug4.c}}
 Declaring the large matrix \texttt{a} as \texttt{private} makes each thread allocate
-its own copy on the stack ($\sim$8.8 MB per thread), leading to a segmentation fault.
-Even if it runs, the main matrix stays unmodified after the parallel region.  
+its own copy on the stack ($\sim$8.8 MB per thread) and this lead to a segmentation fault at every single run.
+Also, even if it runs, the main matrix stays unmodified after the parallel region.  
 \textbf{Fix:} make \texttt{a} shared or allocate it dynamically on the heap:
 \begin{lstlisting}[language=C]
 #pragma omp parallel shared(a,nthreads) private(i,j,tid)

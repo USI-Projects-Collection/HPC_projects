@@ -1,0 +1,6 @@
+Number of threads: 1
+Parallel RunTime (Chunk Division): 32.917263 seconds
+Parallel RunTime (Dynamic Check): 116.642948 seconds
+Chunk model:   N=2000000000, opt[N]=485165092.77346033, ||opt||^2_2=5884629305179574.000000
+Dynamic model: N=2000000000, opt[N]=485165092.77338654, ||opt||^2_2=5884629305179574.000000
+

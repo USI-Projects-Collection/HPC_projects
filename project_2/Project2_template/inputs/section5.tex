@@ -1,66 +1,30 @@
 \section{Parallel loop dependencies with OpenMP \punkte{15}}
 
-The sequential baseline in Listing~\ref{lst:recur_seq} computes the geometric recurrence
-\mbox{$S_{n+1} = S_n\cdot\texttt{up}$} while storing every intermediate value in the array
-\texttt{opt}.  This version is inherently schedule independent and serves as the reference for
-both correctness and runtime.  The first parallel attempt (Listing~\ref{lst:recur_chunk}) keeps
-the same arithmetic but splits the index range into contiguous chunks.  Each thread receives its
-starting index, reconstructs the corresponding value through a single
-\texttt{pow(up, start)} call, and then advances with repeated multiplications.  In OpenMP this is
-implemented with \texttt{firstprivate(Sn)} so that every thread starts from the same scalar value;
-no \texttt{lastprivate} is required because the final value is written in the shared 
-\texttt{opt\_chunk} array.  The approach is fully schedule independent, because every thread owns
-disjoint indices.
+In the first parallel version (Listing~\ref{lst:recur_chunk}), we break the index range into separate chunks. Each thread starts off by calculating the initial value with a single \texttt{pow(up, start)} call and then moves on to do local multiplications. This approach uses \texttt{firstprivate(Sn)} to make sure that each thread is working with different indices. \\
 
-Listing~\ref{lst:recur_dyn} shows the second variant, where I experimented with a
-\texttt{schedule(dynamic)} loop.  The idea was to keep using \texttt{firstprivate(Sn)} and
-\texttt{lastprivate(Sn)} and to recompute the state only when a thread receives a non-contiguous
-block.  The helper variables \texttt{Sn\_local} and \texttt{last\_i} were added precisely for
-that purpose: whenever the assigned iteration is not the immediate successor of the previous one,
-the code falls back to \texttt{Sn * pow(up, i)}.  Unfortunately this makes the loop depend on the
-OpenMP scheduler.  With the default dynamic scheduler the runtime hands out extremely small
-chunks, so the costly \texttt{pow} is executed almost every iteration.  As a consequence the
-dynamic version violates the assignment requirement of being schedule independent and performs
-worse than the serial baseline.
+The second version (Listing~\ref{lst:recur_dyn}) checks for gaps in the assigned blocks by looking at consecutive indices. Threads \textbf{only} recalculate \texttt{Sn} with \texttt{pow(up, i)} when it's really needed.
 
 \lstinputlisting[
     language=C,
     numbers=left,
-    caption={Sequential recurrence baseline},
-    captionpos=b,
-    label={lst:recur_seq},
-    linerange={6-35},
-    firstnumber=6
-]{../Skeleton\_codes/loop-dependencies/recur_seq.c}
-
-\lstinputlisting[
-    language=C,
-    numbers=left,
-    caption={Chunk-based parallel recurrence},
+    caption={Parallel recurrence with chunk partitioning},
     captionpos=b,
     label={lst:recur_chunk},
-    linerange={21-37},
+    linerange={21-36},
     firstnumber=21
 ]{../Skeleton\_codes/loop-dependencies/recur_omp.c}
 
 \lstinputlisting[
     language=C,
     numbers=left,
-    caption={Dynamic schedule with on-demand recomputation},
+    caption={Parallel recurrence with on-demand recomputation},
     captionpos=b,
     label={lst:recur_dyn},
-    linerange={39-53},
+    linerange={39-52},
     firstnumber=39
 ]{../Skeleton\_codes/loop-dependencies/recur_omp.c}
 
-The scaling study (Figure~\ref{fig:recur_scaling}) confirms these observations.  The chunk-based
-parallelisation reaches nearly linear speedup: the runtime drops from roughly $6.7\,$s on one
-thread to $0.39\,$s on twenty threads.  The dynamic variant, on the other hand, keeps increasing
-from $134\,$s (one thread) to $344\,$s (twenty threads), which is even slower than the serial
-baseline at the far left of the plot.  The experiment therefore illustrates that the manual chunk
-partitioning satisfies the “schedule independent’’ requirement of the assignment, whereas the
-dynamic version is dominated by the repeated \texttt{pow} calls triggered by OpenMP’s fine-grained
-work distribution.
+The scaling study (Figure~\ref{fig:recur_scaling}) shows that the chunk-based version achieves nearly linear speedup up to 16 threads but then starts to plateau. In contrast, the version with the discontinuity check is slower due to overhead of constant check but it appears to maintaint linearity from 16 to 20 threads on the contrary of the first one. It would be really interesing to try how it goes on on  a machine with more cores.
 
 \begin{figure}[H]
     \centering

@@ -39,10 +39,10 @@ int main(int argc, char *argv[]) {
   // ----------- Schedule with Check -----------
   double time_start_check = walltime();
   #pragma omp parallel
-  #pragma omp for schedule(dynamic) firstprivate(Sn) lastprivate(Sn)
+  int last_i = -1;
+  #pragma omp for firstprivate(Sn, last_i) lastprivate(Sn)
   for (int i = 0; i <= N; ++i) {
     double Sn_local = Sn;
-    int last_i = -2;
     if (i != last_i + 1) {
       Sn_local = Sn * pow(up, i);
     }

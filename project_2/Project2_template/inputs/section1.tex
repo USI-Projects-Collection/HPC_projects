@@ -1,9 +1,8 @@
 \section{Parallel reduction operations using OpenMP \punkte{20}}
 
-\subsection{Dot product}
+\subsection*{Dot product}
 
-\subsubsection{Implementation}
-I compiled \texttt{Skeleton\_codes/dotProduct/dotProduct.cpp} with \texttt{g++ -fopenmp}. The Makefile exposes the vector size through the variable \texttt{N}, injected at compile time (``\texttt{-DN=\$(N)}''). The batch script \texttt{run\_jobs.sh} rebuilds the binary for each $N \in \{10^5,10^6,10^7,10^8\}$ and runs both OpenMP variants.
+I compiled \texttt{Skeleton\_codes/dotProduct/dotProduct.cpp} with \texttt{g++ -fopenmp} for each \\ $N \in \{10^5,10^6,10^7,10^8\}$ and ran both OpenMP variants.
 
 \lstinputlisting[
     caption={Reduction-based OpenMP dot product},
@@ -15,7 +14,7 @@ I compiled \texttt{Skeleton\_codes/dotProduct/dotProduct.cpp} with \texttt{g++ -
     firstnumber=57
 ]{../Skeleton_codes/dotProduct/dotProduct.cpp}
 
-Listing~\ref{lst:dotprod_reduction} lets OpenMP handle partial sums via the \texttt{reduction} clause, avoiding explicit synchronisation. The alternative keeps thread-local buffers and merges them inside a \texttt{critical} region, shown in Listing~\ref{lst:dotprod_critical}.
+Listing~\ref{lst:dotprod_reduction} lets OpenMP handle partial sums via the \texttt{reduction} clause, avoiding explicit synchronisation while the alternative keeps thread-local buffers and merges them inside a \texttt{critical} region, shown in Listing~\ref{lst:dotprod_critical}.
 
 \lstinputlisting[
     caption={Critical-based OpenMP dot product},
@@ -27,12 +26,7 @@ Listing~\ref{lst:dotprod_reduction} lets OpenMP handle partial sums via the \tex
     firstnumber=69
 ]{../Skeleton_codes/dotProduct/dotProduct.cpp}
 
-
-\subsubsection{Testing}
-For each size the script sweeps \texttt{OMP\_NUM\_THREADS} in $\{1,2,4,8,16,20\}$, exporting the value before invoking the executable. Each run stores its stdout to \texttt{logs/dotprod\_N\ldots\_T\ldots.log}; a Python helper converts the logs into the plots below and verifies that the reduction and critical versions match the serial dot product within a relative tolerance of $10^{-6}$.
-
-\subsubsection{Discussion}
-Figures~\ref{fig:dotprod_n1e5}--\ref{fig:dotprod_n1e8} show that even the smallest test ($N = 10^5$) benefits from parallelism: two threads reduce the runtime from $11.7\,\mathrm{ms}$ to $6.2\,\mathrm{ms}$ and eight threads reach $2.4\,\mathrm{ms}$. The efficiency plot in Figure~\ref{fig:dotprod_eff} highlights how OpenMP overhead grows with the thread count: efficiency is defined as $E = T_1 /(p \cdot T_p)$, so every time the speedup grows sub-linearly the per-core return decreases (e.g.\ speedup $\approx 2$ on two threads gives $E \approx 1$, speedup $\approx 4.9$ on eight threads gives $E \approx 0.6$). Beyond eight threads the serial portion and the \texttt{critical} synchronisation dominate, so efficiencies fall below $0.3$, even though the absolute runtime still drops (e.g.\ $T_{16} = 0.54\,\mathrm{s}$ for $N = 10^7$). The reduction variant consistently retains $5{-}10\%$ higher efficiency because it avoids serialised updates. Overall, multi-threading is worth, provided that the thread count remains modest (up to eight) to keep overhead under control for the smaller vectors; for $N \ge 10^7$ the reduction version scales well up to sixteen threads.
+Figures~\ref{fig:dotprod_n1e5}--\ref{fig:dotprod_n1e8} illustrate that even the smallest vector size ($N = 10^5$) benefits from parallel execution: using two threads reduces the runtime from $11.7\,\mathrm{ms}$ to $6.2\,\mathrm{ms}$, while eight threads bring it down further to $2.4\,\mathrm{ms}$. The efficiency plot in Figure~\ref{fig:dotprod_eff} reveals how OpenMP overhead increases with the number of threads. Efficiency, defined as $E = T_1 /(p \cdot T_p)$, decreases whenever speedup grows sub-linearly; for example, a speedup of about 2 on two threads corresponds to $E \approx 1$, whereas a speedup of approximately 4.9 on eight threads results in $E \approx 0.6$. Beyond eight threads, the serial fraction and the cost of \texttt{critical} sections dominate, causing efficiencies to drop below 0.3, although the absolute runtime continues to improve (e.g., $T_{16} = 0.54\,\mathrm{s}$ for $N = 10^7$). The reduction-based variant consistently achieves 5–10\% higher efficiency because it avoids serialized updates. Overall, multithreading is advantageous when the number of threads remains moderate (up to eight) to limit overhead for smaller vectors; for $N \ge 10^7$, the reduction variant scales well up to sixteen threads.
 
 \begin{figure}[H]
     \centering
@@ -77,12 +71,10 @@ Figures~\ref{fig:dotprod_n1e5}--\ref{fig:dotprod_n1e8} show that even the smalle
     \label{fig:dotprod_eff}
 \end{figure}
 
+\newpage
 
+\subsection*{Approximating $\pi$}
 
-
-\subsection{Approximating $\pi$}
-
-\subsubsection{Implementation}
 I keep $N = 10^{10}$ as mandated. The serial loop in Listing~\ref{lst:pi_serial} walks through all indices with a single accumulator, while the OpenMP variant in Listing~\ref{lst:pi_parallel} retains the same structure but distributes iterations across threads using a reduction clause.
 
 \lstinputlisting[
@@ -107,8 +99,6 @@ I keep $N = 10^{10}$ as mandated. The serial loop in Listing~\ref{lst:pi_serial}
 
 The \texttt{reduction(+:\,sum)} clause is the natural choice here: it is an embarrassingly parallel loop, so each thread can integrate its chunk independently and OpenMP combines the private partial integrals at the end. This avoids serial bottlenecks (e.g., critical sections) and preserves the numerical result for the fixed $N = 10^{10}$.
 
-\subsubsection{Results}
-
 \begin{figure}[H]
     \IfFileExists{../Skeleton_codes/pi/plots/pi_speedup.csv}{
         \begin{subfigure}{0.45\textwidth}
@@ -129,4 +119,4 @@ The \texttt{reduction(+:\,sum)} clause is the natural choice here: it is an emba
     \label{fig:pi_speedup}
 \end{figure}
 
-Speedup ($S_p = T_1/T_p$) captures strong scaling: how much faster the fixed workload runs as threads increase. In this kernel each time the number of cores doubles the runtime halves (Table~\ref{fig:pi_speedup}), so the parallel efficiency $E_p = S_p/p$ stays essentially at one (e.g., $E_8 \approx 0.9997$). The loop is embarrassingly parallel and the OpenMP reduction introduces negligible overhead, so the dominant costs are the per-iteration arithmetic and loop control, which scale linearly with thread count. This demonstrates that the midpoint integration benefits directly from more cores while maintaining accuracy for the prescribed $N = 10^{10}$; an additional efficiency plot is unnecessary because the near-perfect speedup already shows the tight link between strong scaling and efficiency here.
+The speedup, defined as $S_p = T_1/T_p$, measures how much faster the fixed workload executes as the number of threads increases. As shown in Table~\ref{fig:pi_speedup}, every time the number of threads doubles, the runtime is nearly halved, indicating excellent strong scaling. Consequently, the parallel efficiency $E_p = S_p/p$ remains close to one; for example, with eight threads, $E_8 \approx 0.9997$. Since the loop is embarrassingly parallel and the OpenMP reduction clause incurs negligible overhead, the main costs are limited to per-iteration arithmetic and loop control, both of which scale well with increasing thread count. This demonstrates that midpoint integration benefits directly from additional cores without sacrificing accuracy for the prescribed $N = 10^{10}$. An explicit efficiency plot is unnecessary in this case, as the near-ideal speedup already reflects the strong relationship between scaling and efficiency.

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.7)  23 OCT 2025 17:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.7)  23 OCT 2025 22:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -537,12 +537,12 @@ File: t1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\hfill' on input line 1.
 
-LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 6.
+LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 5.
 (/usr/local/texlive/2024/texmf-dist/tex/latex/inconsolata/t1zi4.fd
 File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 10.95pt on input line 6.
+(Font)              scaled to size 10.95pt on input line 5.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/02/21 1.10 listings language file
 ) (/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
@@ -551,7 +551,7 @@ File: lstlang1.sty 2024/02/21 1.10 listings language file
 File: lstmisc.sty 2024/02/21 1.10 (Carsten Heinz)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 9.0pt on input line 16.
+(Font)              scaled to size 9.0pt on input line 15.
  (../Skeleton_codes/dotProduct/dotProduct.cpp
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <9> on input line 57.
@@ -566,76 +566,70 @@ LaTeX Font Info:    Font shape `T1/zi4/m/it' will be
 (Font)              scaled to size 9.0pt on input line 57.
 LaTeX Font Info:    Font shape `T1/zi4/b/n' will be
 (Font)              scaled to size 9.0pt on input line 59.
-) (../Skeleton_codes/dotProduct/dotProduct.cpp) [2{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}]
-<../Skeleton_codes/dotProduct/plots/dotprod_N100000.png, id=101, 433.62pt x 289.08pt>
+) (../Skeleton_codes/dotProduct/dotProduct.cpp)
+<../Skeleton_codes/dotProduct/plots/dotprod_N100000.png, id=41, 433.62pt x 289.08pt>
 File: ../Skeleton_codes/dotProduct/plots/dotprod_N100000.png Graphic file (type png)
 <use ../Skeleton_codes/dotProduct/plots/dotprod_N100000.png>
-Package pdftex.def Info: ../Skeleton_codes/dotProduct/plots/dotprod_N100000.png  used on input line 41.
+Package pdftex.def Info: ../Skeleton_codes/dotProduct/plots/dotprod_N100000.png  used on input line 35.
 (pdftex.def)             Requested size: 211.26027pt x 140.84322pt.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 42.
-<../Skeleton_codes/dotProduct/plots/dotprod_N1000000.png, id=102, 433.62pt x 289.08pt>
+(Font)              <7> on input line 36.
+<../Skeleton_codes/dotProduct/plots/dotprod_N1000000.png, id=42, 433.62pt x 289.08pt>
 File: ../Skeleton_codes/dotProduct/plots/dotprod_N1000000.png Graphic file (type png)
 <use ../Skeleton_codes/dotProduct/plots/dotprod_N1000000.png>
-Package pdftex.def Info: ../Skeleton_codes/dotProduct/plots/dotprod_N1000000.png  used on input line 48.
+Package pdftex.def Info: ../Skeleton_codes/dotProduct/plots/dotprod_N1000000.png  used on input line 42.
 (pdftex.def)             Requested size: 211.26027pt x 140.84322pt.
-<../Skeleton_codes/dotProduct/plots/dotprod_N10000000.png, id=103, 433.62pt x 289.08pt>
+<../Skeleton_codes/dotProduct/plots/dotprod_N10000000.png, id=43, 433.62pt x 289.08pt>
 File: ../Skeleton_codes/dotProduct/plots/dotprod_N10000000.png Graphic file (type png)
 <use ../Skeleton_codes/dotProduct/plots/dotprod_N10000000.png>
-Package pdftex.def Info: ../Skeleton_codes/dotProduct/plots/dotprod_N10000000.png  used on input line 57.
+Package pdftex.def Info: ../Skeleton_codes/dotProduct/plots/dotprod_N10000000.png  used on input line 51.
 (pdftex.def)             Requested size: 211.26027pt x 140.84322pt.
-<../Skeleton_codes/dotProduct/plots/dotprod_N100000000.png, id=104, 433.62pt x 289.08pt>
+<../Skeleton_codes/dotProduct/plots/dotprod_N100000000.png, id=44, 433.62pt x 289.08pt>
 File: ../Skeleton_codes/dotProduct/plots/dotprod_N100000000.png Graphic file (type png)
 <use ../Skeleton_codes/dotProduct/plots/dotprod_N100000000.png>
-Package pdftex.def Info: ../Skeleton_codes/dotProduct/plots/dotprod_N100000000.png  used on input line 64.
+Package pdftex.def Info: ../Skeleton_codes/dotProduct/plots/dotprod_N100000000.png  used on input line 58.
 (pdftex.def)             Requested size: 211.26027pt x 140.84322pt.
-<../Skeleton_codes/dotProduct/plots/dotprod_efficiency.png, id=105, 722.7pt x 433.62pt>
+ [2{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}]
+<../Skeleton_codes/dotProduct/plots/dotprod_efficiency.png, id=91, 722.7pt x 433.62pt>
 File: ../Skeleton_codes/dotProduct/plots/dotprod_efficiency.png Graphic file (type png)
 <use ../Skeleton_codes/dotProduct/plots/dotprod_efficiency.png>
-Package pdftex.def Info: ../Skeleton_codes/dotProduct/plots/dotprod_efficiency.png  used on input line 75.
+Package pdftex.def Info: ../Skeleton_codes/dotProduct/plots/dotprod_efficiency.png  used on input line 69.
 (pdftex.def)             Requested size: 352.10284pt x 211.26483pt.
+ [3 <../Skeleton_codes/dotProduct/plots/dotprod_N100000.png> <../Skeleton_codes/dotProduct/plots/dotprod_N1000000.png> <../Skeleton_codes/dotProduct/plots/dotprod_N10000000.png> <../Skeleton_codes/dotProduct/plots/dotprod_N100000000.png> <../Skeleton_codes/dotProduct/plots/dotprod_efficiency.png>]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 83.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 83.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\pi' on input line 83.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 83.
-
-[3 <../Skeleton_codes/dotProduct/plots/dotprod_N100000.png> <../Skeleton_codes/dotProduct/plots/dotprod_N1000000.png> <../Skeleton_codes/dotProduct/plots/dotprod_N10000000.png> <../Skeleton_codes/dotProduct/plots/dotprod_N100000000.png> <../Skeleton_codes/dotProduct/plots/dotprod_efficiency.png>] (../Skeleton_codes/pi/pi.cpp) (../Skeleton_codes/pi/pi.cpp)
-<../Skeleton_codes/pi/plots/pi_speedup.png, id=119, 397.485pt x 231.264pt>
+(Font)              <12> on input line 76.
+ (../Skeleton_codes/pi/pi.cpp) (../Skeleton_codes/pi/pi.cpp)
+<../Skeleton_codes/pi/plots/pi_speedup.png, id=105, 397.485pt x 231.264pt>
 File: ../Skeleton_codes/pi/plots/pi_speedup.png Graphic file (type png)
 <use ../Skeleton_codes/pi/plots/pi_speedup.png>
-Package pdftex.def Info: ../Skeleton_codes/pi/plots/pi_speedup.png  used on input line 126.
+Package pdftex.def Info: ../Skeleton_codes/pi/plots/pi_speedup.png  used on input line 116.
 (pdftex.def)             Requested size: 211.26027pt x 122.91867pt.
 ) [4 <../Skeleton_codes/pi/plots/pi_speedup.png>] (./inputs/section2.tex
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\hfill' on input line 2.
+(hyperref)                removing `\hfill' on input line 1.
 
-<../Skeleton_codes/mandel/plots/mandel_runtime_scaling.png, id=147, 433.62pt x 289.08pt>
-File: ../Skeleton_codes/mandel/plots/mandel_runtime_scaling.png Graphic file (type png)
-<use ../Skeleton_codes/mandel/plots/mandel_runtime_scaling.png>
-Package pdftex.def Info: ../Skeleton_codes/mandel/plots/mandel_runtime_scaling.png  used on input line 8.
-(pdftex.def)             Requested size: 352.10284pt x 234.74458pt.
-<../Skeleton_codes/mandel/png/mandel_4096x4096_T20.png, id=149, 4111.36pt x 4111.36pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+
+ []
+
+<../Skeleton_codes/mandel/png/mandel_4096x4096_T20.png, id=135, 4111.36pt x 4111.36pt>
 File: ../Skeleton_codes/mandel/png/mandel_4096x4096_T20.png Graphic file (type png)
 <use ../Skeleton_codes/mandel/png/mandel_4096x4096_T20.png>
-Package pdftex.def Info: ../Skeleton_codes/mandel/png/mandel_4096x4096_T20.png  used on input line 17.
+Package pdftex.def Info: ../Skeleton_codes/mandel/png/mandel_4096x4096_T20.png  used on input line 9.
 (pdftex.def)             Requested size: 211.26027pt x 211.22612pt.
-<../Skeleton_codes/mandel/png/mandel_8192x8192_T20.png, id=150, 8222.72pt x 8222.72pt>
+<../Skeleton_codes/mandel/png/mandel_8192x8192_T20.png, id=136, 8222.72pt x 8222.72pt>
 File: ../Skeleton_codes/mandel/png/mandel_8192x8192_T20.png Graphic file (type png)
 <use ../Skeleton_codes/mandel/png/mandel_8192x8192_T20.png>
-Package pdftex.def Info: ../Skeleton_codes/mandel/png/mandel_8192x8192_T20.png  used on input line 22.
+Package pdftex.def Info: ../Skeleton_codes/mandel/png/mandel_8192x8192_T20.png  used on input line 14.
 (pdftex.def)             Requested size: 211.26027pt x 211.16339pt.
-[5 <../Skeleton_codes/mandel/plots/mandel_runtime_scaling.png>]) [6 <../Skeleton_codes/mandel/png/mandel_4096x4096_T20.png> <../Skeleton_codes/mandel/png/mandel_8192x8192_T20.png>] (./inputs/section3.tex
+<../Skeleton_codes/mandel/plots/mandel_runtime_scaling.png, id=137, 433.62pt x 289.08pt>
+File: ../Skeleton_codes/mandel/plots/mandel_runtime_scaling.png Graphic file (type png)
+<use ../Skeleton_codes/mandel/plots/mandel_runtime_scaling.png>
+Package pdftex.def Info: ../Skeleton_codes/mandel/plots/mandel_runtime_scaling.png  used on input line 23.
+(pdftex.def)             Requested size: 352.10284pt x 234.74458pt.
+[5 <../Skeleton_codes/mandel/png/mandel_4096x4096_T20.png> <../Skeleton_codes/mandel/png/mandel_8192x8192_T20.png>]) [6 <../Skeleton_codes/mandel/plots/mandel_runtime_scaling.png>] (./inputs/section3.tex
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\hfill' on input line 1.
@@ -647,29 +641,34 @@ LaTeX Font Info:    Font shape `T1/zi4/b/n' will be
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\hfill' on input line 1.
 
-(../Skeleton_codes/hist/hist_omp.cpp) (../Skeleton_codes/hist/hist_omp.cpp [8]) (../Skeleton_codes/hist/hist_omp.cpp)
-<../Skeleton_codes/hist/plots/hist_runtime_scaling.png, id=254, 433.62pt x 289.08pt>
+(../Skeleton_codes/hist/hist_omp.cpp) (../Skeleton_codes/hist/hist_omp.cpp) [8] (../Skeleton_codes/hist/hist_omp.cpp)
+<../Skeleton_codes/hist/plots/hist_runtime_scaling.png, id=236, 433.62pt x 289.08pt>
 File: ../Skeleton_codes/hist/plots/hist_runtime_scaling.png Graphic file (type png)
 <use ../Skeleton_codes/hist/plots/hist_runtime_scaling.png>
-Package pdftex.def Info: ../Skeleton_codes/hist/plots/hist_runtime_scaling.png  used on input line 59.
+Package pdftex.def Info: ../Skeleton_codes/hist/plots/hist_runtime_scaling.png  used on input line 48.
 (pdftex.def)             Requested size: 375.57779pt x 250.39922pt.
- [9]) [10 <../Skeleton_codes/hist/plots/hist_runtime_scaling.png>] (./inputs/section5.tex
+) [9 <../Skeleton_codes/hist/plots/hist_runtime_scaling.png>] (./inputs/section5.tex
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\hfill' on input line 1.
 
-(../Skeleton_codes/loop-dependencies/recur_seq.c) (../Skeleton_codes/loop-dependencies/recur_omp.c [11]) (../Skeleton_codes/loop-dependencies/recur_omp.c)
-<../Skeleton_codes/loop-dependencies/plots/recur_runtime_scaling.png, id=329, 433.62pt x 289.08pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+
+ []
+
+(../Skeleton_codes/loop-dependencies/recur_omp.c) (../Skeleton_codes/loop-dependencies/recur_omp.c)
+<../Skeleton_codes/loop-dependencies/plots/recur_runtime_scaling.png, id=256, 505.89pt x 325.215pt>
 File: ../Skeleton_codes/loop-dependencies/plots/recur_runtime_scaling.png Graphic file (type png)
 <use ../Skeleton_codes/loop-dependencies/plots/recur_runtime_scaling.png>
-Package pdftex.def Info: ../Skeleton_codes/loop-dependencies/plots/recur_runtime_scaling.png  used on input line 67.
-(pdftex.def)             Requested size: 352.10284pt x 234.74458pt.
-) [12] [13 <../Skeleton_codes/loop-dependencies/plots/recur_runtime_scaling.png>]
+Package pdftex.def Info: ../Skeleton_codes/loop-dependencies/plots/recur_runtime_scaling.png  used on input line 31.
+(pdftex.def)             Requested size: 352.10284pt x 226.35376pt.
+) [10] [11 <../Skeleton_codes/loop-dependencies/plots/recur_runtime_scaling.png>]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\hfill' on input line 63.
 
-[14] (./template.aux)
+[12] (./template.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -682,18 +681,18 @@ Package rerunfilecheck Info: File `template.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 18068 strings out of 474116
- 328015 string characters out of 5743682
- 2314187 words of memory out of 5000000
- 39886 multiletter control sequences out of 15000+600000
+ 17948 strings out of 474116
+ 325796 string characters out of 5743682
+ 2337187 words of memory out of 5000000
+ 39817 multiletter control sequences out of 15000+600000
  577801 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 108i,11n,107p,11016b,2198s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4b.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsi1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsi1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb>
-Output written on template.pdf (14 pages, 2515611 bytes).
+ 108i,11n,107p,11016b,1510s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4b.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsi1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsi1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb>
+Output written on template.pdf (12 pages, 2512731 bytes).
 PDF statistics:
- 566 PDF objects out of 1000 (max. 8388607)
- 475 compressed objects within 5 object streams
- 240 named destinations out of 1000 (max. 500000)
- 165 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 462 PDF objects out of 1000 (max. 8388607)
+ 376 compressed objects within 4 object streams
+ 192 named destinations out of 1000 (max. 500000)
+ 109 words of extra memory for PDF output out of 10000 (max. 10000000)
 

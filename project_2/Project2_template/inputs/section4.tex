@@ -1,13 +1,8 @@
 \section{Parallel histogram calculation using OpenMP \punkte{15}}
 
-To explore different synchronization strategies in OpenMP, I implemented three parallel versions of the histogram computation: 
-an \texttt{atomic} version, a \texttt{Merge Critical} version (where the merge occurs inside the parallel region), 
-and a \texttt{Merge Out} version (where the merge is done sequentially outside).  
-The goal was to understand how the placement of synchronization and merging affects performance and scalability.
+I looked into various synchronization strategies with OpenMP, creating three parallel versions of the histogram computation. There’s the \texttt{atomic} version, a \texttt{Merge Critical} version that merges everything within the parallel region, and then there’s the \texttt{Merge Out} version, which handles merging sequentially outside that region.
 
 \subsection*{Implementation}
-All implementations were based on the same sequential structure but used different OpenMP synchronization mechanisms.  
-Listings~\ref{lst:mergeCritical}, \ref{lst:mergeOut}, and \ref{lst:atomic} show the relevant code excerpts, pulled directly from \texttt{Skeleton\_codes/hist/hist\_omp.cpp}.
 
 \lstinputlisting[
     language=C++,
@@ -15,7 +10,7 @@ Listings~\ref{lst:mergeCritical}, \ref{lst:mergeOut}, and \ref{lst:atomic} show 
     caption={Histogram with private histograms and in-region merge (Merge Critical)},
     captionpos=b,
     label={lst:mergeCritical},
-    linerange={38-59},
+    linerange={38-58},
     firstnumber=38
 ]{../Skeleton_codes/hist/hist_omp.cpp}
 
@@ -25,7 +20,7 @@ Listings~\ref{lst:mergeCritical}, \ref{lst:mergeOut}, and \ref{lst:atomic} show 
     caption={Histogram with private histograms and external merge (Merge Out)},
     captionpos=b,
     label={lst:mergeOut},
-    linerange={61-89},
+    linerange={61-88},
     firstnumber=61
 ]{../Skeleton_codes/hist/hist_omp.cpp}
 
@@ -35,24 +30,18 @@ Listings~\ref{lst:mergeCritical}, \ref{lst:mergeOut}, and \ref{lst:atomic} show 
     caption={Histogram with atomic updates},
     captionpos=b,
     label={lst:atomic},
-    linerange={91-99},
+    linerange={91-98},
     firstnumber=91
 ]{../Skeleton_codes/hist/hist_omp.cpp}
 
-The \texttt{Merge Critical} version was designed with the idea that a thread finishing early could immediately start merging its partial results,
-while the others were still computing.  
-Conversely, in the \texttt{Merge Out} version, all threads first complete the heavy computation before performing a single sequential merge.
+The \texttt{Merge Critical} version was created to allow a thread that finishes its task early to begin merging its partial results right away, even if the other threads are still working. On the flip side, in the \texttt{Merge Out} version, all the threads finish their heavy computation first before they go through a single merge process in sequence.
 
 \subsection*{Performance analysis}
-Figure~\ref{fig:histScaling} (\textit{placeholder path to be updated}) reports the strong scaling results obtained on the cluster.  
-Up to the number of available physical cores (around 16–20), both versions scale well, but the \texttt{Merge Out} version performs slightly better overall.
-This suggests that avoiding synchronization inside the parallel region provides better efficiency, despite the merge being fully sequential at the end.  
-The expected advantage of the in-region merge (starting earlier) was not visible in practice, likely because the cost of locking and cache contention outweighed the benefit.
+Figure~\ref{fig:histScaling} shows the impressive scaling results we got from the cluster. Up to about 16–20 physical cores, both versions scale pretty well, but the \texttt{Merge Out} version actually does a bit better overall. This seems to indicate that steering clear of synchronization during the parallel section leads to better efficiency, even if the merge step itself is all done sequentially at the end. The anticipated benefit of merging within the region earlier just didn’t pan out, probably because the costs of locking and competing for cache space outweighed any potential gains.
 
-It is interesting to note that for the \texttt{Merge Critical} version, increasing the number of threads from 8 to 16 actually worsens the runtime, which is counterintuitive 20 cores were available. This behavior is probably related to increased contention on the critical section lock and the underlying OpenMP runtime scheduling and synchronization overheads.
+What’s surprising is that when we bumped up the thread count from 8 to 16 in the \texttt{Merge Critical} version, the runtime actually got worse, which doesn’t really make sense given that 20 cores were available. This is likely due to increased contention over the critical section lock along with the overheads from OpenMP’s runtime scheduling and synchronization.
 
-It is also noteworthy that the \texttt{atomic} version performed poorly at all thread counts, even worse than the sequential baseline.  
-This is due to high contention and cache-line conflicts, as each atomic increment effectively serializes access to the shared histogram array.
+It’s also worth mentioning that the \texttt{atomic} version didn’t perform well at any thread count, even falling short of the sequential baseline. This is mainly because of heavy contention and cache-line conflicts since each atomic increment pretty much serializes access to the shared histogram array.
 
 \begin{figure}[H]
     \centering
@@ -62,6 +51,4 @@ This is due to high contention and cache-line conflicts, as each atomic incremen
 \end{figure}
 
 \noindent
-In summary, the results show that minimizing synchronization inside the parallel section is key for performance.
-While both merge strategies are correct, the external merge (\texttt{Merge Out}) achieves better scalability,
-and the atomic approach is clearly inefficient for this workload.
+The findings highlight that cutting down on synchronization in the parallel section is crucial for improving performance. Even though both merging methods work, the external merge (\texttt{Merge Out}) shows better scalability, whereas the \texttt{atomic} method isn't very efficient for this task.
