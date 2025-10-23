@@ -102,7 +102,7 @@ int main() {
   // Write results
   std::cout << std::endl << "Threads: " << omp_get_max_threads() << std::endl;
   for (int i = 0; i < BINS; ++i) {
-    std::cout << 'i' << " | " << 'crit' << " | " << 'mergeOut' << " | " << 'atomic' << std::endl;
+    std::cout << "i" << " | " << "crit" << " | " << "mergeOut" << " | " << "atomic" << std::endl;
     std::cout << i << " | " << dist_crit[i] << " | " << dist_mergeOut[i] << " | " << dist_atomic[i] << std::endl;
   }
   std::cout << "Time Merge Critical: " << time_end_critical - time_start_critical << " sec" << std::endl;
