@@ -59,7 +59,6 @@ bin/
 *.idx
 *.ind
 *.lof
-*.pdf
 
 # per non fillare il cluster
 # *.pdf
