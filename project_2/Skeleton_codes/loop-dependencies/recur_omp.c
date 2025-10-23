@@ -29,7 +29,6 @@ int main(int argc, char *argv[]) {
     int end = (tid == num_threads - 1) ? (N + 1) : ((tid + 1) * chunk_size);
     double Sn_local = Sn * pow(up, start);
     
-    #pragma omp for lastprivate(Sn)
     for (int n = start; n < end; ++n) {
       opt_chunk[n] = Sn_local;
       Sn_local *= up;
