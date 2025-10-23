@@ -101,7 +101,8 @@ int main() {
 
   // Write results
   for (int i = 0; i < BINS; ++i) {
-    std::cout << "dist_crit[" << i << "]=" << dist_crit[i] << ", dist_mergeOut[" << i << "]=" << dist_mergeOut[i] << ", dist_atomic[" << i << "]=" << dist_atomic[i] << std::endl;
+    std::cout << 'i' << ' | ' << 'crit' << ' | ' << 'mergeOut' << " | " << 'atomic' << std::endl;
+    std::cout << i << " | " << dist_crit[i] << " | " << dist_mergeOut[i] << " | " << dist_atomic[i] << std::endl;
   }
   std::cout << "Time Merge Critical: " << time_end_critical - time_start_critical << " sec" << std::endl;
   std::cout << "Time Merge Out: " << time_end_mergeOut - time_start_mergeOut << " sec" << std::endl;
