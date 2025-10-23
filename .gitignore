@@ -62,5 +62,5 @@ bin/
 *.pdf
 
 # per non fillare il cluster
-# *.pdf
-# *.png
+*.pdf
+*.png
