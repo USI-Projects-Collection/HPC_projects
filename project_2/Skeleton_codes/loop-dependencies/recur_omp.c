@@ -38,8 +38,8 @@ int main(int argc, char *argv[]) {
 
   // ----------- Dynamic Schedule with Check -----------
   double time_start_check = walltime();
-  #pragma omp parallel firstprivate(Sn)
-  #pragma omp for schedule(dynamic) lastprivate(Sn)
+  #pragma omp parallel
+  #pragma omp for schedule(dynamic) firstprivate(Sn) lastprivate(Sn)
   for (int i = 0; i <= N; ++i) {
     double Sn_local = Sn;
     int last_i = -2;
