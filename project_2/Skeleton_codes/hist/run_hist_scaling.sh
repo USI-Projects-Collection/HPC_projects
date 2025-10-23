@@ -6,6 +6,7 @@
 #SBATCH --cpus-per-task=20           # Number of CPUs per task
 #SBATCH --mem-per-cpu=1024           # Memory per CPU
 #SBATCH --time=01:00:00              # Wall clock time limit
+#SBATCH --exclusive                  # Exclusive node access
 
 # Load some modules & list loaded modules
 module load gcc
