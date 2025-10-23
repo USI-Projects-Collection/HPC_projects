@@ -2,7 +2,7 @@
 
 In the first parallel version (Listing~\ref{lst:recur_chunk}), we break the index range into separate chunks. Each thread starts off by calculating the initial value with a single \texttt{pow(up, start)} call and then moves on to do local multiplications. This approach uses \texttt{firstprivate(Sn)} to make sure that each thread is working with different indices. \\
 
-The second version (Listing~\ref{lst:recur_dyn}) checks for gaps in the assigned blocks by looking at consecutive indices. Threads \textbf{only} recalculate \texttt{Sn} with \texttt{pow(up, i)} when it's really needed.
+The second version (Listing~\ref{lst:recur_dyn}) checks for gaps in the assigned blocks by looking at consecutive indices. This makes it \textbf{independent} from the scheduling decision as. Threads \textbf{only} recalculate \texttt{Sn} with \texttt{pow(up, i)} when it's really needed.
 
 \lstinputlisting[
     language=C,

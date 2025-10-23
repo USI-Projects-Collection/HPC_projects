@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1761252165.74786 "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_2/Project2_template/template.tex" "template.pdf" "template" 1761252170.15806 0
+["pdflatex"] 1761256217.6267 "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_2/Project2_template/template.tex" "template.pdf" "template" 1761256221.99136 0
   "../Skeleton_codes/dotProduct/dotProduct.cpp" 1761087497.4863 2948 21e07da0bb9e12e4e63402feb65fa37b ""
   "../Skeleton_codes/dotProduct/plots/dotprod_N100000.png" 1761089950.59999 54303 cd89f2864ed25092d83c51ded4586a41 ""
   "../Skeleton_codes/dotProduct/plots/dotprod_N1000000.png" 1761089950.65154 52943 820d1718b29cb6b46cf4fb1c83c230ce ""
@@ -171,14 +171,14 @@
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
   "assignment.sty" 1759739570 3151 b58a87ffff8fff1e6247c3799340fcb9 ""
   "inputs/section1.tex" 1761251348.63323 6791 57440837564c5891a1b921b5c438e907 ""
-  "inputs/section2.tex" 1761249916.77561 3920 aab2cf2f5aa09e97abe16583ffbfddd7 ""
+  "inputs/section2.tex" 1761256028.68199 3919 16625c9a65f672946ff9c52c126946bb ""
   "inputs/section3.tex" 1761250197.21021 2424 72e496f10a82609f4de8be58b1e45a32 ""
   "inputs/section4.tex" 1761250952.73289 3432 5e4a9eacaa7c69f9cfb91959edc62985 ""
-  "inputs/section5.tex" 1761251939.97708 1898 127deb0b8b739f5273ab3f76feb2b172 ""
-  "template.aux" 1761252170.06547 10329 e4a5308f9e6b066e7ad9786c1e60b4f9 "pdflatex"
-  "template.out" 1761252166.51415 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "inputs/section5.tex" 1761256217.41187 1966 10242b4d4edf86a58b63e7ba6251354e ""
+  "template.aux" 1761256221.9005 10329 e4a5308f9e6b066e7ad9786c1e60b4f9 "pdflatex"
+  "template.out" 1761256218.36919 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   "template.tex" 1761159426.30976 1307 2dbd369f11c3e2cee923b02d2ee25616 ""
-  "template.toc" 1761252170.06691 898 b5c8cf8b51603fc2a4238907366b30c7 "pdflatex"
+  "template.toc" 1761256221.90188 898 b5c8cf8b51603fc2a4238907366b30c7 "pdflatex"
   "usi_inf.png" 1757507497 99334 1f4e71c330319964e6349d99194dd493 ""
   (generated)
   "template.aux"
