@@ -1,1 +1,57 @@
-\section{Bug hunt \punkte{15}}
+\section{Bug Hunt \punkte{15}}
+
+\subsection*{Bug 1 – \texttt{omp\_bug1.c}}
+The code fails to compile because the directive
+\texttt{\#pragma omp parallel for} is followed by a brace instead of the loop itself.
+After fixing the syntax, the call to \texttt{omp\_get\_thread\_num()} inside the loop
+creates unnecessary overhead.  
+\textbf{Fix:} move the call outside the loop and correctly nest the \texttt{for} directive:
+\begin{lstlisting}[language=C]
+#pragma omp parallel shared(a,b,c,chunk) private(i,tid)
+{
+  tid = omp_get_thread_num();
+  #pragma omp for schedule(static,chunk)
+  for (i=0; i<N; i++) c[i] = a[i] + b[i];
+}
+\end{lstlisting}
+
+\subsection*{Bug 2 – \texttt{omp\_bug2.c}}
+The variable \texttt{total} is shared by default and updated by all threads,
+causing a race condition. Moreover, printing \texttt{tid} and \texttt{total}
+outside the parallel region uses invalid data.  
+\textbf{Fix:} either use a reduction for a global total or declare variables as private:
+\begin{lstlisting}[language=C]
+#pragma omp parallel for reduction(+:total) schedule(dynamic,10)
+for (i=0; i<1000000; i++) total += i * 1.0;
+\end{lstlisting}
+
+\subsection*{Bug 3 – \texttt{omp\_bug3.c}}
+A runtime deadlock occurs because a \texttt{\#pragma omp barrier}
+inside \texttt{print\_results()} is reached only by threads executing the
+\texttt{sections}. Threads without a section never reach the barrier.
+Sometimes the code terminates, sometimes it hangs.  
+\textbf{Fix:} remove the internal barrier and keep synchronization outside:
+\begin{lstlisting}[language=C]
+void print_results(...) {
+  #pragma omp critical { /* ordered output */ }
+}
+\end{lstlisting}
+
+\subsection*{Bug 4 – \texttt{omp\_bug4.c}}
+Declaring the large matrix \texttt{a} as \texttt{private} makes each thread allocate
+its own copy on the stack ($\sim$8.8 MB per thread), leading to a segmentation fault.
+Even if it runs, the main matrix stays unmodified after the parallel region.  
+\textbf{Fix:} make \texttt{a} shared or allocate it dynamically on the heap:
+\begin{lstlisting}[language=C]
+#pragma omp parallel shared(a,nthreads) private(i,j,tid)
+\end{lstlisting}
+
+\subsection*{Bug 5 – \texttt{omp\_bug5.c}}
+Two threads acquire locks in opposite order (\texttt{locka} then \texttt{lockb},
+and vice-versa), producing an occasional deadlock.  
+\textbf{Fix:} enforce a consistent locking order or replace explicit locks with
+OpenMP critical sections:
+\begin{lstlisting}[language=C]
+#pragma omp critical
+{ /* safe update of a[] and b[] */ }
+\end{lstlisting}

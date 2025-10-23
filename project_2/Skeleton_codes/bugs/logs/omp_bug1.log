@@ -1,0 +1,4 @@
+omp_bug1.c: In function 'int main(int, char**)':
+omp_bug1.c:25:3: error: loop nest expected before '{' token
+   25 |   {
+      |   ^

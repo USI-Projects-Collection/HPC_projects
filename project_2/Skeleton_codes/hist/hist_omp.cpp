@@ -8,7 +8,7 @@
 #define BINS 16
 
 int main() {
-  double time_start, time_end;
+  double time_start_atomic, time_end_atomic, time_start_critical, time_end_critical, time_start_mergeOut, time_end_mergeOut;
 
   // Initialize random number generator
   unsigned int seed = 123;
@@ -28,23 +28,83 @@ int main() {
   }
 
   // Initialize histogram: Set all bins to zero
-  long dist[BINS];
+  long dist_atomic[BINS], dist_crit[BINS], dist_mergeOut[BINS];
   for (int i = 0; i < BINS; ++i) {
-    dist[i] = 0;
+    dist_atomic[i] = 0;
+    dist_crit[i] = 0;
+    dist_mergeOut[i] = 0;
   }
 
-  // TODO Parallelize the histogram computation
-  time_start = walltime();
-  for (long i = 0; i < VEC_SIZE; ++i) {
-    dist[vec[i]]++;
+  // with private histograms for each thread ===================
+  time_start_critical = walltime();
+  #pragma omp parallel {
+    long dist_private[BINS];
+    for (int i = 0; i < BINS; ++i) {
+      dist_private[i] = 0;
+    }
+
+    #pragma omp for
+    for (long i = 0; i < VEC_SIZE; ++i) {
+      dist_private[vec[i]]++;
+    }
+
+    #pragma omp critical {
+      for (int i = 0; i < BINS; ++i) {
+        dist_crit[i] += dist_private[i];
+      }
+    }
   }
-  time_end = walltime();
+  time_end_critical = walltime();
+
+  // with private histograms and merge outside ================
+  time_start_mergeOut = walltime();
+
+  int num_threads = omp_get_max_threads();
+  std::vector<std::vector<long>> all_private_dists(num_threads, std::vector<long>(BINS, 0));
+
+  #pragma omp parallel
+  {
+    int tid = omp_get_thread_num();
+    std::vector<long>& dist_private = all_private_dists[tid];
+    for (int i = 0; i < BINS; ++i) {
+      dist_private[i] = 0;
+    }
+
+    #pragma omp for
+    for (long i = 0; i < VEC_SIZE; ++i) {
+      dist_private[vec[i]]++;
+    }
+  }
+
+  // merge outside serially
+  for (int i = 0; i < BINS; ++i) {
+    dist_mergeOut[i] = 0;
+    for (int t = 0; t < num_threads; ++t) {
+      dist_mergeOut[i] += all_private_dists[t][i];
+    }
+  }
+
+  time_end_mergeOut = walltime();
+
+  // with atomic updates ========================================
+  time_start_atomic = walltime();
+
+  #pragma omp parallel for
+  for (long i = 0; i < VEC_SIZE; ++i) {
+    #pragma omp atomic
+    dist_atomic[vec[i]]++;
+  }
+  time_end_atomic = walltime();
+
 
   // Write results
   for (int i = 0; i < BINS; ++i) {
-    std::cout << "dist[" << i << "]=" << dist[i] << std::endl;
+    std::cout << "dist_crit[" << i << "]=" << dist_crit[i] << ", dist_mergeOut[" << i << "]=" << dist_mergeOut[i] << ", dist_atomic[" << i << "]=" << dist_atomic[i] << std::endl;
   }
-  std::cout << "Time: " << time_end - time_start << " sec" << std::endl;
+  std::cout << "Time Merge Critical: " << time_end_critical - time_start_critical << " sec" << std::endl;
+  std::cout << "Time Merge Out: " << time_end_mergeOut - time_start_mergeOut << " sec" << std::endl;
+  std::cout << "Time Atomic: " << time_end_atomic - time_start_atomic << " sec" << std::endl;
+
 
   return 0;
 }

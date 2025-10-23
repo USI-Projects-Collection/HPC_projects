@@ -1,4 +1,4 @@
-CC     ?= gcc
+CC     ?= g++-15
 CFLAGS  = -O3 -fopenmp
 
 all: omp_bug1 omp_bug2 omp_bug3 omp_bug4 omp_bug5

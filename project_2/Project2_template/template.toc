@@ -7,7 +7,7 @@
 \contentsline {subsubsection}{\numberline {1.2.1}Implementation}{4}{subsubsection.1.2.1}%
 \contentsline {subsubsection}{\numberline {1.2.2}Results}{4}{subsubsection.1.2.2}%
 \contentsline {section}{\numberline {2}The Mandelbrot set using OpenMP \hspace {1ex}\emph {\mdseries \hfill (25~{Points})}}{5}{section.2}%
-\contentsline {section}{\numberline {3}Bug hunt \hspace {1ex}\emph {\mdseries \hfill (15~{Points})}}{7}{section.3}%
+\contentsline {section}{\numberline {3}Bug Hunt \hspace {1ex}\emph {\mdseries \hfill (15~{Points})}}{7}{section.3}%
 \contentsline {section}{\numberline {4}Parallel histogram calculation using OpenMP \hspace {1ex}\emph {\mdseries \hfill (15~{Points})}}{8}{section.4}%
 \contentsline {section}{\numberline {5}Parallel loop dependencies with OpenMP \hspace {1ex}\emph {\mdseries \hfill (15~{Points})}}{9}{section.5}%
 \contentsline {section}{\numberline {6}Quality of the Report \hspace {1ex}\emph {\mdseries \hfill (15~{Points})}}{10}{section.6}%

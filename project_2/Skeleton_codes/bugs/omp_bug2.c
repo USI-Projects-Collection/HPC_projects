@@ -30,8 +30,8 @@ int main(int argc, char *argv[]) {
     for (i = 0; i < 1000000; i++)
       total = total + i * 1.0;
 
-  } /* End of parallel region */
-
-  printf("Thread %d is done! Total= %e\n", tid, total);
+    } /* End of parallel region */
+    
+    printf("Thread %d is done! Total= %e\n", tid, total);
 
 }
