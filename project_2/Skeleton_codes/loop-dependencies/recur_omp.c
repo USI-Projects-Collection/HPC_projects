@@ -37,12 +37,13 @@ int main(int argc, char *argv[]) {
   double time_chunk = walltime() - time_start_chunk;
 
   // ----------- Schedule with Check -----------
-  double time_start_check = walltime();
-  #pragma omp parallel
-  int last_i = -1;
-  #pragma omp for firstprivate(Sn, last_i) lastprivate(Sn)
+ double time_start_check = walltime();
+#pragma omp parallel firstprivate(Sn)
+{
+  double Sn_local = Sn;
+  int last_i = -1; //  do NOT recalculate for thread that starts with i=0
+  #pragma omp for
   for (int i = 0; i <= N; ++i) {
-    double Sn_local = Sn;
     if (i != last_i + 1) {
       Sn_local = Sn * pow(up, i);
     }
@@ -50,8 +51,9 @@ int main(int argc, char *argv[]) {
     Sn_local *= up;
     last_i = i;
   }
-  double time_check = walltime() - time_start_check;
+}
 
+double time_check = walltime() - time_start_check;
 
   double temp = 0.0;
   for (n = 0; n <= N; ++n) {
