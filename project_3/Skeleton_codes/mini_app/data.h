@@ -21,6 +21,7 @@ extern Discretization options;
 // Field has dimension xdim * ydim in 2D, or length=xdim*ydim in 1D
 class Field {
 
+    public:
     // default constructor
     Field() : ptr_(0), xdim_(0), ydim_(0) { }
     // constructor
