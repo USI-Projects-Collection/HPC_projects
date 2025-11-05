@@ -8,7 +8,7 @@ OBJ     = walltime.o   stats.o   data.o   operators.o   linalg.o   main.o
 all: main
 
 walltime.o: walltime.cpp walltime.h
-	$(CXX) $(CXXFLAGS) -c $<
+	$(CXX) $(CXXFLAGS) -c $< 
 
 stats.o: stats.cpp stats.h
 	$(CXX) $(CXXFLAGS) -c $<
@@ -26,7 +26,8 @@ main.o: main.cpp $(HEADERS)
 	$(CXX) $(CXXFLAGS) -c $<
 
 main: $(OBJ)
-	$(CXX) $(CXXFLAGS) $(OBJ) -o $@
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $@ 
+# 	#@ means 
 
 .PHONY: clean
 clean:

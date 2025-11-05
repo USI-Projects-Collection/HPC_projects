@@ -20,7 +20,7 @@ extern Discretization options;
 // thin wrapper around a pointer that can be accessed as either a 2D or 1D array
 // Field has dimension xdim * ydim in 2D, or length=xdim*ydim in 1D
 class Field {
-    public:
+
     // default constructor
     Field() : ptr_(0), xdim_(0), ydim_(0) { }
     // constructor
@@ -49,7 +49,7 @@ class Field {
         // initialize (OpenMP: do first touch)
         fill(0.);
     }
-
+    
     double*       data()       { return ptr_; }
     const double* data() const { return ptr_; }
 
