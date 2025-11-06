@@ -1,12 +1,11 @@
-
 #!/bin/bash
-# Script per updatare la repo remota
+# Script per updatare la repo remota forzatamente
 
-echo "Fetching remoto..."
+echo "Fetching remoto"
 git fetch origin
 
-echo "Reset forzato alla versione remota..."
+echo "Reset forzato alla versione remota"
 git reset --hard origin/main
 
-echo "Pulizia dei file non tracciati..."
+echo "Pulizia dei file non tracciati"
 git clean -fd

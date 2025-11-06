@@ -1,6 +1,7 @@
 filename=template
 
 pdf:
+	make clean
 	pdflatex ${filename}
 	pdflatex ${filename}
 	make clean
@@ -10,4 +11,4 @@ read:
 
 
 clean:
-	rm -f ${filename}.out ${filename}.log ${filename}.bbl ${filename}.blg ${filename}.au ${filename}.log  ${filename}.ps ${filename}.aux ${filename}.out ${filename}.dvi ${filename}.bbl ${filename}.blg ${filename}.toc  ${filename}.nav ${filename}.vrb ${filename}.snm
+	rm -f ${filename}.out ${filename}.log ${filename}.bbl ${filename}.blg ${filename}.au ${filename}.log  ${filename}.ps ${filename}.aux ${filename}.out ${filename}.dvi ${filename}.bbl ${filename}.blg ${filename}.toc  ${filename}.nav ${filename}.vrb ${filename}.snm ${filename}.fdb_latexmk ${filename}.fls

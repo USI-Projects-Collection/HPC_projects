@@ -1,41 +1,235 @@
 \documentclass[unicode,11pt,a4paper,oneside,numbers=endperiod,openany]{scrartcl}
 
 \input{assignment.sty}
+
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{csvsimple}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{inconsolata}
+
+
+\lstdefinestyle{hpcblock}{
+    basicstyle=\ttfamily\footnotesize,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    rulecolor=\color{gray!60},
+    xleftmargin=1.5em,
+    xrightmargin=1.5em,
+    aboveskip=1em,
+    belowskip=1em,
+    showstringspaces=false,
+    columns=fullflexible,
+    keepspaces=true,
+    breaklines=true,
+    postbreak=\mbox{\textcolor{gray}{$\hookrightarrow$}\space}
+}
+\lstset{style=hpcblock}
+
+
+
 \begin{document}
 
 
 \setassignment
 
-\serieheader{High-Performance Computing Lab}{Institute of Computing}{Student: FULL NAME}{Discussed with: FULL NAME}{Solution for Project 3}{}
+\serieheader{High-Performance Computing Lab}{Institute of Computing}{Student: Paolo Deidda}{Discussed with: FULL NAME}{Solution for Project 3}{}
 \newline
 
 \assignmentpolicy
 This project will introduce you a parallel space solution of a nonlinear PDE using OpenMP.
+
+\tableofcontents
 
 % -------------------------------------------------------------------------- %
 % -------------------------------------------------------------------------- %
 % ---------------------- Exercise 1 -----------------------------------------%
 % -------------------------------------------------------------------------- %
 % -------------------------------------------------------------------------- %
+\newpage
+\section{Task 1: Implementing the Linear Algebra Functions and the Stencil Operators [35 Points]}
 
-\section{Task: Implementing the linear algebra functions and the stencil operators [35 Points]}
+The completion of the functions was straightforward, since their structure followed standard BLAS~1 patterns and a classical 5–point stencil layout. The code can be found in the \href{../Skeleton\_codes/mini\_app/serial/linalg.cpp}{linalg.cpp} and \href{../Skeleton\_codes/mini\_app/serial/operators.cpp}{operators.cpp} files.
+
+Figure~\ref{fig:resolutions} shows the simulation results for two different grid resolutions:
+a lower resolution run ($n=128$) and a high–resolution run ($n=1024$), respectively.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/serial/output.png}
+        \caption{Concentration at final time for a low resolution grid ($n=128$).}
+        \label{fig:lowres}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/strong_scaling/output.png}
+        \caption{Concentration at final time for a high resolution grid ($n=1024$).}
+        \label{fig:highres}
+    \end{subfigure}
+    \caption{Simulation results for two different grid resolutions.}
+    \label{fig:resolutions}
+\end{figure}
 
 % -------------------------------------------------------------------------- %
 % -------------------------------------------------------------------------- %
 % ---------------------- Exercise 2 -----------------------------------------%
 % -------------------------------------------------------------------------- %
 % -------------------------------------------------------------------------- %
-
+\newpage
 \section{Task:  Adding OpenMP to the nonlinear PDE mini-app [50 Points]}
 
+\subsection{Welcome message in main.cpp and serial compilation [2 Points]}
+The welcome message in \href{../Skeleton_codes/mini_app/main.cpp}{main.cpp} was updated to include the OpenMP version and the number of threads detected at runtime. To get the current number of threads I used OpenMP's function:
+
+\lstinputlisting[
+    language=C++,
+    numbers=left,
+    caption={Welcome message update in main.cpp},
+    captionpos=b,
+    label={lst:mergeCritical},
+    linerange={111},
+    firstnumber=111
+]{../Skeleton_codes/mini_app/main.cpp}
+
+This correctly displays the OpenMP version and the number of threads in the standard output:
+
+\lstinputlisting[
+    caption={Output example with OpenMP version and number of threads},
+    captionpos=b,
+    label={lst:outputExample},
+    linerange={48-57},
+    firstnumber=48
+]{../Skeleton_codes/mini_app/strong_scaling/strong_scaling_55933.out}
+
+\subsection{Linear algebra kernel [15 Points]}
+I added OpenMP directives to all BLAS~1 functions (except \texttt{hpc\_cg}). I mostly used \texttt{\#pragma omp parallel for} to parallelize vector operations, and \texttt{reduction} clauses so that the threads create private copies of the reduction variables and only the final result is combined reducing critical merge operation that must be done atomically. The implementation can be found in the \href{../Skeleton_codes/mini_app/serial/linalg.cpp}{linalg.cpp} and \href{../Skeleton_codes/mini_app/serial/operators.cpp}{operators.cpp} files.
+
+\lstinputlisting[
+    language=C++,
+    numbers=left,
+    caption={Example from dot product implementation in \href{../Skeleton_codes/mini_app/serial/linalg.cpp}{linalg.cpp}},
+    captionpos=b,
+    label={lst:dotProductOpenMP},
+    linerange={47-57},
+    firstnumber=47
+]{../Skeleton_codes/mini_app/linalg.cpp}
+
+\newpage
+
+\subsection{Diffusion stencil [10 Points]}
+I used the OpenMP special keyword \texttt{collapse} to parallelize the nested loops so that the two loops are treated as a single loop with a larger iteration space. This should better distribute the workload among threads, especially for larger grids.
+
+\lstinputlisting[
+    language=C++,
+    numbers=left,
+    caption={Example from diffusion stencil implementation in \href{../Skeleton_codes/mini_app/serial/operators.cpp}{operators.cpp}},
+    captionpos=b,
+    label={lst:diffusionOpenMP},
+    linerange={37-47},
+    firstnumber=37
+]{../Skeleton_codes/mini_app/operators.cpp}
+
+Sections in the boundary loops (North, South, East, West) remain sequential: they are anyway small, inexpensive, and include edge conditions that could introduce thread competition if parallelised.
+
+
+\subsection{Bitwise identical results [3 Points]}
+
+\paragraph{Definition.}
+Bitwise-identical result would mean that every bit of the final output (each \texttt{double} or \texttt{float}) is exactly the same between the serial and the parallel execution. So \textbf{not} ``almost the same'' (e.g., \texttt{1.00000000} vs. \texttt{1.00000001}), but rather \emph{identical in memory}.
+Getting to this level of reproducibility is really tough and for most numerical parallel programs, it's pretty much impossible.
+
+\paragraph{Why OpenMP cannot guarantee bitwise-identical results.}
+\begin{enumerate}
+    \item \textbf{Floating-point non-associativity.}
+    In floating-point arithmetic, addition and multiplication are not associative:
+    \[
+        (a + b) + c \neq a + (b + c)
+    \]
+    due to rounding errors in intermediate operations.
+    For example:
+    \[
+        (10^{16} + 1) - 10^{16} = 0, \qquad 10^{16} + (1 - 10^{16}) = 1
+    \]
+    You can get different outcomes from the same numbers based on how they're evaluated. When using OpenMP to run loops in parallel, and multiple threads are doing their own sums, the way those sums get combined isn't always the same. This can lead to tiny variations at the bit level in the final result.
+
+    \item \textbf{Reductions in OpenMP.}
+    When using a reduction clause such as:
+
+    \begin{verbatim}
+    #pragma omp parallel for reduction(+:sum)
+    \end{verbatim}
+
+    OpenMP makes a separate copy of \texttt{sum} for each thread, and then combines (or reduces) all those private results but the order in which it does that isn't always the same. As a result, I ended up with slightly different outputs for each run.
+
+    \item \textbf{Dynamic scheduling.}
+    When we use directives like \texttt{schedule(dynamic)} or \texttt{schedule(guided)}, the way iterations get assigned to threads can differ from one run to the next. This change messes with the order in which values are accumulated.
+\end{enumerate}
+
+In theory, it is possible to get bitwise-identical results, but doing so means giving up a lot of the benefits that come with parallel processing. To make this happen, we'd need to:
+\begin{itemize}
+    \item use \texttt{schedule(static)} with deterministic workload distribution;
+    \item avoid all reductions or enforce a fixed reduction tree to preserve a consistent operation order;
+    \item force threads to reproduce the exact same operation sequence as the serial version.
+\end{itemize}
+
+In practice, these limitations would really hurt scalability and complicate the code more than necessary.
+
+\subsection{Strong scaling [10 Points]}
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/strong_scaling/strong_scaling_time_vs_threads.png}
+        \caption{Strong scaling: Time vs. Number of Threads}
+        \label{fig:strong_time}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/strong_scaling/strong_scaling_speedup.png}
+        \caption{Strong scaling: Speedup vs. Number of Threads}
+        \label{fig:strong_speedup}
+    \end{subfigure}
+    \caption{Strong scaling results for the OpenMP parallelization of the PDE mini-app.}
+    \label{fig:strong_scaling}
+\end{figure}
+
+\subsection{Weak scaling [10 Points]}
+% \begin{figure}[H]
+%     \centering
+%     \begin{subfigure}[b]{0.48\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/weak_scaling/weak_scaling_time_vs_threads.png}
+%         \caption{Weak scaling: Time vs. Number of Threads}
+%         \label{fig:weak_time}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.48\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/weak_scaling/weak_scaling_efficiency.png}
+%         \caption{Weak scaling: Efficiency vs. Number of Threads}
+%         \label{fig:weak_efficiency}
+%     \end{subfigure}
+%     \caption{Weak scaling behavior for the OpenMP implementation.}
+%     \label{fig:weak_scaling}
+% \end{figure}
+
+% The weak scaling results show that execution time remains approximately constant as the problem size increases proportionally with the number of threads. Efficiency remains high, indicating good scalability of the implementation.
 
 % -------------------------------------------------------------------------- %
 % -------------------------------------------------------------------------- %
 % ---------------------- Exercise 3 -----------------------------------------%
 % -------------------------------------------------------------------------- %
 % -------------------------------------------------------------------------- %
-
+\newpage
 \section{Task:  Quality of the Report   [15 Points]}
-
 
 \end{document}

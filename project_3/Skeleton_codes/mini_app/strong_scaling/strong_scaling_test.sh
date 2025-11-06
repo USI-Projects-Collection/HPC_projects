@@ -28,5 +28,3 @@ for N in "${GRID_SIZES[@]}"; do
     ./main ${N} ${NT} ${TF} | tee -a strong_scaling_results.txt
   done
 done
-
-echo "ALL RUNS COMPLETED" | tee -a strong_scaling_results.txt

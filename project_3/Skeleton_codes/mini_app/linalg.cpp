@@ -53,7 +53,6 @@ double hpc_dot(Field const& x, Field const& y, const int N) {
     for (int i = 0; i < N; i++) {
         result += x[i] * y[i];
     }
-
     return result;
 }
 
