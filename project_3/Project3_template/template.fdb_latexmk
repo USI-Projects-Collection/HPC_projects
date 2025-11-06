@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1762448742.1718 "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_3/Project3_template/template.tex" "template.pdf" "template" 1762448745.16566 0
+["pdflatex"] 1762450081.45831 "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_3/Project3_template/template.tex" "template.pdf" "template" 1762450084.55095 0
   "../Skeleton_codes/mini_app/linalg.cpp" 1762428098 6308 3c318903698c24aeb114a60b91f9d2e9 ""
   "../Skeleton_codes/mini_app/main.cpp" 1762382459 8384 9be5473557b205687d4c3174bb0f4531 ""
   "../Skeleton_codes/mini_app/operators.cpp" 1762382459 4475 d3eeb6e8d9eccd192bcd2ea9eb33839e ""
@@ -8,8 +8,8 @@
   "../Skeleton_codes/mini_app/strong_scaling/strong_scaling_55981.out" 1762431233 21449 70e08dfc678585188aede896410d49ff ""
   "../Skeleton_codes/mini_app/strong_scaling/strong_scaling_speedup.png" 1762431233 196431 ae16c32f3468fee3e04fe2f813f3c033 ""
   "../Skeleton_codes/mini_app/strong_scaling/strong_scaling_time_vs_threads.png" 1762431233 239101 265e7fd298158cb3f024b07943efb039 ""
-  "../Skeleton_codes/mini_app/weak_scaling/weak_scaling_efficiency.png" 1762446687.47765 285602 0d7f44b14d9fe1b326af7b5a45547612 ""
-  "../Skeleton_codes/mini_app/weak_scaling/weak_scaling_time_vs_threads.png" 1762446687.25469 233708 101dd9b46a0fdc92bc34842abd59f8b0 ""
+  "../Skeleton_codes/mini_app/weak_scaling/weak_scaling_efficiency.png" 1762450081.12162 285602 0d7f44b14d9fe1b326af7b5a45547612 ""
+  "../Skeleton_codes/mini_app/weak_scaling/weak_scaling_time_vs_threads.png" 1762450080.88966 237188 256c5a07b873def38129c227b756ec8d ""
   "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_3/Project3_template/template.tex" 1762448741.95281 11430 3c714e03572f8d06a7afa75208d761d7 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
@@ -152,10 +152,10 @@
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1728315754 8221418 945d7397e00084dab441d5a55918a929 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
   "assignment.sty" 1759739600 3151 b58a87ffff8fff1e6247c3799340fcb9 ""
-  "template.aux" 1762448745.04374 10632 3a542a2a3e6cd047fb3332663a629c6b "pdflatex"
-  "template.out" 1762448743.23592 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "template.aux" 1762450084.42293 10632 3a542a2a3e6cd047fb3332663a629c6b "pdflatex"
+  "template.out" 1762450082.58445 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   "template.tex" 1762448741.95281 11430 3c714e03572f8d06a7afa75208d761d7 ""
-  "template.toc" 1762448745.04655 1210 02b3871f78e46ac47a2a422c6e00912e "pdflatex"
+  "template.toc" 1762450084.42573 1210 02b3871f78e46ac47a2a422c6e00912e "pdflatex"
   "usi_inf.png" 1757507497 99334 1f4e71c330319964e6349d99194dd493 ""
   (generated)
   "template.aux"

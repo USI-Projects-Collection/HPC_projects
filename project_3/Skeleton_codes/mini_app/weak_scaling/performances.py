@@ -34,6 +34,7 @@ for base, values in sorted(data.items()):
     for t, n, time in values:
         plt.text(t + 0.1, time, f"{n}x{n}", fontsize=8, verticalalignment='bottom', horizontalalignment='left')
 
+plt.yscale("log")
 plt.xlabel("Number of Threads (NCPU)")
 plt.ylabel("Time to Solution [s]")
 plt.title("Weak Scaling: Time vs Threads for Different Base Resolutions")
