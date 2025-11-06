@@ -10,11 +10,11 @@ time      :: 100 time steps from 0 .. 0.005
 iteration :: CG 300, Newton 50, tolerance 1e-06
 ================================================================================
 --------------------------------------------------------------------------------
-simulation took 0.0620344 seconds
-1007 conjugate gradient iterations, at rate of 16232.9 iters/second
+simulation took 0.0619611 seconds
+1007 conjugate gradient iterations, at rate of 16252.1 iters/second
 301 newton iterations
 --------------------------------------------------------------------------------
-### 1, 64, 100, 1007, 301, 0.0620344 ###
+### 1, 64, 100, 1007, 301, 0.0619611 ###
 Goodbye!
 ==========================================
 Running with N=64, NT=100, TF=0.005, threads=2
@@ -27,11 +27,11 @@ time      :: 100 time steps from 0 .. 0.005
 iteration :: CG 300, Newton 50, tolerance 1e-06
 ================================================================================
 --------------------------------------------------------------------------------
-simulation took 0.054052 seconds
-1007 conjugate gradient iterations, at rate of 18630.2 iters/second
+simulation took 0.0536382 seconds
+1007 conjugate gradient iterations, at rate of 18773.9 iters/second
 301 newton iterations
 --------------------------------------------------------------------------------
-### 2, 64, 100, 1007, 301, 0.054052 ###
+### 2, 64, 100, 1007, 301, 0.0536382 ###
 Goodbye!
 ==========================================
 Running with N=64, NT=100, TF=0.005, threads=4
@@ -44,11 +44,11 @@ time      :: 100 time steps from 0 .. 0.005
 iteration :: CG 300, Newton 50, tolerance 1e-06
 ================================================================================
 --------------------------------------------------------------------------------
-simulation took 0.0473613 seconds
-1007 conjugate gradient iterations, at rate of 21262.1 iters/second
+simulation took 0.0470289 seconds
+1007 conjugate gradient iterations, at rate of 21412.4 iters/second
 301 newton iterations
 --------------------------------------------------------------------------------
-### 4, 64, 100, 1007, 301, 0.0473613 ###
+### 4, 64, 100, 1007, 301, 0.0470289 ###
 Goodbye!
 ==========================================
 Running with N=64, NT=100, TF=0.005, threads=8
@@ -61,11 +61,11 @@ time      :: 100 time steps from 0 .. 0.005
 iteration :: CG 300, Newton 50, tolerance 1e-06
 ================================================================================
 --------------------------------------------------------------------------------
-simulation took 0.0498402 seconds
-1007 conjugate gradient iterations, at rate of 20204.6 iters/second
+simulation took 0.0540438 seconds
+1007 conjugate gradient iterations, at rate of 18633 iters/second
 301 newton iterations
 --------------------------------------------------------------------------------
-### 8, 64, 100, 1007, 301, 0.0498402 ###
+### 8, 64, 100, 1007, 301, 0.0540438 ###
 Goodbye!
 ==========================================
 Running with N=64, NT=100, TF=0.005, threads=16
@@ -78,11 +78,11 @@ time      :: 100 time steps from 0 .. 0.005
 iteration :: CG 300, Newton 50, tolerance 1e-06
 ================================================================================
 --------------------------------------------------------------------------------
-simulation took 0.363246 seconds
-1007 conjugate gradient iterations, at rate of 2772.22 iters/second
+simulation took 0.0810274 seconds
+1007 conjugate gradient iterations, at rate of 12427.9 iters/second
 301 newton iterations
 --------------------------------------------------------------------------------
-### 16, 64, 100, 1007, 301, 0.363246 ###
+### 16, 64, 100, 1007, 301, 0.0810274 ###
 Goodbye!
 ==========================================
 Running with N=128, NT=100, TF=0.005, threads=1
@@ -95,11 +95,11 @@ time      :: 100 time steps from 0 .. 0.005
 iteration :: CG 300, Newton 50, tolerance 1e-06
 ================================================================================
 --------------------------------------------------------------------------------
-simulation took 0.346694 seconds
-1513 conjugate gradient iterations, at rate of 4364.08 iters/second
+simulation took 0.346681 seconds
+1513 conjugate gradient iterations, at rate of 4364.24 iters/second
 300 newton iterations
 --------------------------------------------------------------------------------
-### 1, 128, 100, 1513, 300, 0.346694 ###
+### 1, 128, 100, 1513, 300, 0.346681 ###
 Goodbye!
 ==========================================
 Running with N=128, NT=100, TF=0.005, threads=2
@@ -112,11 +112,11 @@ time      :: 100 time steps from 0 .. 0.005
 iteration :: CG 300, Newton 50, tolerance 1e-06
 ================================================================================
 --------------------------------------------------------------------------------
-simulation took 0.202195 seconds
-1512 conjugate gradient iterations, at rate of 7477.93 iters/second
+simulation took 0.199745 seconds
+1512 conjugate gradient iterations, at rate of 7569.65 iters/second
 300 newton iterations
 --------------------------------------------------------------------------------
-### 2, 128, 100, 1512, 300, 0.202195 ###
+### 2, 128, 100, 1512, 300, 0.199745 ###
 Goodbye!
 ==========================================
 Running with N=128, NT=100, TF=0.005, threads=4
@@ -129,11 +129,11 @@ time      :: 100 time steps from 0 .. 0.005
 iteration :: CG 300, Newton 50, tolerance 1e-06
 ================================================================================
 --------------------------------------------------------------------------------
-simulation took 0.125513 seconds
-1513 conjugate gradient iterations, at rate of 12054.5 iters/second
+simulation took 0.130835 seconds
+1513 conjugate gradient iterations, at rate of 11564.2 iters/second
 300 newton iterations
 --------------------------------------------------------------------------------
-### 4, 128, 100, 1513, 300, 0.125513 ###
+### 4, 128, 100, 1513, 300, 0.130835 ###
 Goodbye!
 ==========================================
 Running with N=128, NT=100, TF=0.005, threads=8
@@ -146,11 +146,11 @@ time      :: 100 time steps from 0 .. 0.005
 iteration :: CG 300, Newton 50, tolerance 1e-06
 ================================================================================
 --------------------------------------------------------------------------------
-simulation took 0.116284 seconds
-1512 conjugate gradient iterations, at rate of 13002.7 iters/second
+simulation took 0.120101 seconds
+1511 conjugate gradient iterations, at rate of 12581.1 iters/second
 300 newton iterations
 --------------------------------------------------------------------------------
-### 8, 128, 100, 1512, 300, 0.116284 ###
+### 8, 128, 100, 1511, 300, 0.120101 ###
 Goodbye!
 ==========================================
 Running with N=128, NT=100, TF=0.005, threads=16
@@ -163,11 +163,11 @@ time      :: 100 time steps from 0 .. 0.005
 iteration :: CG 300, Newton 50, tolerance 1e-06
 ================================================================================
 --------------------------------------------------------------------------------
-simulation took 0.339159 seconds
-1512 conjugate gradient iterations, at rate of 4458.08 iters/second
+simulation took 0.145433 seconds
+1515 conjugate gradient iterations, at rate of 10417.2 iters/second
 300 newton iterations
 --------------------------------------------------------------------------------
-### 16, 128, 100, 1512, 300, 0.339159 ###
+### 16, 128, 100, 1515, 300, 0.145433 ###
 Goodbye!
 ==========================================
 Running with N=256, NT=100, TF=0.005, threads=1
@@ -180,11 +180,11 @@ time      :: 100 time steps from 0 .. 0.005
 iteration :: CG 300, Newton 50, tolerance 1e-06
 ================================================================================
 --------------------------------------------------------------------------------
-simulation took 2.34056 seconds
-2782 conjugate gradient iterations, at rate of 1188.61 iters/second
+simulation took 2.33797 seconds
+2782 conjugate gradient iterations, at rate of 1189.92 iters/second
 300 newton iterations
 --------------------------------------------------------------------------------
-### 1, 256, 100, 2782, 300, 2.34056 ###
+### 1, 256, 100, 2782, 300, 2.33797 ###
 Goodbye!
 ==========================================
 Running with N=256, NT=100, TF=0.005, threads=2
@@ -197,11 +197,11 @@ time      :: 100 time steps from 0 .. 0.005
 iteration :: CG 300, Newton 50, tolerance 1e-06
 ================================================================================
 --------------------------------------------------------------------------------
-simulation took 1.18625 seconds
-2783 conjugate gradient iterations, at rate of 2346.06 iters/second
+simulation took 1.22522 seconds
+2783 conjugate gradient iterations, at rate of 2271.42 iters/second
 300 newton iterations
 --------------------------------------------------------------------------------
-### 2, 256, 100, 2783, 300, 1.18625 ###
+### 2, 256, 100, 2783, 300, 1.22522 ###
 Goodbye!
 ==========================================
 Running with N=256, NT=100, TF=0.005, threads=4
@@ -214,11 +214,11 @@ time      :: 100 time steps from 0 .. 0.005
 iteration :: CG 300, Newton 50, tolerance 1e-06
 ================================================================================
 --------------------------------------------------------------------------------
-simulation took 0.670435 seconds
-2783 conjugate gradient iterations, at rate of 4151.04 iters/second
+simulation took 0.677836 seconds
+2782 conjugate gradient iterations, at rate of 4104.24 iters/second
 300 newton iterations
 --------------------------------------------------------------------------------
-### 4, 256, 100, 2783, 300, 0.670435 ###
+### 4, 256, 100, 2782, 300, 0.677836 ###
 Goodbye!
 ==========================================
 Running with N=256, NT=100, TF=0.005, threads=8
@@ -231,11 +231,11 @@ time      :: 100 time steps from 0 .. 0.005
 iteration :: CG 300, Newton 50, tolerance 1e-06
 ================================================================================
 --------------------------------------------------------------------------------
-simulation took 0.419567 seconds
-2781 conjugate gradient iterations, at rate of 6628.27 iters/second
+simulation took 0.432692 seconds
+2779 conjugate gradient iterations, at rate of 6422.59 iters/second
 300 newton iterations
 --------------------------------------------------------------------------------
-### 8, 256, 100, 2781, 300, 0.419567 ###
+### 8, 256, 100, 2779, 300, 0.432692 ###
 Goodbye!
 ==========================================
 Running with N=256, NT=100, TF=0.005, threads=16
@@ -248,11 +248,11 @@ time      :: 100 time steps from 0 .. 0.005
 iteration :: CG 300, Newton 50, tolerance 1e-06
 ================================================================================
 --------------------------------------------------------------------------------
-simulation took 0.345784 seconds
-2783 conjugate gradient iterations, at rate of 8048.38 iters/second
+simulation took 0.3574 seconds
+2783 conjugate gradient iterations, at rate of 7786.79 iters/second
 300 newton iterations
 --------------------------------------------------------------------------------
-### 16, 256, 100, 2783, 300, 0.345784 ###
+### 16, 256, 100, 2783, 300, 0.3574 ###
 Goodbye!
 ==========================================
 Running with N=512, NT=100, TF=0.005, threads=1
@@ -265,11 +265,11 @@ time      :: 100 time steps from 0 .. 0.005
 iteration :: CG 300, Newton 50, tolerance 1e-06
 ================================================================================
 --------------------------------------------------------------------------------
-simulation took 17.4332 seconds
-5367 conjugate gradient iterations, at rate of 307.86 iters/second
+simulation took 17.7271 seconds
+5367 conjugate gradient iterations, at rate of 302.758 iters/second
 300 newton iterations
 --------------------------------------------------------------------------------
-### 1, 512, 100, 5367, 300, 17.4332 ###
+### 1, 512, 100, 5367, 300, 17.7271 ###
 Goodbye!
 ==========================================
 Running with N=512, NT=100, TF=0.005, threads=2
@@ -282,11 +282,11 @@ time      :: 100 time steps from 0 .. 0.005
 iteration :: CG 300, Newton 50, tolerance 1e-06
 ================================================================================
 --------------------------------------------------------------------------------
-simulation took 8.74232 seconds
-5362 conjugate gradient iterations, at rate of 613.338 iters/second
+simulation took 8.71913 seconds
+5362 conjugate gradient iterations, at rate of 614.969 iters/second
 300 newton iterations
 --------------------------------------------------------------------------------
-### 2, 512, 100, 5362, 300, 8.74232 ###
+### 2, 512, 100, 5362, 300, 8.71913 ###
 Goodbye!
 ==========================================
 Running with N=512, NT=100, TF=0.005, threads=4
@@ -299,11 +299,11 @@ time      :: 100 time steps from 0 .. 0.005
 iteration :: CG 300, Newton 50, tolerance 1e-06
 ================================================================================
 --------------------------------------------------------------------------------
-simulation took 4.55778 seconds
-5357 conjugate gradient iterations, at rate of 1175.35 iters/second
+simulation took 4.5386 seconds
+5362 conjugate gradient iterations, at rate of 1181.42 iters/second
 300 newton iterations
 --------------------------------------------------------------------------------
-### 4, 512, 100, 5357, 300, 4.55778 ###
+### 4, 512, 100, 5362, 300, 4.5386 ###
 Goodbye!
 ==========================================
 Running with N=512, NT=100, TF=0.005, threads=8
@@ -316,11 +316,11 @@ time      :: 100 time steps from 0 .. 0.005
 iteration :: CG 300, Newton 50, tolerance 1e-06
 ================================================================================
 --------------------------------------------------------------------------------
-simulation took 2.55973 seconds
-5366 conjugate gradient iterations, at rate of 2096.31 iters/second
+simulation took 2.50307 seconds
+5361 conjugate gradient iterations, at rate of 2141.77 iters/second
 300 newton iterations
 --------------------------------------------------------------------------------
-### 8, 512, 100, 5366, 300, 2.55973 ###
+### 8, 512, 100, 5361, 300, 2.50307 ###
 Goodbye!
 ==========================================
 Running with N=512, NT=100, TF=0.005, threads=16
@@ -333,11 +333,11 @@ time      :: 100 time steps from 0 .. 0.005
 iteration :: CG 300, Newton 50, tolerance 1e-06
 ================================================================================
 --------------------------------------------------------------------------------
-simulation took 1.59007 seconds
-5360 conjugate gradient iterations, at rate of 3370.91 iters/second
+simulation took 1.60249 seconds
+5360 conjugate gradient iterations, at rate of 3344.8 iters/second
 300 newton iterations
 --------------------------------------------------------------------------------
-### 16, 512, 100, 5360, 300, 1.59007 ###
+### 16, 512, 100, 5360, 300, 1.60249 ###
 Goodbye!
 ==========================================
 Running with N=1024, NT=100, TF=0.005, threads=1
@@ -350,11 +350,11 @@ time      :: 100 time steps from 0 .. 0.005
 iteration :: CG 300, Newton 50, tolerance 1e-06
 ================================================================================
 --------------------------------------------------------------------------------
-simulation took 164.729 seconds
-10543 conjugate gradient iterations, at rate of 64.0022 iters/second
+simulation took 165.107 seconds
+10543 conjugate gradient iterations, at rate of 63.8554 iters/second
 305 newton iterations
 --------------------------------------------------------------------------------
-### 1, 1024, 100, 10543, 305, 164.729 ###
+### 1, 1024, 100, 10543, 305, 165.107 ###
 Goodbye!
 ==========================================
 Running with N=1024, NT=100, TF=0.005, threads=2
@@ -367,11 +367,11 @@ time      :: 100 time steps from 0 .. 0.005
 iteration :: CG 300, Newton 50, tolerance 1e-06
 ================================================================================
 --------------------------------------------------------------------------------
-simulation took 79.2732 seconds
-10476 conjugate gradient iterations, at rate of 132.151 iters/second
+simulation took 80.142 seconds
+10476 conjugate gradient iterations, at rate of 130.718 iters/second
 302 newton iterations
 --------------------------------------------------------------------------------
-### 2, 1024, 100, 10476, 302, 79.2732 ###
+### 2, 1024, 100, 10476, 302, 80.142 ###
 Goodbye!
 ==========================================
 Running with N=1024, NT=100, TF=0.005, threads=4
@@ -384,11 +384,11 @@ time      :: 100 time steps from 0 .. 0.005
 iteration :: CG 300, Newton 50, tolerance 1e-06
 ================================================================================
 --------------------------------------------------------------------------------
-simulation took 40.617 seconds
-10501 conjugate gradient iterations, at rate of 258.537 iters/second
-303 newton iterations
+simulation took 42.9891 seconds
+10501 conjugate gradient iterations, at rate of 244.271 iters/second
+304 newton iterations
 --------------------------------------------------------------------------------
-### 4, 1024, 100, 10501, 303, 40.617 ###
+### 4, 1024, 100, 10501, 304, 42.9891 ###
 Goodbye!
 ==========================================
 Running with N=1024, NT=100, TF=0.005, threads=8
@@ -401,11 +401,11 @@ time      :: 100 time steps from 0 .. 0.005
 iteration :: CG 300, Newton 50, tolerance 1e-06
 ================================================================================
 --------------------------------------------------------------------------------
-simulation took 25.2342 seconds
-10503 conjugate gradient iterations, at rate of 416.221 iters/second
-304 newton iterations
+simulation took 24.7066 seconds
+10576 conjugate gradient iterations, at rate of 428.064 iters/second
+307 newton iterations
 --------------------------------------------------------------------------------
-### 8, 1024, 100, 10503, 304, 25.2342 ###
+### 8, 1024, 100, 10576, 307, 24.7066 ###
 Goodbye!
 ==========================================
 Running with N=1024, NT=100, TF=0.005, threads=16
@@ -418,10 +418,9 @@ time      :: 100 time steps from 0 .. 0.005
 iteration :: CG 300, Newton 50, tolerance 1e-06
 ================================================================================
 --------------------------------------------------------------------------------
-simulation took 20.7696 seconds
-10539 conjugate gradient iterations, at rate of 350.78 iters/second
-306 newton iterations
+simulation took 19.9912 seconds
+10532 conjugate gradient iterations, at rate of 526.832 iters/second
+304 newton iterations
 --------------------------------------------------------------------------------
-### 16, 1024, 100, 10539, 306, 30.0445 ###
+### 16, 1024, 100, 10532, 304, 19.9912 ###
 Goodbye!
-ALL RUNS COMPLETED

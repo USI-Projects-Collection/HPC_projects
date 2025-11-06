@@ -107,7 +107,7 @@ This correctly displays the OpenMP version and the number of threads in the stan
     label={lst:outputExample},
     linerange={48-57},
     firstnumber=48
-]{../Skeleton_codes/mini_app/strong_scaling/strong_scaling_55933.out}
+]{../Skeleton_codes/mini_app/strong_scaling/strong_scaling_55981.out}
 
 \subsection{Linear algebra kernel [15 Points]}
 I added OpenMP directives to all BLAS~1 functions (except \texttt{hpc\_cg}). I mostly used \texttt{\#pragma omp parallel for} to parallelize vector operations, and \texttt{reduction} clauses so that the threads create private copies of the reduction variables and only the final result is combined reducing critical merge operation that must be done atomically. The implementation can be found in the \href{../Skeleton_codes/mini_app/serial/linalg.cpp}{linalg.cpp} and \href{../Skeleton_codes/mini_app/serial/operators.cpp}{operators.cpp} files.
@@ -202,27 +202,30 @@ In practice, these limitations would really hurt scalability and complicate the 
     \label{fig:strong_scaling}
 \end{figure}
 
-\subsection{Weak scaling [10 Points]}
-% \begin{figure}[H]
-%     \centering
-%     \begin{subfigure}[b]{0.48\textwidth}
-%         \centering
-%         \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/weak_scaling/weak_scaling_time_vs_threads.png}
-%         \caption{Weak scaling: Time vs. Number of Threads}
-%         \label{fig:weak_time}
-%     \end{subfigure}
-%     \hfill
-%     \begin{subfigure}[b]{0.48\textwidth}
-%         \centering
-%         \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/weak_scaling/weak_scaling_efficiency.png}
-%         \caption{Weak scaling: Efficiency vs. Number of Threads}
-%         \label{fig:weak_efficiency}
-%     \end{subfigure}
-%     \caption{Weak scaling behavior for the OpenMP implementation.}
-%     \label{fig:weak_scaling}
-% \end{figure}
+The results show that as we increase the number of threads, we see almost a linear boost in speed, apart from low resolution runs (n=64 blue and n=128 orange). OpenMP effectively utilizes multiple threads to speed up computations, however, for lower resolutions, the threads spend more time coordinating rather than computing.
 
-% The weak scaling results show that execution time remains approximately constant as the problem size increases proportionally with the number of threads. Efficiency remains high, indicating good scalability of the implementation.
+
+\subsection{Weak scaling [10 Points]}
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/weak_scaling/weak_scaling_time_vs_threads.png}
+        \caption{Weak scaling: Time vs. Number of Threads}
+        \label{fig:weak_time}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/weak_scaling/weak_scaling_efficiency.png}
+        \caption{Weak scaling: Efficiency vs. Number of Threads}
+        \label{fig:weak_efficiency}
+    \end{subfigure}
+    \caption{Weak scaling behavior for the OpenMP implementation.}
+    \label{fig:weak_scaling}
+\end{figure}
+
+The weak scaling results show that execution time remains approximately constant as the problem size increases proportionally with the number of threads. Efficiency remains high, indicating good scalability of the implementation.
 
 % -------------------------------------------------------------------------- %
 % -------------------------------------------------------------------------- %

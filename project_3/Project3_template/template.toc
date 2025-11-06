@@ -8,5 +8,5 @@
 \contentsline {paragraph}{\nonumberline Why OpenMP cannot guarantee bitwise-identical results.}{4}{paragraph*.7}%
 \contentsline {subsection}{\numberline {2.5}Strong scaling [10 Points]}{5}{subsection.2.5}%
 \contentsline {subsection}{\numberline {2.6}Weak scaling [10 Points]}{5}{subsection.2.6}%
-\contentsline {section}{\numberline {3}Task: Quality of the Report [15 Points]}{6}{section.3}%
+\contentsline {section}{\numberline {3}Task: Quality of the Report [15 Points]}{7}{section.3}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

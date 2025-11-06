@@ -4,6 +4,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
 #SBATCH --time=02:00:00
+#SBATCH --exclusive
 #SBATCH --output=pde_test_%j.out
 #SBATCH --error=pde_test_%j.err
 

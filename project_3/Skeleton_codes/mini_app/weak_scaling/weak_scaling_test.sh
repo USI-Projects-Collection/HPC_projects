@@ -4,6 +4,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=16
 #SBATCH --time=04:00:00
+#SBATCH --exclusive
 #SBATCH --output=weak_scaling_%j.out
 #SBATCH --error=weak_scaling_%j.err
 
