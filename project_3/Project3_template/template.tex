@@ -83,7 +83,7 @@ a lower resolution run ($n=128$) and a high–resolution run ($n=1024$), respect
 % ---------------------- Exercise 2 -----------------------------------------%
 % -------------------------------------------------------------------------- %
 % -------------------------------------------------------------------------- %
-\newpage
+% \newpage
 \section{Task:  Adding OpenMP to the nonlinear PDE mini-app [50 Points]}
 
 \subsection{Welcome message in main.cpp and serial compilation [2 Points]}
@@ -122,7 +122,7 @@ I added OpenMP directives to all BLAS~1 functions (except \texttt{hpc\_cg}). I m
     firstnumber=47
 ]{../Skeleton_codes/mini_app/linalg.cpp}
 
-\newpage
+% \newpage
 
 \subsection{Diffusion stencil [10 Points]}
 I used the OpenMP special keyword \texttt{collapse} to parallelize the nested loops so that the two loops are treated as a single loop with a larger iteration space. This should better distribute the workload among threads, especially for larger grids.
@@ -225,15 +225,15 @@ The results show that as we increase the number of threads, we see almost a line
     \label{fig:weak_scaling}
 \end{figure}
 
-The weak scaling results show that execution time remains approximately constant as the problem size increases proportionally with the number of threads. Efficiency remains high, indicating good scalability of the implementation.
-
+In my weak scaling tests, I noticed that as we added more threads, execution time increased almost linearly. The idea is that if we keep the workload per thread the same, the time it takes to get a solution should stay constant. We're seeing performance drop mainly because of synchronization costs and general overhead, also due to memory bandwidth getting maxed out. Since all threads are tapping into the same memory, just adding more threads doesn't boost the available memory bandwidth, so total runtime ends up growing linearly with the number of threads.
 % -------------------------------------------------------------------------- %
 % -------------------------------------------------------------------------- %
 % ---------------------- Exercise 3 -----------------------------------------%
 % -------------------------------------------------------------------------- %
 % -------------------------------------------------------------------------- %
-\newpage
+% \newpage
 \section{Task:  Quality of the Report   [15 Points]}
+
 
 
 \end{document}

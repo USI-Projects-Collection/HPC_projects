@@ -49,6 +49,8 @@ for base, values in sorted(data.items()):
     t1 = times[0]
     efficiency = [t1 / t for t in times]
     plt.plot(threads, efficiency, marker='o', label=f"base n={base}")
+    for t, n, eff in zip(threads, ns, efficiency):
+        plt.text(t + 0.1, eff, f"{n}x{n}", fontsize=8, verticalalignment='bottom', horizontalalignment='left')
 
 plt.xlabel("Number of Threads (NCPU)")
 plt.ylabel("Weak Scaling Efficiency (T1/Tn)")

@@ -268,10 +268,10 @@ INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/inconsolata/t1-zi4b-0.
 INPUT ../Skeleton_codes/mini_app/strong_scaling/strong_scaling_55981.out
 INPUT ../Skeleton_codes/mini_app/strong_scaling/strong_scaling_55981.out
 INPUT ../Skeleton_codes/mini_app/strong_scaling/strong_scaling_55981.out
-INPUT ../Skeleton_codes/mini_app/linalg.cpp
-INPUT ../Skeleton_codes/mini_app/linalg.cpp
-INPUT ../Skeleton_codes/mini_app/linalg.cpp
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc
+INPUT ../Skeleton_codes/mini_app/linalg.cpp
+INPUT ../Skeleton_codes/mini_app/linalg.cpp
+INPUT ../Skeleton_codes/mini_app/linalg.cpp
 INPUT ../Skeleton_codes/mini_app/operators.cpp
 INPUT ../Skeleton_codes/mini_app/operators.cpp
 INPUT ../Skeleton_codes/mini_app/operators.cpp

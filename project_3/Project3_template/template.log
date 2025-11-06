@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.7)  6 NOV 2025 16:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.7)  6 NOV 2025 18:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -547,7 +547,7 @@ File: ../Skeleton_codes/mini_app/strong_scaling/output.png Graphic file (type pn
 <use ../Skeleton_codes/mini_app/strong_scaling/output.png>
 Package pdftex.def Info: ../Skeleton_codes/mini_app/strong_scaling/output.png  used on input line 73.
 (pdftex.def)             Requested size: 225.34381pt x 197.79834pt.
- [2 <../Skeleton_codes/mini_app/serial/output.png> <../Skeleton_codes/mini_app/strong_scaling/output.png>] (/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/02/21 1.10 listings language file
 ) (/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/02/21 1.10 listings language file
@@ -567,40 +567,39 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <9> on input line 111.
 LaTeX Font Info:    Font shape `T1/zi4/b/n' will be
 (Font)              scaled to size 9.0pt on input line 111.
-) (../Skeleton_codes/mini_app/strong_scaling/strong_scaling_55981.out) (../Skeleton_codes/mini_app/linalg.cpp
+) (../Skeleton_codes/mini_app/strong_scaling/strong_scaling_55981.out) [2{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc} <../Skeleton_codes/mini_app/serial/output.png> <../Skeleton_codes/mini_app/strong_scaling/output.png>] (../Skeleton_codes/mini_app/linalg.cpp
 
 LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
 (Font)              using `T1/zi4/m/n' instead on input line 47.
 
 LaTeX Font Info:    Font shape `T1/zi4/m/it' will be
 (Font)              scaled to size 9.0pt on input line 47.
-) [3{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}] (../Skeleton_codes/mini_app/operators.cpp)
+) (../Skeleton_codes/mini_app/operators.cpp) [3]
 Overfull \hbox (1.3438pt too wide) in paragraph at lines 172--174
 []\T1/cmr/bx/n/10.95 Dynamic schedul-ing. \T1/cmr/m/n/10.95 When we use di-rec-tives like \T1/zi4/m/n/10.95 schedule(dynamic) \T1/cmr/m/n/10.95 or \T1/zi4/m/n/10.95 schedule(guided)\T1/cmr/m/n/10.95 ,
  []
 
-[4]
-<../Skeleton_codes/mini_app/strong_scaling/strong_scaling_time_vs_threads.png, id=124, 578.16pt x 433.62pt>
+<../Skeleton_codes/mini_app/strong_scaling/strong_scaling_time_vs_threads.png, id=117, 578.16pt x 433.62pt>
 File: ../Skeleton_codes/mini_app/strong_scaling/strong_scaling_time_vs_threads.png Graphic file (type png)
 <use ../Skeleton_codes/mini_app/strong_scaling/strong_scaling_time_vs_threads.png>
 Package pdftex.def Info: ../Skeleton_codes/mini_app/strong_scaling/strong_scaling_time_vs_threads.png  used on input line 190.
 (pdftex.def)             Requested size: 225.34381pt x 169.00525pt.
-<../Skeleton_codes/mini_app/strong_scaling/strong_scaling_speedup.png, id=125, 578.16pt x 433.62pt>
+<../Skeleton_codes/mini_app/strong_scaling/strong_scaling_speedup.png, id=118, 578.16pt x 433.62pt>
 File: ../Skeleton_codes/mini_app/strong_scaling/strong_scaling_speedup.png Graphic file (type png)
 <use ../Skeleton_codes/mini_app/strong_scaling/strong_scaling_speedup.png>
 Package pdftex.def Info: ../Skeleton_codes/mini_app/strong_scaling/strong_scaling_speedup.png  used on input line 197.
 (pdftex.def)             Requested size: 225.34381pt x 169.00525pt.
-<../Skeleton_codes/mini_app/weak_scaling/weak_scaling_time_vs_threads.png, id=126, 578.16pt x 433.62pt>
+<../Skeleton_codes/mini_app/weak_scaling/weak_scaling_time_vs_threads.png, id=119, 578.16pt x 433.62pt>
 File: ../Skeleton_codes/mini_app/weak_scaling/weak_scaling_time_vs_threads.png Graphic file (type png)
 <use ../Skeleton_codes/mini_app/weak_scaling/weak_scaling_time_vs_threads.png>
 Package pdftex.def Info: ../Skeleton_codes/mini_app/weak_scaling/weak_scaling_time_vs_threads.png  used on input line 213.
 (pdftex.def)             Requested size: 225.34381pt x 169.00525pt.
-<../Skeleton_codes/mini_app/weak_scaling/weak_scaling_efficiency.png, id=127, 578.16pt x 433.62pt>
+<../Skeleton_codes/mini_app/weak_scaling/weak_scaling_efficiency.png, id=120, 578.16pt x 433.62pt>
 File: ../Skeleton_codes/mini_app/weak_scaling/weak_scaling_efficiency.png Graphic file (type png)
 <use ../Skeleton_codes/mini_app/weak_scaling/weak_scaling_efficiency.png>
 Package pdftex.def Info: ../Skeleton_codes/mini_app/weak_scaling/weak_scaling_efficiency.png  used on input line 220.
 (pdftex.def)             Requested size: 225.34381pt x 169.00525pt.
- [5 <../Skeleton_codes/mini_app/strong_scaling/strong_scaling_time_vs_threads.png> <../Skeleton_codes/mini_app/strong_scaling/strong_scaling_speedup.png> <../Skeleton_codes/mini_app/weak_scaling/weak_scaling_time_vs_threads.png> <../Skeleton_codes/mini_app/weak_scaling/weak_scaling_efficiency.png>] [6] [7] (./template.aux)
+[4 <../Skeleton_codes/mini_app/strong_scaling/strong_scaling_time_vs_threads.png> <../Skeleton_codes/mini_app/strong_scaling/strong_scaling_speedup.png>] [5 <../Skeleton_codes/mini_app/weak_scaling/weak_scaling_time_vs_threads.png> <../Skeleton_codes/mini_app/weak_scaling/weak_scaling_efficiency.png>] (./template.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -613,18 +612,18 @@ Package rerunfilecheck Info: File `template.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 17660 strings out of 474116
- 320050 string characters out of 5743682
- 2149187 words of memory out of 5000000
+ 17658 strings out of 474116
+ 320038 string characters out of 5743682
+ 2249187 words of memory out of 5000000
  39693 multiletter control sequences out of 15000+600000
  572933 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  108i,11n,107p,11016b,1501s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4b.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb>
-Output written on template.pdf (7 pages, 1300629 bytes).
+Output written on template.pdf (5 pages, 1369532 bytes).
 PDF statistics:
- 268 PDF objects out of 1000 (max. 8388607)
- 205 compressed objects within 3 object streams
- 66 named destinations out of 1000 (max. 500000)
+ 257 PDF objects out of 1000 (max. 8388607)
+ 197 compressed objects within 2 object streams
+ 64 named destinations out of 1000 (max. 500000)
  108 words of extra memory for PDF output out of 10000 (max. 10000000)
 
