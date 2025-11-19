@@ -1,15 +1,48 @@
 \documentclass[unicode,11pt,a4paper,oneside,numbers=endperiod,openany]{scrartcl}
 
 \input{assignment.sty}
+
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{csvsimple}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{inconsolata}
+
+
+\lstdefinestyle{hpcblock}{
+    basicstyle=\ttfamily\footnotesize,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    rulecolor=\color{gray!60},
+    xleftmargin=1.5em,
+    xrightmargin=1.5em,
+    aboveskip=1em,
+    belowskip=1em,
+    showstringspaces=false,
+    columns=fullflexible,
+    keepspaces=true,
+    breaklines=true,
+    postbreak=\mbox{\textcolor{gray}{$\hookrightarrow$}\space}
+}
+\lstset{style=hpcblock}
+
 \begin{document}
 
 
 \setassignment
 
-\serieheader{High-Performance Computing Lab}{Institute of Computing}{Student: FULL NAME}{Discussed with: FULL NAME}{Solution for Project 4}{}
+\serieheader{High-Performance Computing Lab}{Institute of Computing}{Student: Paolo Deidda}{Discussed with: FULL NAME}{Solution for Project 4}{}
 \newline
 
 \assignmentpolicy
+
+\tableofcontents
+\newpage
 
 % -------------------------------------------------------------------------- %
 % -------------------------------------------------------------------------- %
@@ -18,6 +51,36 @@
 % -------------------------------------------------------------------------- %
 
 \section{Task: Ring maximum using MPI [10 Points]}
+
+I detrmine each process message destination and source using its rank.
+
+The communication can be implemented using the standard MPI functions 
+\texttt{MPI\_Send} and \texttt{MPI\_Recv}, which take the following arguments:
+\begin{itemize}
+    \setlength{\itemsep}{0pt}
+    \setlength{\parskip}{0pt}
+    \item buffer address (to store sent or received data)
+    \item number of elements (to send or receive)
+    \item MPI datatype (of the elements to send or receive)
+    \item destination (or source) rank (of the process to send to or receive from)
+    \item message tag (to identify the message with an id)
+    \item communicator (to identify the group of processes involved in the communication, useless in this case)
+\end{itemize}
+
+When using \texttt{MPI\_Send} and \texttt{MPI\_Recv} separately, the ranks must be split into two groups like even and odd ranks, otherwise all processes may block by attempting to send or receive at the same time.
+
+Alternatively, we can use the \texttt{MPI\_Sendrecv} function, which takes care of both sending and receiving in a single call, avoiding deadlocks.
+dio negro
+\lstinputlisting[
+    language=C++,
+    numbers=left,
+    caption={Implemetation from file \href{../Skeleton_codes/ring/ring_sum.c}{ring\_sum.c}},
+    captionpos=b,
+    label={lst:mergeCritical},
+    linerange={21-25},
+    firstnumber=21
+]{../Skeleton_codes/ring/ring_sum.c}
+
 
  % -------------------------------------------------------------------------- %
 % -------------------------------------------------------------------------- %
