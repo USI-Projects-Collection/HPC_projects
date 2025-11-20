@@ -42,16 +42,20 @@ Partition createPartition(int mpi_rank, int mpi_size) {
     Partition p;
 
     // TODO: determine size of the grid of MPI processes (p.nx, p.ny), see MPI_Dims_create()
-    p.ny = 1;
-    p.nx = 1;
+    int dims[2] = {0,0};
+    MPI_Dims_create(mpi_size, 2, dims);
+    p.nx = dims[0];
+    p.ny = dims[1];
 
     // TODO: Create cartesian communicator (p.comm), we do not allow the reordering of ranks here, see MPI_Cart_create()
-    MPI_Comm comm_cart = MPI_COMM_WORLD;
-    p.comm = comm_cart;
+    int periods[2] = {0,0};
+    MPI_Cart_create(MPI_COMM_WORLD, 2, dims, periods, 0, &p.comm);
     
     // TODO: Determine the coordinates in the Cartesian grid (p.x, p.y), see MPI_Cart_coords()
-    p.y = 0;
-    p.x = 0;
+    int coords[2];
+    MPI_Cart_coords(p.comm, mpi_rank, 2, coords);
+    p.x = coords[0];
+    p.y = coords[1];
 
     return p;
 }
@@ -71,8 +75,10 @@ Partition updatePartition(Partition p_old, int mpi_rank) {
     p.comm = p_old.comm;
     
     // TODO: update the coordinates in the cartesian grid (p.x, p.y) for given mpi_rank, see MPI_Cart_coords()
-    p.y = 0;
-    p.x = 0;
+    int coords[2];
+    MPI_Cart_coords(p.comm, mpi_rank, 2, coords);
+    p.x = coords[0];
+    p.y = coords[1];
 
     return p;
 }
@@ -89,16 +95,17 @@ Domain createDomain(Partition p) {
     Domain d;
     
     // TODO: compute size of the local domain
-    d.nx = IMAGE_WIDTH;
-    d.ny = IMAGE_HEIGHT;
+    long local_nx = IMAGE_WIDTH / p.nx;
+    long local_ny = IMAGE_HEIGHT / p.ny;
 
-    // TODO: compute index of the first pixel in the local domain
-    d.startx = 0;
-    d.starty = 0;
+    d.nx = local_nx;
+    d.ny = local_ny;
 
-    // TODO: compute index of the last pixel in the local domain
-    d.endx = IMAGE_WIDTH - 1;
-    d.endy = IMAGE_HEIGHT - 1;
+    d.startx = p.x * local_nx;
+    d.starty = p.y * local_ny;
+
+    d.endx = d.startx + local_nx - 1;
+    d.endy = d.starty + local_ny - 1;
 
     return d;
 }
