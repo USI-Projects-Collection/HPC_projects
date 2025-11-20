@@ -262,9 +262,9 @@ INPUT /usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc
 INPUT ../Skeleton_codes/ghost/ghost.c
 INPUT ../Skeleton_codes/ghost/ghost.c
 INPUT ../Skeleton_codes/ghost/ghost.c
-INPUT ../Skeleton_codes/ghost/ghost.c
-INPUT ../Skeleton_codes/ghost/ghost.c
-INPUT ../Skeleton_codes/ghost/ghost.c
+INPUT ../Skeleton_codes/ghost/ghost_57333.out
+INPUT ../Skeleton_codes/ghost/ghost_57333.out
+INPUT ../Skeleton_codes/ghost/ghost_57333.out
 INPUT template.aux
 INPUT ./template.out
 INPUT ./template.out
