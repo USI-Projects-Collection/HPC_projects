@@ -7,4 +7,6 @@ ring_sum: ring_sum.c
 .PHONY: clean
 clean:
 	$(RM) ring_sum
+
+clean_logs:
 	$(RM) *.err *.out
