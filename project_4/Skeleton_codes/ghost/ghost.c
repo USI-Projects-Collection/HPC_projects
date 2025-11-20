@@ -104,23 +104,23 @@ int main(int argc, char *argv[])
 
     //  to the top
     MPI_Sendrecv(&data[1 * DOMAINSIZE + 1], SUBDOMAIN, MPI_DOUBLE, rank_top, 0,
-                 &data[0 * DOMAINSIZE + 1], SUBDOMAIN, MPI_DOUBLE, rank_top, 0,
+                 &data[(DOMAINSIZE - 1) * DOMAINSIZE + 1], SUBDOMAIN, MPI_DOUBLE, rank_bottom, 0,
                  comm_cart, &status);
     
     //  to the bottom
     MPI_Sendrecv(&data[(DOMAINSIZE - 2) * DOMAINSIZE + 1], SUBDOMAIN, MPI_DOUBLE,
-                 rank_bottom, 1, &data[(DOMAINSIZE - 1) * DOMAINSIZE + 1],
-                 SUBDOMAIN, MPI_DOUBLE, rank_bottom, 1, comm_cart, &status);
+                 rank_bottom, 1, &data[0 * DOMAINSIZE + 1],
+                 SUBDOMAIN, MPI_DOUBLE, rank_top, 1, comm_cart, &status);
     
     //  to the left
     MPI_Sendrecv(&data[1 * DOMAINSIZE + 1], 1, data_ghost, rank_left, 2,
-                 &data[1 * DOMAINSIZE + 0], 1, data_ghost, rank_left, 2,
-                 comm_cart, &status);
+                 &data[1 * DOMAINSIZE + (DOMAINSIZE - 1)], 1, data_ghost,
+                 rank_right, 2, comm_cart, &status);
     
     //  to the right
     MPI_Sendrecv(&data[1 * DOMAINSIZE + (DOMAINSIZE - 2)], 1, data_ghost,
-                 rank_right, 3, &data[1 * DOMAINSIZE + (DOMAINSIZE - 1)], 1,
-                 data_ghost, rank_right, 3, comm_cart, &status);
+                 rank_right, 3, &data[1 * DOMAINSIZE + 0], 1, data_ghost,
+                 rank_left, 3, comm_cart, &status);
     
 
     if (rank==9) {
