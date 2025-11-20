@@ -116,6 +116,7 @@ int main(int argc, char** argv) {
 	if (mpi_rank != 0)
 	{
 		// TODO: send local partition c to the master process
+        MPI_Send(c, d.nx*d.ny, MPI_INT, 0, 0, MPI_COMM_WORLD);
 	}
 	/****************************************************************************/
 	// Write the image
@@ -138,6 +139,7 @@ int main(int argc, char** argv) {
 			Domain d1 = createDomain(p1);
 
 			// TODO: receive partition of the process proc into array c (overwrite its data)
+            MPI_Recv(c, d1.nx*d1.ny, MPI_INT, proc, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
 			// write the partition of the process proc
 			for (j = 0; j < d1.ny; j++) // HEIGHT
