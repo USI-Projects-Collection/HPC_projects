@@ -12,4 +12,4 @@ module load openmpi
 make clean
 make
 
-srun ./ring
+srun ./ring_sum
