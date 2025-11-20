@@ -43,17 +43,17 @@ Partition createPartition(int mpi_rank, int mpi_size) {
 
     // TODO: determine size of the grid of MPI processes (p.nx, p.ny), see MPI_Dims_create()
     int dims[2] = {0,0};
-    MPI_Dims_create(mpi_size, 2, dims);
+    MPI_Dims_create(mpi_size, 2, dims); // questo fa in modo che dims[0]*dims[1] = mpi_size
     p.nx = dims[0];
     p.ny = dims[1];
 
     // TODO: Create cartesian communicator (p.comm), we do not allow the reordering of ranks here, see MPI_Cart_create()
     int periods[2] = {0,0};
-    MPI_Cart_create(MPI_COMM_WORLD, 2, dims, periods, 0, &p.comm);
+    MPI_Cart_create(MPI_COMM_WORLD, 2, dims, periods, 0, &p.comm); // arugments: oldcomm, ndims, dims, periods, reorder, newcomm
     
     // TODO: Determine the coordinates in the Cartesian grid (p.x, p.y), see MPI_Cart_coords()
     int coords[2];
-    MPI_Cart_coords(p.comm, mpi_rank, 2, coords);
+    MPI_Cart_coords(p.comm, mpi_rank, 2, coords); // get coords of process mpi_rank in cartesian grid
     p.x = coords[0];
     p.y = coords[1];
 

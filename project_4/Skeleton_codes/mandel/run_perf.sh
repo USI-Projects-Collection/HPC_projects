@@ -4,6 +4,7 @@
 #SBATCH --ntasks=16
 #SBATCH --ntasks-per-node=16
 #SBATCH --cpus-per-task=1
+#SBATCH --exclusive
 #SBATCH --output=job.out
 #SBATCH --error=job.err
 #SBATCH --time=00:20:00
