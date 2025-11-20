@@ -81,12 +81,41 @@ Alternatively, we can use the \texttt{MPI\_Sendrecv} function, which takes care 
 ]{../Skeleton_codes/ring/ring_sum.c}
 
 
+Once launched the job we can see the folloring output with \texttt{--ntasks=4} on the left and \texttt{--ntasks=8} on the right.
+
+\begin{center}
+\begin{minipage}[t]{0.45\textwidth}
+    \lstinputlisting[
+        language=C++,
+        numbers=left,
+        caption={Output from file \href{../Skeleton_codes/ring/ring_57313.out}{ring\_57313.out}},
+        captionpos=b,
+        label={lst:mergeCritical},
+        linerange={3-6},
+        firstnumber=3
+    ]{../Skeleton_codes/ring/ring_57313.out}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+    \lstinputlisting[
+        language=C++,
+        numbers=left,
+        caption={Output from file \href{../Skeleton_codes/ring/ring_57315.out}{ring\_57315.out}},
+        captionpos=b,
+        label={lst:mergeCritical},
+        linerange={3-10},
+        firstnumber=3
+    ]{../Skeleton_codes/ring/ring_57315.out}
+\end{minipage}
+\end{center}
+
+
  % -------------------------------------------------------------------------- %
 % -------------------------------------------------------------------------- %
 % --- Exercise 2 ----------------------------------------------------------- %
 % -------------------------------------------------------------------------- %
 % -------------------------------------------------------------------------- %
-
+\newpage
 \section{Task: Ghost cells exchange between neighboring processes [15 Points]}
 
 We first create a $4\times 4$ Cartesian communicator with periodic boundaries in both directions. Using \texttt{MPI\_Cart\_shift} we retrieve the rank of the north, south, east and west neighbors so that the first and last ranks remain connected. The column ghost layer is described with a derived datatype built with \texttt{MPI\_Type\_vector}; it spans one element every \texttt{DOMAINSIZE} entries and covers the whole interior height of the tile.
