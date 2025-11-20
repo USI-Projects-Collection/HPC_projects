@@ -8,4 +8,3 @@ mandel_mpi:  mandel_mpi.c pngwriter.c
 
 clean:
 	rm -f mandel_mpi
-

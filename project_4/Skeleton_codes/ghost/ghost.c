@@ -91,7 +91,7 @@ int main(int argc, char *argv[])
     // TODO: find your top/bottom/left/right neighbor using the new communicator, see MPI_Cart_shift()
     // rank_top, rank_bottom
     // rank_left, rank_right
-    MPI_Cart_shift(comm_cart, 0, 1, &rank_top, &rank_bottom);
+    MPI_Cart_shift(comm_cart, 0, 1, &rank_bottom, &rank_top);
     MPI_Cart_shift(comm_cart, 1, 1, &rank_left, &rank_right);
 
     //  TODO: create derived datatype data_ghost, create a datatype for sending the column, see MPI_Type_vector() and MPI_Type_commit()
