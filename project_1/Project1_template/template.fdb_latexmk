@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex template"] 1760609862.61378 "template.aux" "template.bbl" "template" 1760609870.81949 0
+["bibtex template"] 1763668503.28555 "template.aux" "template.bbl" "template" 1763668504.76194 0
   "./references.bib" 1759956705.43323 959 5b9ca14c0960b3e9d7c07bd06d7eba03 ""
   "/usr/local/texlive/2024/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "template.aux" 1760609870.57261 11730 1c1153cd8dddcf029541b5bc953b2988 "pdflatex"
+  "template.aux" 1763668504.52119 11730 a3382fba29d16276af6f229de9395b97 "pdflatex"
   (generated)
   "template.bbl"
   "template.blg"
   (rewritten before read)
-["pdflatex"] 1760609869.39896 "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_1/Project1_template/template.tex" "template.pdf" "template" 1760609870.81964 0
+["pdflatex"] 1763668503.39502 "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_1/Project1_template/template.tex" "template.pdf" "template" 1763668504.76206 0
   "../src/1-Rosa-warm-up/hello_world.c" 1759762102.36695 180 f8a8bb474a26c4e2f66d7e92f948214f ""
   "../src/1-Rosa-warm-up/hello_worldc.out" 1759856220.49695 33 ba867c219f4506a281ae1b7b977ac343 ""
   "../src/1-Rosa-warm-up/sinfo_out" 1759847759.35531 690 589d5807aa2cc05e7e7d8d5ad5f56335 ""
@@ -23,7 +23,7 @@
   "../src/3-Optimize-Matrix-Matrix-Mult/results/timing-16.pdf" 1760031162.06815 26601 8be70a00ac8a781538e53f2c63158315 ""
   "../src/3-Optimize-Matrix-Matrix-Mult/results/timing-32.pdf" 1760031176.82263 26601 528aa40a263643b0f9fe23fa621b3b2e ""
   "../src/3-Optimize-Matrix-Matrix-Mult/results/timing-64.pdf" 1760031189.21322 26560 039190340fe12c48f9778125a8b2a58f ""
-  "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_1/Project1_template/template.tex" 1760609440.32139 1741 1c321cf7937f42d1b06b3611d33482e5 ""
+  "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_1/Project1_template/template.tex" 1763668501.71349 1740 969c05b97f05534d75e6c853b4009592 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc" 1558214095 7631 5169ff1acd97ff1c4ab83563c99f96f4 ""
@@ -166,11 +166,11 @@
   "inputs/part1.tex" 1760609869.20666 5560 5ccd04292b45d5cd9e060586c57592c2 ""
   "inputs/part2.tex" 1759966872.04352 4506 40e1cbab5f7b485d8aa1b95f6f77b90b ""
   "inputs/part3.tex" 1760032461.61611 3608 6bd1edd6ac5fbab16e5fe9fce5fe5a03 ""
-  "template.aux" 1760609870.57261 11730 1c1153cd8dddcf029541b5bc953b2988 "pdflatex"
-  "template.bbl" 1760609862.69206 530 dc7e937d760118e9e20beb154f05c75c "bibtex template"
-  "template.out" 1760609870.12556 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "template.tex" 1760609440.32139 1741 1c321cf7937f42d1b06b3611d33482e5 ""
-  "template.toc" 1760609870.57446 1347 6ca504707d5f2f0ab71bf2f2b92282f6 "pdflatex"
+  "template.aux" 1763668504.52119 11730 a3382fba29d16276af6f229de9395b97 "pdflatex"
+  "template.bbl" 1763668503.39307 530 dc7e937d760118e9e20beb154f05c75c "bibtex template"
+  "template.out" 1763668504.08479 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "template.tex" 1763668501.71349 1740 969c05b97f05534d75e6c853b4009592 ""
+  "template.toc" 1763668504.52297 1347 6ca504707d5f2f0ab71bf2f2b92282f6 "pdflatex"
   "usi_inf.png" 1726162814 99334 1f4e71c330319964e6349d99194dd493 ""
   (generated)
   "template.aux"

@@ -109,6 +109,14 @@ Once launched the job we can see the folloring output with \texttt{--ntasks=4} o
 \end{minipage}
 \end{center}
 
+With flag \texttt{--ntasks=4} slurm automatically assign a node with at least 4 cores, since by default:
+\begin{itemize}
+    \setlength{\itemsep}{0pt}
+    \setlength{\parskip}{0pt}
+    \item 1 Slurm task = 1 MPI process
+    \item 1 MPI process = 1 CPU core
+\end{itemize}
+
 
  % -------------------------------------------------------------------------- %
 % -------------------------------------------------------------------------- %
@@ -118,25 +126,42 @@ Once launched the job we can see the folloring output with \texttt{--ntasks=4} o
 \newpage
 \section{Task: Ghost cells exchange between neighboring processes [15 Points]}
 
-We first create a $4\times 4$ Cartesian communicator with periodic boundaries in both directions. Using \texttt{MPI\_Cart\_shift} we retrieve the rank of the north, south, east and west neighbors so that the first and last ranks remain connected. The column ghost layer is described with a derived datatype built with \texttt{MPI\_Type\_vector}; it spans one element every \texttt{DOMAINSIZE} entries and covers the whole interior height of the tile.
+I first create a $4 \times 4$ Cartesian communicator with periodic boundaries on both axes. Then, by using \texttt{MPI\_Cart\_shift}, I get the ranks of the neighboring processesnorth, south, east, and west, making sure the first and last ranks stay connected. To handle the column ghost layer, I create a derived datatype using \texttt{MPI\_Type\_vector}; this datatype covers one element for every \texttt{DOMAINSIZE} entries and goes all the way through the interior height of the tile.
 
-With these ingredients we perform four \texttt{MPI\_Sendrecv} calls, one per direction, each time sending the interior boundary (rows or columns that exclude the corner points) and receiving directly into the ghost layer. Because every transfer is expressed as a combined send/receive, no explicit ordering or buffering is needed to avoid deadlocks.
+I then keep using \texttt{MPI\_Sendrecv} calls, one for each direction, to avoid any deadlock. Each call sends the interior boundary (the rows or columns that leave out the corner points) and directly receives the data into the ghost layer.
+
+
+
 \lstinputlisting[
     language=C,
     numbers=left,
-    caption={Ghost layer exchange, \href{../Skeleton_codes/ghost/ghost.c}{ghost.c}},
+    caption={Two example from top and bottom ghost cells exchange from the file \href{../Skeleton_codes/ghost/ghost.c}{ghost.c} with \texttt{SUBDOMAIN = 6}},
     captionpos=b,
     label={lst:ghostExchange},
-    linerange={80-140},
-    firstnumber=80
+    linerange={105-113},
+    firstnumber=105
 ]{../Skeleton_codes/ghost/ghost.c}
+
+Here the output of the program:
+
+
+\lstinputlisting[
+    language=C,
+    numbers=left,
+    caption={Two example from top and bottom ghost cells exchange from the file \href{../Skeleton_codes/ghost/ghost.c}{ghost.c} with \texttt{SUBDOMAIN = 6}},
+    captionpos=b,
+    label={lst:ghostExchange},
+    linerange={},
+    firstnumber=105
+]{../Skeleton_codes/ghost/ghost.c}
+
 
 % -------------------------------------------------------------------------- %
 % -------------------------------------------------------------------------- %
 % --- Exercise 3 ----------------------------------------------------------- %
 % -------------------------------------------------------------------------- %
 % -------------------------------------------------------------------------- %
-
+\newpage
 \section{Task: Parallelizing the Mandelbrot set using MPI [20 Points]}
 
 
