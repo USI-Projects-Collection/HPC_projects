@@ -9,6 +9,11 @@
 #SBATCH --error=job.err
 #SBATCH --time=00:20:00
 
+
+module load gcc openmpi
+make clean
+make
+
 #offset added to x coordinate so that gnuplot does not overlap the bars
 offset=0 
 
