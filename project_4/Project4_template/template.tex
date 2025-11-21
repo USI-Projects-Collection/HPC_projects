@@ -198,6 +198,55 @@ The imbalance in workload distribution among precesses might be due to the stati
 \newpage
 \section{Task: Parallel matrix-vector multiplication and the power method [40 Points]}
 
+The given skeleton file, \texttt{powermethod\_rows.c}, already took care of the serial part of the power iteration. I implemented spreading the matrix among the MPI processes, sending out the iterate vector, and combining the partial results to refine the eigenvalue estimate.
+
+The MPI routines used were:
+\begin{itemize}
+    \setlength{\itemsep}{0pt}
+    \setlength{\parskip}{0pt}
+    \item \texttt{MPI\_Scatterv}: distribute each block of matrix rows to its process
+    \item \texttt{MPI\_Bcast}: broadcast the current iterate vector $x$ to all processes
+    \item \texttt{MPI\_Reduce}: compute global inner products required by the power iteration
+    \item \texttt{MPI\_Gather}: collect the updated vector entries on the master process
+\end{itemize}
+
+To run all required experiments, I used four automated Bash:
+
+\lstinputlisting[
+    language=bash,
+    numbers=left,
+    caption={Bash script to run all experiments \href{../Skeleton\_codes/powermethod/run\_all.sh}{run\_all.sh}},
+    captionpos=b,
+    label={lst:runAll},
+    linerange={1-6},
+    firstnumber=1
+]{../Skeleton_codes/powermethod/run_all.sh}
+
+The resulting strong- and weak-scaling plots are shown in Figure~\ref{fig:powermethod-results}.  
+Each of these plots shows the runtime and efficiency curves for both single-node and multi-node setups.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../Skeleton_codes/powermethod/strong_scaling_combined.png}
+        \caption{Strong scaling: runtime and efficiency.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../Skeleton_codes/powermethod/weak_scaling_combined.png}
+        \caption{Weak scaling: runtime and efficiency.}
+    \end{subfigure}
+    \caption{Strong and weak scaling results for the power method.}
+    \label{fig:powermethod-results}
+\end{figure}
+
+\textbf{Strong Scaling:} \\ 
+Analysis The strong scaling results show that we’ve done a good job with parallelization—runtimes keep dropping as we increase the number of processes. The multi-node setup (in orange) is really holding up well, keeping over 80\% efficiency throughout the tests. On the other hand, the single-node setup (in blue) has been pretty unstable, especially when dealing with 9 and 17 processes, where we see a significant drop in efficiency. This difference points out that, while the algorithm logically scales well, cramming too many processes onto a single node hits some hardware limits—probably due to memory bandwidth issues—that are helped out when we spread the load over multiple nodes.
+
+\textbf{Weak Scaling:} \\
+After correcting the efficiency formula, the weak scaling graph shows we’re close to ideal performance for the multi-node setup. The runtime for the multi-node system (orange solid line) stays nearly flat, and the efficiency (orange dashed line) stays pretty close to 1.0, which shows that we’re not adding much overhead as we scale both the problem size and the number of processors. In contrast, the single-node performance (in blue) is all over the place, with big spikes in runtime and drops in efficiency. This really confirms that a single machine can’t handle the total memory bandwidth needed as the problem size grows, underscoring why a multi-node approach is necessary.
 
 % -------------------------------------------------------------------------- %
 % -------------------------------------------------------------------------- %

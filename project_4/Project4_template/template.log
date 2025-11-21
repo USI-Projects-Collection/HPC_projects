@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.7)  21 NOV 2025 11:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.7)  21 NOV 2025 16:23
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -591,7 +591,22 @@ File: ../Skeleton_codes/mandel/perf.pdf Graphic file (type pdf)
 <use ../Skeleton_codes/mandel/perf.pdf>
 Package pdftex.def Info: ../Skeleton_codes/mandel/perf.pdf  used on input line 182.
 (pdftex.def)             Requested size: 234.73523pt x 140.84212pt.
-[4 <../Skeleton_codes/mandel/mandel.png> <../Skeleton_codes/mandel/perf.pdf>] [5] [6] (./template.aux)
+[4 <../Skeleton_codes/mandel/mandel.png> <../Skeleton_codes/mandel/perf.pdf>] (/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2024/02/21 1.10 listings language file
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2024/02/21 1.10 listings language file
+) (../Skeleton_codes/powermethod/run_all.sh)
+<../Skeleton_codes/powermethod/strong_scaling_combined.png, id=116, 650.43pt x 433.62pt>
+File: ../Skeleton_codes/powermethod/strong_scaling_combined.png Graphic file (type png)
+<use ../Skeleton_codes/powermethod/strong_scaling_combined.png>
+Package pdftex.def Info: ../Skeleton_codes/powermethod/strong_scaling_combined.png  used on input line 232.
+(pdftex.def)             Requested size: 225.34381pt x 150.22763pt.
+<../Skeleton_codes/powermethod/weak_scaling_combined.png, id=117, 650.43pt x 433.62pt>
+File: ../Skeleton_codes/powermethod/weak_scaling_combined.png Graphic file (type png)
+<use ../Skeleton_codes/powermethod/weak_scaling_combined.png>
+Package pdftex.def Info: ../Skeleton_codes/powermethod/weak_scaling_combined.png  used on input line 238.
+(pdftex.def)             Requested size: 225.34381pt x 150.22763pt.
+ [5 <../Skeleton_codes/powermethod/strong_scaling_combined.png> <../Skeleton_codes/powermethod/weak_scaling_combined.png>] [6] [7] (./template.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -607,18 +622,18 @@ Package rerunfilecheck Info: File `template.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 17533 strings out of 474116
- 315997 string characters out of 5743682
+ 17658 strings out of 474116
+ 318512 string characters out of 5743682
  2196187 words of memory out of 5000000
- 39577 multiletter control sequences out of 15000+600000
- 571066 words of font info for 62 fonts, out of 8000000 for 9000
+ 39683 multiletter control sequences out of 15000+600000
+ 571849 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  108i,11n,107p,11016b,1499s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb>
-Output written on template.pdf (6 pages, 687777 bytes).
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb>
+Output written on template.pdf (7 pages, 911884 bytes).
 PDF statistics:
- 207 PDF objects out of 1000 (max. 8388607)
- 161 compressed objects within 2 object streams
- 55 named destinations out of 1000 (max. 500000)
- 56 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 239 PDF objects out of 1000 (max. 8388607)
+ 183 compressed objects within 2 object streams
+ 64 named destinations out of 1000 (max. 500000)
+ 66 words of extra memory for PDF output out of 10000 (max. 10000000)
 
