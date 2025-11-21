@@ -14,7 +14,9 @@ module load gcc openmpi
 make clean
 make
 
-echo "# p  n  time" > weak_single.data
+DATAFILE="std/weak_single.data"
+
+echo "# p  n  time" > "$DATAFILE"
 
 for p in $(seq 1 20); do
     n=$(python3 - <<EOF
@@ -23,5 +25,5 @@ print(int(10000*math.sqrt($p)))
 EOF
 )
     echo "Running p=$p n=$n"
-    srun --ntasks=$p ./powermethod_rows 3 $n 300 -1e-6 >> std/weak_single.data
+    srun --ntasks=$p ./powermethod_rows 3 $n 300 -1e-6 >> "$DATAFILE"
 done

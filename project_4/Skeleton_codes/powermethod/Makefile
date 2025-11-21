@@ -17,4 +17,4 @@ walltime.o: walltime.c walltime.h
 clean:
 	$(RM) *.o powermethod_rows
 clean_all:
-	$(RM) *.dat *.txt *.err *.out
+	$(RM) *.data *.txt *.err *.out

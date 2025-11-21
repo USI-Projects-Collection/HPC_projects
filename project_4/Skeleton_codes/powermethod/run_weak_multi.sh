@@ -14,7 +14,9 @@ module load gcc openmpi
 make clean
 make
 
-echo "# p  n  time" > weak_multi.data
+DATAFILE="std/weak_multi.data"
+
+echo "# p  n  time" > "$DATAFILE"
 
 for p in $(seq 1 16); do
     n=$(python3 - <<EOF
@@ -24,5 +26,5 @@ EOF
 )
     echo "Running p=$p nodes n=$n"
     srun --nodes=$p --ntasks=$p --ntasks-per-node=1 \
-        ./powermethod_rows 3 $n 300 -1e-6 >> std/weak_multi.data
+        ./powermethod_rows 3 $n 300 -1e-6 >> "$DATAFILE"
 done

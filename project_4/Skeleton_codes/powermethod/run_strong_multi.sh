@@ -14,10 +14,12 @@ module load gcc openmpi
 make clean
 make
 
-echo "# p  n  time" > strong_multi.data
+DATAFILE="std/strong_multi.data"
+
+echo "# p  n  time" > "$DATAFILE"
 
 for p in $(seq 1 16); do
     echo "Running with p = $p nodes"
     srun --nodes=$p --ntasks=$p --ntasks-per-node=1 \
-        ./powermethod_rows 3 10000 300 -1e-6 >> std/strong_multi.data
+        ./powermethod_rows 3 10000 300 -1e-6 >> "$DATAFILE"
 done
