@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=strong_single
-#SBATCH --output=strong_single_%j.out
-#SBATCH --error=strong_single_%j.err
+#SBATCH --output=std/strong_single_%j.out
+#SBATCH --error=std/strong_single_%j.err
 #SBATCH --nodes=1
 #SBATCH --ntasks=20
 #SBATCH --exclusive 
@@ -18,5 +18,5 @@ echo "# p  n  time" > strong_single.data
 
 for p in $(seq 1 20); do
     echo "Running with p = $p"
-    srun --ntasks=$p ./powermethod_rows 3 10000 300 -1e-6 >> strong_single.data
+    srun --ntasks=$p ./powermethod_rows 3 10000 300 -1e-6 >> std/strong_single.data
 done

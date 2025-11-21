@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=weak_multi
-#SBATCH --output=weak_multi_%j.out
-#SBATCH --error=weak_multi_%j.err
+#SBATCH --output=std/weak_multi_%j.out
+#SBATCH --error=std/weak_multi_%j.err
 #SBATCH --nodes=16
 #SBATCH --ntasks=16
 #SBATCH --exclusive
@@ -24,5 +24,5 @@ EOF
 )
     echo "Running p=$p nodes n=$n"
     srun --nodes=$p --ntasks=$p --ntasks-per-node=1 \
-        ./powermethod_rows 3 $n 300 -1e-6 >> weak_multi.data
+        ./powermethod_rows 3 $n 300 -1e-6 >> std/weak_multi.data
 done

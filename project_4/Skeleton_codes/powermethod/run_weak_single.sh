@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=weak_single
-#SBATCH --output=weak_single_%j.out
-#SBATCH --error=weak_single_%j.err
+#SBATCH --output=std/weak_single_%j.out
+#SBATCH --error=std/weak_single_%j.err
 #SBATCH --nodes=1
 #SBATCH --ntasks=20
 #SBATCH --exclusive 
@@ -23,5 +23,5 @@ print(int(10000*math.sqrt($p)))
 EOF
 )
     echo "Running p=$p n=$n"
-    srun --ntasks=$p ./powermethod_rows 3 $n 300 -1e-6 >> weak_single.data
+    srun --ntasks=$p ./powermethod_rows 3 $n 300 -1e-6 >> std/weak_single.data
 done
