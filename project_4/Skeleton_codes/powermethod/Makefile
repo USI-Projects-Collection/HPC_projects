@@ -16,4 +16,5 @@ walltime.o: walltime.c walltime.h
 .PHONY: clean
 clean:
 	$(RM) *.o powermethod_rows
-	
+clean_all:
+	$(RM) *.dat *.txt *.err *.out

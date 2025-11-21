@@ -1,13 +1,13 @@
 # Fdb version 4
-["pdflatex"] 1763681124.11305 "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_4/Project4_template/template.tex" "template.pdf" "template" 1763681126.51383 0
+["pdflatex"] 1763722321.08976 "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_4/Project4_template/template.tex" "template.pdf" "template" 1763722323.54377 0
   "../Skeleton_codes/ghost/ghost.c" 1763672286.33354 4957 5834f33db2d0defeda41bde663e73c14 ""
-  "../Skeleton_codes/ghost/ghost_57333.out" 1763671537 399 c51e38e9c20ae9116a372a928a9669f2 ""
+  "../Skeleton_codes/ghost/ghost_57333.out" 1763719999.33057 399 f755f75f9d116952bcd9b3d56e2c4114 ""
   "../Skeleton_codes/mandel/mandel.png" 1763678091 477132 952711e288a8b4d53ccdba00c91a70b0 ""
   "../Skeleton_codes/mandel/perf.pdf" 1763677498 10914 64fa8d7fa77523174d5e1e9eb7dc5429 ""
   "../Skeleton_codes/ring/ring_57313.out" 1763665832 121 0d49bbd4f101e7bbd16b92287f918919 ""
   "../Skeleton_codes/ring/ring_57315.out" 1763665920 205 38eddc39d7447e2c2aa7bb97d97fbdf9 ""
   "../Skeleton_codes/ring/ring_sum.c" 1763656514 764 7b1da0a4a1830ebfa076fc9474806b22 ""
-  "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_4/Project4_template/template.tex" 1763681121.67437 9436 2a061f8f1e357228f3f0bb98e9471653 ""
+  "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_4/Project4_template/template.tex" 1763722320.87699 9438 064c866466605c746d64a0b78a24bbc9 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc" 1558214095 7631 5169ff1acd97ff1c4ab83563c99f96f4 ""
@@ -141,10 +141,10 @@
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1728315754 8221418 945d7397e00084dab441d5a55918a929 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
   "assignment.sty" 1759739626 3151 b58a87ffff8fff1e6247c3799340fcb9 ""
-  "template.aux" 1763681126.41056 7144 c945307aab52592f99ab92b4143da637 "pdflatex"
-  "template.out" 1763681125.15499 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "template.tex" 1763681121.67437 9436 2a061f8f1e357228f3f0bb98e9471653 ""
-  "template.toc" 1763681126.41248 628 a079248e3435dd75c7a5c245d5eaa634 "pdflatex"
+  "template.aux" 1763722323.43095 7144 c945307aab52592f99ab92b4143da637 "pdflatex"
+  "template.out" 1763722322.14755 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "template.tex" 1763722320.87699 9438 064c866466605c746d64a0b78a24bbc9 ""
+  "template.toc" 1763722323.43331 628 a079248e3435dd75c7a5c245d5eaa634 "pdflatex"
   "usi_inf.png" 1757507497 99334 1f4e71c330319964e6349d99194dd493 ""
   (generated)
   "template.aux"
