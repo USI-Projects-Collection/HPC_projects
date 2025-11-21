@@ -59,15 +59,35 @@ int main(int argc, char* argv[]) {
   }
 
   // Partition work evenly among processes
-  int nrows_local = n;
+  int nrows_local = 0;
   int row_beg_local = 0;
-  int row_end_local = row_beg_local + nrows_local - 1;
-  printf("[Proc %3d] Doing rows %d to %d\n", rank, row_beg_local,
-         row_end_local);
+  int row_end_local = 0;
+  int base_rows = n / size;
+  int rem_rows  = n % size;
   // To do: Partition the "n" rows of the matrix evenly among the "size" MPI
   //        processes.
   // Hint : The first "n % size" processes get "n / size + 1" rows, while the
   //        remaining processes get "n / size".
+  if (rank < rem_rows) {
+    nrows_local   = base_rows + 1;
+    row_beg_local = rank * (base_rows + 1);
+  } else {
+    nrows_local   = base_rows;
+    row_beg_local = rem_rows * (base_rows + 1) + (rank - rem_rows) * base_rows;
+  }
+  row_end_local = row_beg_local + nrows_local - 1;
+  printf("[Proc %3d] Doing rows %d to %d\n", rank, row_beg_local,
+         row_end_local);
+
+  int* recvcounts = (int*) malloc(size * sizeof(int));
+  int* displs     = (int*) malloc(size * sizeof(int));
+  int offset = 0;
+  for (int r = 0; r < size; ++r) {
+    int rows_r = (r < rem_rows) ? (base_rows + 1) : base_rows;
+    recvcounts[r] = rows_r;
+    displs[r]     = offset;
+    offset       += rows_r;
+  }
 
   // Initialize matrix A
   double* A = (double*) calloc(nrows_local*n, sizeof(double));
@@ -130,6 +150,7 @@ int main(int argc, char* argv[]) {
   }
   // To do: Broadcast the random initial guess vector to all MPI processes.
   // Hint : MPI_Bcast.
+  MPI_Bcast(y, n, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 
   // Power method
   double theta, error;
@@ -155,11 +176,14 @@ int main(int argc, char* argv[]) {
     // Hint: Compute only the local rows, save them in the buffer y_local
     //       and synchronize the result using MPI_Allgather / MPI_Allgatherv.
     for (int i_local = 0; i_local < nrows_local; ++i_local) {
-      y[i_local] = 0.;
+      y_local[i_local] = 0.;
       for (int j_global = 0; j_global < n; ++j_global) {
-        y[i_local] += A[i_local*n + j_global]*v[j_global];
+        y_local[i_local] += A[i_local*n + j_global]*v[j_global];
       }
     }
+    MPI_Allgatherv(y_local, nrows_local, MPI_DOUBLE,
+                   y, recvcounts, displs, MPI_DOUBLE,
+                   MPI_COMM_WORLD);
     // Compute eigenvalue: theta = v^T y
     theta = 0.;
     for (int i_global = 0; i_global < n; ++i_global) {
@@ -194,6 +218,8 @@ int main(int argc, char* argv[]) {
   }
 
   // Free
+  free(recvcounts);
+  free(displs);
   free(A);
   free(y);
   free(y_local);

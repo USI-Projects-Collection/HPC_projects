@@ -161,7 +161,34 @@ Here the output of the program:
 \newpage
 \section{Task: Parallelizing the Mandelbrot set using MPI [20 Points]}
 
+The function \texttt{createPartition} configure the process grid with \texttt{MPI\_Dims\_create}, then builds a Cartesian topology using the function \texttt{MPI\_Cart\_create}, and gets the coordinates for each process with \texttt{MPI\_Cart\_coords}. With this information, \texttt{createDomain} gives each process a rectangular subdomain, figuring out their global boundaries (\texttt{startx}, \texttt{endx}, \texttt{starty}, \texttt{endy}).
 
+Next, each process calculates its own part of the Mandelbrot image independently. When they're done, the non-root processes send their sub-partition to the master using \texttt{MPI\_Send}, while the master collects all the blocks with \texttt{MPI\_Recv}, updates the partition through \texttt{updatePartition}, and places each block in the right spot in the final PNG.
+
+The finished image is displayed in Figure~\ref{fig:mandel}.
+
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../Skeleton_codes/mandel/mandel.png}
+        \caption{Final Mandelbrot image computed in parallel (MPI).}
+        \label{fig:mandel}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../Skeleton_codes/mandel/perf.pdf}
+        \caption{Per-process computation time for varying MPI process counts.}
+        \label{fig:mandel-perf}
+    \end{subfigure}
+    \caption{Mandelbrot set computed in parallel using MPI.}
+    \label{fig:mandel and perf}
+\end{figure}
+
+In Figure~\ref{fig:mandel-perf}, we can see that as we increase the number of MPI processes, the computation time for each process goes down quite a bit. It scales very good up to \texttt{8} processes. But when you push to \texttt{16} processes, the workload is light enough that you start to notice some overhead and imbalance, which is pretty typical for domain-splitting algorithms.
+The imbalance in workload distribution among precesses might be due to the static division of the image so the central processes end up with more complex calculations. This should be possible to resolve with a dynamic task allocation strategy but in OpenMP.
 
 % -------------------------------------------------------------------------- %
 % -------------------------------------------------------------------------- %
@@ -171,13 +198,13 @@ Here the output of the program:
 \newpage
 \section{Task: Parallel matrix-vector multiplication and the power method [40 Points]}
 
+
 % -------------------------------------------------------------------------- %
 % -------------------------------------------------------------------------- %
 % --- Report Quality ------------------------------------------------------- %
 % -------------------------------------------------------------------------- %
 % -------------------------------------------------------------------------- %
-
-
+\newpage
 \section{Task:  Quality of the Report [15 Points]}
 
 

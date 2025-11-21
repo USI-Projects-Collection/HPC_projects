@@ -35,4 +35,6 @@ do
     printf "\n\n" >> perf.data
 done
 
+./plot_perf.sh
+
 echo "Done."
