@@ -4,7 +4,6 @@
 #SBATCH --error=std/strong_single_%j.err
 #SBATCH --nodes=1
 #SBATCH --ntasks=20
-#SBATCH --exclusive 
 #SBATCH --cpus-per-task=1
 #SBATCH --time=00:20:00
 #SBATCH --exclusive
