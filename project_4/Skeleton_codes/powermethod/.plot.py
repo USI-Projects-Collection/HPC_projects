@@ -53,10 +53,8 @@ def efficiency(data, kind="strong"):
     T1 = float(T[P == 1][0]) # Take the first occurrence if multiple exist
     
     if kind == "strong":
-        # Strong Scaling: Speedup / P
         E = T1 / (P * T)
     elif kind == "weak":
-        # Weak Scaling: Ideal efficiency is 1.0 (constant time)
         E = T1 / T
     else:
         raise ValueError("Efficiency kind must be 'strong' or 'weak'")

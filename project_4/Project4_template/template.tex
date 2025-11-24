@@ -36,7 +36,7 @@
 
 \setassignment
 
-\serieheader{High-Performance Computing Lab}{Institute of Computing}{Student: Paolo Deidda}{Discussed with: FULL NAME}{Solution for Project 4}{}
+\serieheader{High-Performance Computing Lab}{Institute of Computing}{Student: Paolo Deidda}{Discussed with: Lino Candian}{Solution for Project 4}{}
 \newline
 
 \assignmentpolicy
@@ -218,7 +218,7 @@ To run all required experiments, I used four automated Bash:
     caption={Bash script to run all experiments \href{../Skeleton\_codes/powermethod/run\_all.sh}{run\_all.sh}},
     captionpos=b,
     label={lst:runAll},
-    linerange={1-6},
+    linerange={3-6},
     firstnumber=1
 ]{../Skeleton_codes/powermethod/run_all.sh}
 
@@ -227,26 +227,28 @@ Each of these plots shows the runtime and efficiency curves for both single-node
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{../Skeleton_codes/powermethod/strong_scaling_combined.png}
         \caption{Strong scaling: runtime and efficiency.}
+        \label{fig:strong-scaling}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{../Skeleton_codes/powermethod/weak_scaling_combined.png}
         \caption{Weak scaling: runtime and efficiency.}
+        \label{fig:weak-scaling}
     \end{subfigure}
     \caption{Strong and weak scaling results for the power method.}
     \label{fig:powermethod-results}
 \end{figure}
 
-\textbf{Strong Scaling:} \\ 
-Analysis The strong scaling results show that we’ve done a good job with parallelization—runtimes keep dropping as we increase the number of processes. The multi-node setup (in orange) is really holding up well, keeping over 80\% efficiency throughout the tests. On the other hand, the single-node setup (in blue) has been pretty unstable, especially when dealing with 9 and 17 processes, where we see a significant drop in efficiency. This difference points out that, while the algorithm logically scales well, cramming too many processes onto a single node hits some hardware limits—probably due to memory bandwidth issues—that are helped out when we spread the load over multiple nodes.
+\textbf{Strong Scaling: \ref{fig:strong-scaling}} \\ 
+The strong scaling results show that parallelization—runtimes keep decreasing as we increase the number of processes. The multi-node setup (in orange) maintains over 80\% efficiency throughout the tests. On the other hand, the single-node setup (in blue) has been pretty unstable, especially with 9 and 17 processes, where we see a significant drop in efficiency. This difference points out that, while the algorithm logically scales well, running too many processes onto a single node hits some hardware limits, probably due to memory bandwidth issues that instead are not present when we spread the load over multiple nodes.
 
-\textbf{Weak Scaling:} \\
-After correcting the efficiency formula, the weak scaling graph shows we’re close to ideal performance for the multi-node setup. The runtime for the multi-node system (orange solid line) stays nearly flat, and the efficiency (orange dashed line) stays pretty close to 1.0, which shows that we’re not adding much overhead as we scale both the problem size and the number of processors. In contrast, the single-node performance (in blue) is all over the place, with big spikes in runtime and drops in efficiency. This really confirms that a single machine can’t handle the total memory bandwidth needed as the problem size grows, underscoring why a multi-node approach is necessary.
+\textbf{Weak Scaling: \ref{fig:weak-scaling}} \\
+The weak scaling graph shows we’re close to ideal performance for the multi-node setup. The runtime for the multi-node system (orange solid line) stays nearly flat, and the efficiency (orange dashed line) stays pretty close to 1.0, which shows that we’re not adding much overhead as we scale both the problem size and the number of processors. In contrast, the single-node performance (in blue) have intability spikes in runtime and drops in efficiency. This really confirms that a single machine can’t handle the total memory bandwidth needed as the problem size grows, underscoring why a multi-node approach is necessary.
 
 % -------------------------------------------------------------------------- %
 % -------------------------------------------------------------------------- %

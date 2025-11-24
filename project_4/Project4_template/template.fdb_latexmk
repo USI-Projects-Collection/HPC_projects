@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1763738611.51678 "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_4/Project4_template/template.tex" "template.pdf" "template" 1763738614.1939 0
+["pdflatex"] 1763744198.2216 "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_4/Project4_template/template.tex" "template.pdf" "template" 1763744200.08318 0
   "../Skeleton_codes/ghost/ghost.c" 1763672286.33354 4957 5834f33db2d0defeda41bde663e73c14 ""
   "../Skeleton_codes/ghost/ghost_57333.out" 1763719999.33057 399 f755f75f9d116952bcd9b3d56e2c4114 ""
   "../Skeleton_codes/mandel/mandel.png" 1763678091 477132 952711e288a8b4d53ccdba00c91a70b0 ""
@@ -10,7 +10,7 @@
   "../Skeleton_codes/ring/ring_57313.out" 1763665832 121 0d49bbd4f101e7bbd16b92287f918919 ""
   "../Skeleton_codes/ring/ring_57315.out" 1763665920 205 38eddc39d7447e2c2aa7bb97d97fbdf9 ""
   "../Skeleton_codes/ring/ring_sum.c" 1763656514 764 7b1da0a4a1830ebfa076fc9474806b22 ""
-  "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_4/Project4_template/template.tex" 1763738609.81279 12831 109f15ff7c2ebe6ccd3a54cd5e4d474a ""
+  "/Users/paolodeidda/Documents/UNI/Master/sem3/High-Performance_Computing/HPC_projects/project_4/Project4_template/template.tex" 1763744196.15838 12818 74ec6444dc6a535836d0c75a3cdb3339 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc" 1558214095 7631 5169ff1acd97ff1c4ab83563c99f96f4 ""
@@ -147,10 +147,10 @@
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1728315754 8221418 945d7397e00084dab441d5a55918a929 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
   "assignment.sty" 1759739626 3151 b58a87ffff8fff1e6247c3799340fcb9 ""
-  "template.aux" 1763738614.08539 7797 7bdfc0c770d37e8ef2f7b1814f603a2d "pdflatex"
-  "template.out" 1763738612.55789 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "template.tex" 1763738609.81279 12831 109f15ff7c2ebe6ccd3a54cd5e4d474a ""
-  "template.toc" 1763738614.08723 628 cc1603119fa454c47a60180862bb4645 "pdflatex"
+  "template.aux" 1763744200.00657 8191 600a07cf5c5bf47908a47394a2adb71d "pdflatex"
+  "template.out" 1763744198.9465 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "template.tex" 1763744196.15838 12818 74ec6444dc6a535836d0c75a3cdb3339 ""
+  "template.toc" 1763744200.00806 628 a079248e3435dd75c7a5c245d5eaa634 "pdflatex"
   "usi_inf.png" 1757507497 99334 1f4e71c330319964e6349d99194dd493 ""
   (generated)
   "template.aux"

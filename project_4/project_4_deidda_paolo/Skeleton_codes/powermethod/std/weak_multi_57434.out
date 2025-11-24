@@ -1,0 +1,28 @@
+Loading gcc/13.2.0-gcc-8.5.0-5hqhkwo
+  Loading requirement: gcc-runtime/8.5.0-gcc-8.5.0-7fyorqa
+    gmp/6.2.1-gcc-8.5.0-lrpcvy5 mpfr/4.2.1-gcc-8.5.0-ybeybcx
+    mpc/1.3.1-gcc-8.5.0-cv2gjfw zlib-ng/2.1.6-gcc-8.5.0-ztbc5xt
+    zstd/1.5.5-gcc-8.5.0-azepnn7
+
+Loading openmpi/5.0.5
+  Loading requirement: ucx/1.15.0-gcc-8.5.0-cnozz5i
+rm -f *.o powermethod_rows
+mpicc -c -O3  powermethod_rows.c
+mpicc -c -O3  walltime.c
+mpicc -lm  powermethod_rows.o walltime.o -o powermethod_rows
+Running p=1 nodes n=10000
+Running p=2 nodes n=14142
+Running p=3 nodes n=17320
+Running p=4 nodes n=20000
+Running p=5 nodes n=22360
+Running p=6 nodes n=24494
+Running p=7 nodes n=26457
+Running p=8 nodes n=28284
+Running p=9 nodes n=30000
+Running p=10 nodes n=31622
+Running p=11 nodes n=33166
+Running p=12 nodes n=34641
+Running p=13 nodes n=36055
+Running p=14 nodes n=37416
+Running p=15 nodes n=38729
+Running p=16 nodes n=40000

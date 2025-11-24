@@ -2,5 +2,5 @@
 \contentsline {section}{\numberline {2}Task: Ghost cells exchange between neighboring processes [15 Points]}{3}{section.2}%
 \contentsline {section}{\numberline {3}Task: Parallelizing the Mandelbrot set using MPI [20 Points]}{4}{section.3}%
 \contentsline {section}{\numberline {4}Task: Parallel matrix-vector multiplication and the power method [40 Points]}{5}{section.4}%
-\contentsline {section}{\numberline {5}Task: Quality of the Report [15 Points]}{7}{section.5}%
+\contentsline {section}{\numberline {5}Task: Quality of the Report [15 Points]}{6}{section.5}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

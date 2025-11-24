@@ -1,0 +1,32 @@
+Loading gcc/13.2.0-gcc-8.5.0-5hqhkwo
+  Loading requirement: gcc-runtime/8.5.0-gcc-8.5.0-7fyorqa
+    gmp/6.2.1-gcc-8.5.0-lrpcvy5 mpfr/4.2.1-gcc-8.5.0-ybeybcx
+    mpc/1.3.1-gcc-8.5.0-cv2gjfw zlib-ng/2.1.6-gcc-8.5.0-ztbc5xt
+    zstd/1.5.5-gcc-8.5.0-azepnn7
+
+Loading openmpi/5.0.5
+  Loading requirement: ucx/1.15.0-gcc-8.5.0-cnozz5i
+rm -f *.o powermethod_rows
+mpicc -c -O3  powermethod_rows.c
+mpicc -c -O3  walltime.c
+mpicc -lm  powermethod_rows.o walltime.o -o powermethod_rows
+Running with p = 1
+Running with p = 2
+Running with p = 3
+Running with p = 4
+Running with p = 5
+Running with p = 6
+Running with p = 7
+Running with p = 8
+Running with p = 9
+Running with p = 10
+Running with p = 11
+Running with p = 12
+Running with p = 13
+Running with p = 14
+Running with p = 15
+Running with p = 16
+Running with p = 17
+Running with p = 18
+Running with p = 19
+Running with p = 20
