@@ -1,5 +1,5 @@
 CXX      = mpic++
-CXXFLAGS = -O3
+CXXFLAGS = -O3 -D_MPI
 
 SOURCES = walltime.cpp stats.cpp data.cpp operators.cpp linalg.cpp main.cpp
 HEADERS = walltime.h   stats.h   data.h   operators.h   linalg.h
