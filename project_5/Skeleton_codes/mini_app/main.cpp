@@ -54,6 +54,8 @@ void write_binary(std::string fname, Field &u, SubDomain &domain,
     MPI_File_open(MPI_COMM_WORLD, fname.c_str(), // nome del file in char* perche MPI e' in C
                   MPI_MODE_CREATE | MPI_MODE_WRONLY, // modalita' di apertura del file
                   MPI_INFO_NULL, &fh); 
+    
+    if (domain.rank == 0) std::cout << "File opened successfully." << std::endl;
 
     // Global grid size
     int NX = options.nx;
@@ -81,7 +83,7 @@ void write_binary(std::string fname, Field &u, SubDomain &domain,
     */
     // if (domain.rank == 0) std::cout << "Writing binary output..." << std::endl;
     for (int j = 0; j < ny; j++) {
-        MPI_File_write_at(fh,
+        MPI_File_write_at_all(fh,
                           offset + j * NX * sizeof(double),
                           &u(0,j), nx, MPI_DOUBLE,
                           MPI_STATUS_IGNORE);
@@ -308,7 +310,7 @@ int main(int argc, char* argv[]) {
     MPI_Barrier(MPI_COMM_WORLD);
     if (rank == 0) std::cout << "All ranks reached write_binary." << std::endl;
     write_binary("output.bin", y_old, domain, options);
-
+    
 
     // metadata
     // DONE: Only once process should do the following
