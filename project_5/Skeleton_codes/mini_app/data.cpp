@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <cmath>
-#include <mpi>
+#include <mpi.h>
 
 namespace data {
 
