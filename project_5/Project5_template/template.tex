@@ -295,6 +295,34 @@ In conclusion, while single-node scaling is limited by hardware memory bandwidth
 
 \subsection{Sum of ranks: MPI collectives [5 Points]}
 
+Two different communication approaches: generic \textit{object serialization} vs \textit{direct buffer handling}.
+
+\begin{itemize}
+    \item \textbf{Pickle-based communication (\texttt{sum\_ranks\_pickle.py}):} 
+    I utilized the lowercase \texttt{comm.allreduce} method. This approach allows sending arbitrary Python objects (in this case, simple integers) but relies on the \texttt{pickle} module for serialization and deserialization. While flexible, this introduces significant overhead compared to native C operations.
+    
+    \item \textbf{Buffer-based communication (\texttt{sum\_ranks\_buffer.py}):} 
+    I utilized the uppercase \texttt{comm.Allreduce} method combined with \texttt{numpy} arrays explicitly typed as integers (\texttt{dtype='i'}). This method bypasses Python's overhead by passing memory pointers directly to the underlying MPI C implementation, resulting in significantly higher performance suitable for HPC workloads.
+\end{itemize}
+
+\textbf{Verification:} with $P=8$ processes the expected result is the sum of integers from 0 to 7:
+
+\begin{center}
+$S = \frac{n(n-1)}{2} = \frac{8 \times 7}{2} = 28$
+\end{center}
+
+The output confirms the correctness of both implementations:
+
+\lstinputlisting[
+    % language=Python,
+    % numbers=left,
+    % caption={Welcome message update in main.cpp},
+    % captionpos=b,
+    % label={lst:mergeCritical},
+    % linerange={},
+    % firstnumber=111
+]{../Skeleton_codes/hpc_python/python_58120.out}
+
 \subsection{Ghost cell exchange between neighboring processes [5 Points]}
 
 \subsection{A self-scheduling example: Parallel Mandelbrot [15 Points]}
