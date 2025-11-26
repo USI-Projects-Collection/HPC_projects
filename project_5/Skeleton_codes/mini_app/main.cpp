@@ -82,17 +82,20 @@ void write_binary(std::string fname, Field &u, SubDomain &domain,
     /*
         Questo ciclo scrive riga per riga il sottodominio LOCALE nel file
     */
-    if (domain.rank == 0) std::cout << "Writing binary output..." << std::endl;
+    std::cout << "Rank " << domain.rank << " writing binary output..." << std::endl;
     for (int j = 0; j < ny; j++) {
+        if (j % 10 == 0) std::cout << "Rank " << domain.rank << " writing row " << j << std::endl;
         MPI_File_write_at(fh,
                           offset + j * NX * sizeof(double),
                           &u(0,j), 1, file_row,
                           MPI_STATUS_IGNORE);
     }
+    std::cout << "Rank " << domain.rank << " finished loop." << std::endl;
 
     MPI_Type_free(&file_row);
+    std::cout << "Rank " << domain.rank << " closing file." << std::endl;
     MPI_File_close(&fh);
-    if (domain.rank == 0) std::cout << "Binary output written." << std::endl;
+    std::cout << "Rank " << domain.rank << " binary output written." << std::endl;
 }
 
 // read command line arguments
@@ -307,7 +310,12 @@ int main(int argc, char* argv[]) {
 
     // binary data
     // DONE: Implement write_binary using MPI-IO
+    // binary data
+    // DONE: Implement write_binary using MPI-IO
+    MPI_Barrier(MPI_COMM_WORLD);
+    if (rank == 0) std::cout << "All ranks reached write_binary." << std::endl;
     write_binary("output.bin", y_old, domain, options);
+
 
     // metadata
     // DONE: Only once process should do the following
