@@ -2,7 +2,7 @@ import re
 import matplotlib.pyplot as plt
 
 # Percorso al file dei risultati
-logfile = "weak_58089.out"
+logfile = "weak_58093.out"
 
 # Regex per estrarre i dati delle righe con formato:
 # ### threads, n, nt, cg_iter, newton_iter, time ###
