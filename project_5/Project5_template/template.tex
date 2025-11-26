@@ -163,42 +163,68 @@ solution, with no need for post-processing or intermediate files.
     \centering
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
+        \includegraphics[width=\textwidth]{../../project_3/Skeleton_codes/mini_app/strong_scaling/strong_scaling_time_vs_threads.png}
+        \caption{strong scaling time vs threads with openMP}
+        \label{fig:lowres}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../project_3/Skeleton_codes/mini_app/strong_scaling/strong_scaling_speedup.png}
+        \caption{strong scaling speedup with openMP}
+        \label{fig:highres}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
         \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/strong_scaling/strong_scaling_time_vs_threads.png}
-        \caption{}
+        \caption{strong scaling time vs threads without MPI}
         \label{fig:lowres}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/strong_scaling/strong_scaling_speedup.png}
-        \caption{}
+        \caption{}{strong scaling speedup without MPI}
         \label{fig:highres}
     \end{subfigure}
-    \caption{}
+    \caption{Above results with OpenMP (from project 3), below results without MPI.}
     \label{fig:resolutions}
 \end{figure}
 
 \subsection{Weak scaling [10 Points]}
 
+
 \begin{figure}[H]
     \centering
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/weak_scaling/weak_scaling_time_vs_threads.png}
-        \caption{}
+        \includegraphics[width=\textwidth]{../../project_3/Skeleton_codes/mini_app/weak_scaling/weak_scaling_time_vs_threads.png}
+        \caption{weak scaling time vs threads with openMP}
         \label{fig:lowres}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/weak_scaling/weak_scaling_speedup.png}
-        \caption{}
+        \includegraphics[width=\textwidth]{../../project_3/Skeleton_codes/mini_app/weak_scaling/weak_scaling_efficiency.png}
+        \caption{weak scaling speedup with openMP}
         \label{fig:highres}
     \end{subfigure}
-    \caption{}
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/weak_scaling/weak_scaling_time_vs_threads.png}
+        \caption{strong scaling time vs threads without MPI}
+        \label{fig:lowres}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/weak_scaling/weak_scaling_efficiency.png}
+        \caption{weak scaling efficiency without MPI}
+        \label{fig:highres}
+    \end{subfigure}
+    \caption{Above results with OpenMP (from project 3), below results without MPI.}
     \label{fig:resolutions}
 \end{figure}
-
 % =============================================================================
 \section{Python for High-Performance Computing [in total 25 points]}
 % =============================================================================

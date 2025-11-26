@@ -2,7 +2,7 @@ import re
 import matplotlib.pyplot as plt
 
 # Use weak scaling results
-logfile = "weak_results.txt"
+logfile = "weak_scaling_results.txt"
 
 # Regex for extracting: ### threads, n, nt, cg_iter, newton_iter, time ###
 pattern = re.compile(r"### (\d+), (\d+), \d+, \d+, \d+, ([\d.]+) ###")
