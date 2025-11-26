@@ -31,12 +31,12 @@
 
 
 \input{assignment.sty}
-\begin{document}
 
+\begin{document}
 
 \setassignment
 
-\serieheader{High-Performance Computing Lab}{Institute of Computing}{Student: Paolo Deidda}{Discussed with: FULL NAME}{Solution for Project 5}{}
+\serieheader{High-Performance Computing Lab}{Institute of Computing}{Student: Paolo Deidda}{Discussed with: Lino Candian}{Solution for Project 5}{}
 \newline
 
 \assignmentpolicy
@@ -157,74 +157,138 @@ The steps are:
 This method produces a single binary array that contains the full global
 solution, with no need for post-processing or intermediate files.
 
+\newpage
 \subsection{Strong scaling [10 Points]}
+Higher resulution images can be found in their respective folders in \href{../Skeleton\_codes/mini\_app/}{mini\_app\/}
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[b]{0.32\textwidth}
         \centering
         \includegraphics[width=\textwidth]{../../project_3/Skeleton_codes/mini_app/strong_scaling/strong_scaling_time_vs_threads.png}
-        \caption{strong scaling time vs threads with openMP}
+        % \caption{openMP project 3}
         \label{fig:lowres}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{../../project_3/Skeleton_codes/mini_app/strong_scaling/strong_scaling_speedup.png}
-        \caption{strong scaling speedup with openMP}
-        \label{fig:highres}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[b]{0.32\textwidth}
         \centering
         \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/strong_scaling/strong_scaling_time_vs_threads.png}
-        \caption{strong scaling time vs threads without MPI}
+        % \caption{MPI multi task per node}
         \label{fig:lowres}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[b]{0.32\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/strong_scaling/strong_scaling_speedup.png}
-        \caption{}{strong scaling speedup without MPI}
+        \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/strong_scaling_muliti_node/strong_scaling_time_vs_threads.png}
+        % \caption{MPI single task per node}
+        \label{fig:lowres}
+    \end{subfigure}
+
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../project_3/Skeleton_codes/mini_app/strong_scaling/strong_scaling_speedup.png}
+        \caption{openMP project 3}
         \label{fig:highres}
     \end{subfigure}
-    \caption{Above results with OpenMP (from project 3), below results without MPI.}
-    \label{fig:resolutions}
+    \hfill
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/strong_scaling/strong_scaling_speedup.png}
+        \caption{MPI multi task over 1 node}
+        \label{fig:highres}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/strong_scaling_muliti_node/strong_scaling_speedup.png}
+        \caption{MPI 1 task over multiple nodes}
+        \label{fig:highres}
+    \end{subfigure}
+    \caption{\textit{Strong} scaling results: \textbf{Above} time over number of threads - \textbf{Below} efficiency over number of threads.}
+    \label{fig:strong_scaling}
 \end{figure}
 
-\subsection{Weak scaling [10 Points]}
+Figure~\ref{fig:strong_scaling} presents the strong scaling results, comparing the OpenMP implementation (a), MPI on a single node (b), and MPI distributed across multiple nodes (c). The top row displays the time to solution, while the bottom row illustrates the speedup ($T_1/T_N$).
 
+\textbf{Comparison with OpenMP (Single Node):}
+The MPI implementation executed on a single node (b) exhibits a scaling profile remarkably similar to the OpenMP version (a). For large grid sizes ($n=1024$), both implementations achieve near-linear speedup up to 16 processes, with the MPI version showing slightly superior performance (reaching a speedup of $\approx 13\times$ vs. $\approx 11\times$ for OpenMP). This suggests that the overhead of MPI internal memory copying is comparable to, or potentially handled better than, the thread synchronization and false sharing overheads inherent in the OpenMP shared-memory model.
+
+\textbf{Distributed Memory Performance (Multi-Node):}
+The multi-node MPI configuration (c) highlights the critical impact of network latency. 
+\begin{itemize}
+    \item \textbf{Large Grids ($n=1024$):} The computation scales excellently, achieving the highest linearity among the three test cases. The high computation-to-communication ratio effectively hides the network overhead.
+    \item \textbf{Small Grids ($n \le 128$):} Performance degrades significantly. For $n=64$, the speedup drops below 1.0 immediately, meaning the parallel execution is slower than the serial one. This occurs because the sub-domains are too small; the fixed cost of network latency and halo exchange dominates the negligible computational work available per rank.
+\end{itemize}
+
+In summary, while MPI matches OpenMP efficiency within a node, the multi-node scalability is strictly bound by the problem size. Distributed parallelism is only beneficial when the local domain size remains large enough to amortize the cost of inter-node communication.
+
+\newpage
+\subsection{Weak scaling [10 Points]}
+Higher resulution images can be found in their respective folders in \href{../Skeleton\_codes/mini\_app/}{mini\_app\/}
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[b]{0.32\textwidth}
         \centering
         \includegraphics[width=\textwidth]{../../project_3/Skeleton_codes/mini_app/weak_scaling/weak_scaling_time_vs_threads.png}
-        \caption{weak scaling time vs threads with openMP}
+        % \caption{openMP project 3}
         \label{fig:lowres}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{../../project_3/Skeleton_codes/mini_app/weak_scaling/weak_scaling_efficiency.png}
-        \caption{weak scaling speedup with openMP}
-        \label{fig:highres}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[b]{0.32\textwidth}
         \centering
         \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/weak_scaling/weak_scaling_time_vs_threads.png}
-        \caption{strong scaling time vs threads without MPI}
+        % \caption{MPI multi task per node}
         \label{fig:lowres}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[b]{0.32\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/weak_scaling/weak_scaling_efficiency.png}
-        \caption{weak scaling efficiency without MPI}
+        \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/weak_scaling_multi_node/weak_scaling_time_vs_threads.png}
+        % \caption{MPI single task per node}
+        \label{fig:lowres}
+    \end{subfigure}
+
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../project_3/Skeleton_codes/mini_app/weak_scaling/weak_scaling_efficiency.png}
+        \caption{openMP project 3}
         \label{fig:highres}
     \end{subfigure}
-    \caption{Above results with OpenMP (from project 3), below results without MPI.}
-    \label{fig:resolutions}
+    \hfill
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/weak_scaling/weak_scaling_efficiency.png}
+        \caption{MPI multi task over 1 node}
+        \label{fig:highres}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/weak_scaling_multi_node/weak_scaling_efficiency.png}
+        \caption{MPI 1 task over multiple nodes}
+        \label{fig:highres}
+    \end{subfigure}
+    \caption{\textit{Weak} scaling results: \textbf{Above} time over number of threads - \textbf{Below} efficiency over number of threads.}
+    \label{fig:weak_scaling}
 \end{figure}
+
+Figure~\ref{fig:weak_scaling} illustrates the weak scaling performance, where the problem size increases proportionally with the number of processing elements ($N$) to maintain a constant workload per process. Ideally, the time to solution should remain constant (flat line), corresponding to an efficiency of 1.0.
+
+\textbf{Single-Node Bottlenecks (OpenMP vs. MPI):}
+Both the OpenMP implementation (a) and the single-node MPI execution (b) exhibit a significant deviation from ideal weak scaling. As $N$ increases, the runtime rises steadily, causing efficiency to drop below 0.4 for $N=16$. 
+This behavior indicates that the system is \textbf{memory-bound}. Although the computational work per core is constant, the \textit{aggregate} memory bandwidth requirement increases with $N$. Since all processes on a single node compete for the same shared memory bus, the bandwidth saturates, creating a bottleneck that slows down all processes simultaneously. The similarity between (a) and (b) confirms that this hardware limitation affects both parallelization models equally.
+
+\textbf{Multi-Node Scaling and Network Overhead:}
+The multi-node configuration (c) presents a dual behavior dependent on the base resolution:
+\begin{itemize}
+    \item \textbf{Small Base ($n=64$):} Performance is poor. The efficiency drops sharply to $\approx 0.1$ immediately. The local sub-domain is too small to justify the fixed overhead of network latency (inter-node communication), making the execution latency-bound.
+    \item \textbf{Large Base ($n=256$):} Interestingly, the multi-node setup scales \textit{better} than the single-node setup. The runtime slope for the green line in (c) is flatter than in (b). This is because distributing tasks across multiple nodes provides access to aggregated memory bandwidth (each node has its own memory bus). Unlike the single-node case, the computation is not throttled by memory contention, provided the local problem size is large enough to hide the network communication costs.
+\end{itemize}
+
+In conclusion, while single-node scaling is limited by hardware memory bandwidth, multi-node scaling is limited only by network latency. Consequently, the multi-node approach is superior for large-scale problems where high memory throughput is required.
+
+\newpage
 % =============================================================================
 \section{Python for High-Performance Computing [in total 25 points]}
 % =============================================================================
@@ -238,7 +302,6 @@ solution, with no need for post-processing or intermediate files.
 % =============================================================================
 \section{Task:  Quality of the Report [15 Points]}
 % =============================================================================
-
 
 
 
