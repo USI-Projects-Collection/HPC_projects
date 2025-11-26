@@ -15,5 +15,4 @@ conda activate project5_env
 
 module load gcc openmpi
 
-# mpiexec python3 sum_ranks_buffer.py 
-# mpiexec python3 sum_ranks_pickle.py
+mpiexec python3 ghost.py

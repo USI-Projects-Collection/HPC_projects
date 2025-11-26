@@ -8,7 +8,6 @@ size = comm.Get_size()
 buf_local = np.array(rank, dtype='i')
 buf_global = np.zeros(1, dtype='i')
 
-# Fast buffer-based collective (uppercase)
 comm.Allreduce(buf_local, buf_global, op=MPI.SUM)
 
 if rank == 0:
