@@ -9,7 +9,11 @@
 #SBATCH --output=python_%j.out
 #SBATCH --error=python_%j.err
 
-module load python mpi4py gcc openmpi
+# conda
+source /apps/miniconda3/bin/activate
+conda activate project5_env
+
+module load gcc openmpi
 
 mpiexec python3 sum_ranks_buffer.py 
 mpiexec python3 sum_ranks_pickle.py
