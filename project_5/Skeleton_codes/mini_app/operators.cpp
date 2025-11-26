@@ -10,6 +10,8 @@
 #include "operators.h"
 #include "stats.h"
 
+#include <iostream>
+
 namespace operators {
 
 // compute the diffusion-reaction stencils
