@@ -20,8 +20,8 @@
 #include <stdio.h>
 
 
-#ifdef _OPENMP
-    #include <omp.h>
+#ifdef _MPI
+    #include <mpi.h>
 #endif
 
 #include "data.h"
@@ -179,9 +179,9 @@ int main(int argc, char* argv[]) {
     std::cout << std::string(80, '=') << std::endl;
     std::cout << "                      Welcome to mini-stencil!" << std::endl;
 
-#ifdef _OPENMP
-    std::cout << "version   :: C++ OpenMP" << std::endl;
-    int threads = omp_get_max_threads();
+#ifdef _MPI
+    std::cout << "version   :: C++ MPI" << std::endl;
+    int threads = size;
 #else
     std::cout << "version   :: C++ Serial" << std::endl;
     int threads = 1;

@@ -8,7 +8,7 @@
 #SBATCH --output=strong_%j.out
 #SBATCH --error=strong_%j.err
 
-module load gcc openmpi
+module load gcc mpi
 
 make clean
 make
