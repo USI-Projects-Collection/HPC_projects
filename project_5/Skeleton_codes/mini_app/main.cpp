@@ -171,6 +171,9 @@ int main(int argc, char* argv[]) {
     // TODO: initialize sub-domain (data.{h,cpp})
     domain.init(rank, size, options);
     // domain.print(); // for debugging
+    if (rank == 0) std::cout << "Domain initialized. Printing neighbors..." << std::endl;
+    domain.print();
+
     int nx = domain.nx; // nx is local sub-domain size in x direction specifically is the number of grid points in x direction for each sub-domain
     int ny = domain.ny;
     int N  = domain.N; // N is total number of grid points, nx * ny would have been too clear
@@ -247,6 +250,8 @@ int main(int argc, char* argv[]) {
 
     // main time loop
     for (int timestep = 1; timestep <= nt; timestep++) {
+        if (rank == 0 && timestep % 10 == 0) std::cout << "Starting step " << timestep << std::endl;
+
         // set y_new and y_old to be the solution
         hpc_copy(y_old, y_new);
 

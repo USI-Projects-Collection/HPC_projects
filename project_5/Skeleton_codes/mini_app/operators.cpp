@@ -42,6 +42,9 @@ void diffusion(data::Field const& s_old, data::Field const& s_new,
     //       communication
     MPI_Request requests[8];
     int req_count = 0;
+    
+    std::cout << "Rank " << domain.rank << " entering diffusion" << std::endl;
+
 
     // North/South: buffers have length nx
     // Pack and post if neighbor exists
@@ -110,8 +113,11 @@ void diffusion(data::Field const& s_old, data::Field const& s_new,
     }
 
     if (req_count > 0) {
+        // std::cout << "Rank " << domain.rank << " waiting for " << req_count << " requests" << std::endl;
         MPI_Waitall(req_count, requests, MPI_STATUSES_IGNORE);
+        // std::cout << "Rank " << domain.rank << " finished waitall" << std::endl;
     }
+
 
     // east boundary
     {
