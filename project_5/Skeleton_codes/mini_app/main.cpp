@@ -65,32 +65,29 @@ void write_binary(std::string fname, Field &u, SubDomain &domain,
     int nx = domain.nx;
     int ny = domain.ny;
 
-    // Compute byte offset where this rank must write
-    /*
-        in pratica nel file i dati sono memorizzati in un array 1D che rappresenta la griglia globale
-        per cui per calcolare l'offset di partenza di scrittura di questo processo
-        bisogna calcolare quanti byte ci sono prima di questo sottodominio
-    */
-    MPI_Offset offset =
-        (MPI_Offset)(domain.starty - 1) * NX * sizeof(double)
-      + (MPI_Offset)(domain.startx - 1) * sizeof(double);
+    // Create a subarray datatype to describe the local part of the global array
+    if (domain.rank == 0) std::cout << "Creating subarray type..." << std::endl;
+    MPI_Datatype filetype;
+    int gsizes[2] = {NY, NX};
+    int lsizes[2] = {ny, nx};
+    int starts[2] = {domain.starty - 1, domain.startx - 1};
 
+    MPI_Type_create_subarray(2, gsizes, lsizes, starts, MPI_ORDER_C, MPI_DOUBLE, &filetype);
+    MPI_Type_commit(&filetype);
 
+    // Set the file view
+    if (domain.rank == 0) std::cout << "Setting file view..." << std::endl;
+    MPI_File_set_view(fh, 0, MPI_DOUBLE, filetype, "native", MPI_INFO_NULL);
 
+    // Write all data in a single collective call
+    if (domain.rank == 0) std::cout << "Writing all data..." << std::endl;
+    MPI_File_write_all(fh, u.data(), nx * ny, MPI_DOUBLE, MPI_STATUS_IGNORE);
+    if (domain.rank == 0) std::cout << "Write all data completed." << std::endl;
 
-    /*
-        Questo ciclo scrive riga per riga il sottodominio LOCALE nel file
-    */
-    // if (domain.rank == 0) std::cout << "Writing binary output..." << std::endl;
-    for (int j = 0; j < ny; j++) {
-        MPI_File_write_at_all(fh,
-                          offset + j * NX * sizeof(double),
-                          &u(0,j), nx, MPI_DOUBLE,
-                          MPI_STATUS_IGNORE);
-    }
-
+    MPI_Type_free(&filetype);
+    if (domain.rank == 0) std::cout << "Closing file..." << std::endl;
     MPI_File_close(&fh);
-    // if (domain.rank == 0) std::cout << "Binary output written." << std::endl;
+    if (domain.rank == 0) std::cout << "File closed." << std::endl;
 }
 
 // read command line arguments
