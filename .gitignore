@@ -1,5 +1,4 @@
 # all files without extension
-[^.]*
 
 *.md
 
