@@ -47,8 +47,9 @@ struct SubDomain {
     // mpi info
     int size;
     int rank;
-    // MPI_Comm comm_cart; // TODO: Save Cartesian topology communicator here
+    // MPI_Comm comm_cart; // DONE: Save Cartesian topology communicator here
                            //       and don't forget to free it
+    MPI_Comm comm_cart; // communicator con topologia cartesiana
 
     // grid points in x and y dimension of this sub-domain
     int nx;

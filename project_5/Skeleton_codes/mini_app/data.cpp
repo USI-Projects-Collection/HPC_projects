@@ -2,8 +2,7 @@
 
 #include <iostream>
 #include <cmath>
-
-
+#include <mpi.h>
 
 namespace data {
 
@@ -29,33 +28,60 @@ SubDomain      domain;
 
 void SubDomain::init(int mpi_rank, int mpi_size,
                      Discretization& discretization) {
-    // TODO: determine the number of sub-domains in the x and y dimensions
+    // DONE: determine the number of sub-domains in the x and y dimensions
     //       using MPI_Dims_create
-    int dims[2] = {1, 1};
-    ndomy = dims[0];
+    int dims[2] = {0, 0}; // 0 let mpi decide I can for some reason enforce a specific decomposition like {0,1} 
+    MPI_Dims_create(mpi_size, 2, dims);
+    ndomy = dims[0]; 
     ndomx = dims[1];
 
-    // TODO: create a 2D non-periodic Cartesian topology using MPI_Cart_create
-    int periods[2] = {0, 0};
+    // DONE: create a 2D non-periodic Cartesian topology using MPI_Cart_create
+    int periods[2] = {0, 0}; // dice per ogni dimensione se e' periodica o no (se deve fare il wrap around)
+    MPI_Cart_create(MPI_COMM_WORLD, 2, dims, periods, 0, &comm_cart); // 0: reorder, dice se MPI puo' riordinare i rank per ottimizzare, 0 significa no reorder
 
-    // TODO: retrieve coordinates of the rank in the topology using
+    // DONE: retrieve coordinates of the rank in the topology using
     // MPI_Cart_coords
-    int coords[2] = {0, 0};
-    domy = coords[0] + 1;
+    int coords[2];
+    MPI_Cart_coords(comm_cart, mpi_rank, 2, coords);
+    domy = coords[0] + 1; // perche' +1? 
     domx = coords[1] + 1;
 
-    // TODO: set neighbours for all directions using MPI_Cart_shift
+    // DONE: set neighbours for all directions using MPI_Cart_shift
+    MPI_Cart_shift(comm_cart, 0, 1, &neighbour_north, &neighbour_south); // shift along dimension 0 (y direction)
+    MPI_Cart_shift(comm_cart, 1, 1, &neighbour_west,  &neighbour_east); // shift along dimension 1 (x direction)
 
-    // get bounding box
-    nx = discretization.nx / ndomx;
-    ny = discretization.nx / ndomy;
-    startx = (domx-1)*nx+1;
-    starty = (domy-1)*ny+1;
-    endx = startx + nx -1;
-    endy = starty + ny -1;
+    int nx_global = discretization.nx;
 
-    // get total number of grid points in this sub-domain
-    N = nx*ny;
+    /*
+        gestische quando il subdomain non e' divisibile esattamente per il numero di processi
+        esempio: 10 punti e 3 processi -> 4, 3, 3 punti
+    */
+    
+    // base size e remainder lungo x
+    int base_nx = nx_global / ndomx;
+    int rem_x   = nx_global % ndomx;
+
+    // base size e remainder lungo y
+    int base_ny = nx_global / ndomy;
+    int rem_y   = nx_global % ndomy;
+
+    // domx, domy sono 1-based
+    int ix = domx - 1;  // 0-based process coord in x
+    int iy = domy - 1;  // 0-based process coord in y
+
+    // dimensioni locali
+    nx = base_nx + (ix < rem_x ? 1 : 0);
+    ny = base_ny + (iy < rem_y ? 1 : 0);
+
+    // start indices (1-based global indexing)
+    startx = ix * base_nx + std::min(ix, rem_x) + 1;
+    starty = iy * base_ny + std::min(iy, rem_y) + 1;
+
+    endx = startx + nx - 1;
+    endy = starty + ny - 1;
+
+    // numero di punti locali
+    N = nx * ny;
 
     rank = mpi_rank;
     size = mpi_size;

@@ -5,6 +5,7 @@
 
 #include <cmath>
 #include <cstdio>
+#include <mpi.h>
 
 #include "linalg.h"
 #include "operators.h"
@@ -43,31 +44,42 @@ void cg_init(int nx, int ny) {
 //  blas level 1 reductions
 ////////////////////////////////////////////////////////////////////////////////
 
+
+// solo queste due funzioni operano a livello globale
+// ============================================================================
 // computes the inner product of x and y
 // x and y are vectors on length N
 double hpc_dot(Field const& x, Field const& y) {
-    double result = 0;
-    int N = y.length();
-    // compute local result
-    for (int i = 0; i < N; i++) {
-        result += x[i] * y[i];
-    }
+    double local = 0.0; // somma locale
+    int N = y.length(); // lunghezza del vettore
 
-    return result;
+    for (int i = 0; i < N; ++i)
+        local += x[i] * y[i];
+
+    double global = 0.0;
+    MPI_Allreduce(&local, &global, 1, MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD); // tutti i rank mandano il loro local e restituisce il risultato a TUTTI i processi (al contrario di MPI_Reduce che lo restituisce solo al rank 0)
+
+    return global;
 }
 
 // computes the 2-norm of x
 // x is a vector on length N
 double hpc_norm2(Field const& x) {
-    double result = 0;
+    double local = 0.0;
     int N = x.length();
-    // compute local result
-    for (int i = 0; i < N; i++) {
-        result += x[i] * x[i];
-    }
 
-    return sqrt(result);
+    for (int i = 0; i < N; ++i)
+        local += x[i] * x[i];
+
+    double global = 0.0;
+    MPI_Allreduce(&local, &global, 1, MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
+
+    return sqrt(global);
 }
+// ============================================================================
+
+
+
 
 // sets entries in a vector to value
 // x is a vector on length N

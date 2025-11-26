@@ -67,3 +67,19 @@ print('jit time=',time.time()-t,' value=',val)
 t=time.time()
 val = prl_jit_monte_carlo_pi(50000000)
 print('prl time=',time.time()-t,' value=',val)
+
+''' -------------------------------------------------
+OUTPUT:
+base time= 7.4447290897369385  value= 3.14116808
+jit time= 1.7981481552124023  value= 3.14167472
+prl time= 0.6041569709777832  value= 3.14192168
+-----------------------------------------------------
+Comments:
+The program estimate the same function time using the same algorithm but with different implementations:
+1) Base function: pure python implementation without any optimization.
+2) JIT function: using numba just-in-time compilation to speed up the execution.
+3) Parallel JIT function: using numba just-in-time compilation with parallelization to further speed up the execution.
+
+The results show that the JIT compilation significantly reduces the execution time compared to the base function.
+The parallelized version does worse than expected, likely due to the overhead of managing multiple threads outweighing the benefits for this specific workload.
+'''

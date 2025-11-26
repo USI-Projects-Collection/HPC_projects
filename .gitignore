@@ -1,3 +1,8 @@
+# all files without extension
+[^.]*
+
+*.md
+
 # macOS
 .DS_Store
 .AppleDouble
@@ -59,6 +64,17 @@ bin/
 *.idx
 *.ind
 *.lof
+*.out
+*.toc
+*.log
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.bin
+*.bov
+
+
+
 
 # per non fillare il cluster
 # *.pdf

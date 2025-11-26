@@ -1,35 +1,169 @@
 \documentclass[unicode,11pt,a4paper,oneside,numbers=endperiod,openany]{scrartcl}
 
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{csvsimple}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[T1]{fontenc}
+\usepackage{inconsolata}
+
+\lstdefinestyle{hpcblock}{
+    basicstyle=\ttfamily\footnotesize,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    rulecolor=\color{gray!60},
+    xleftmargin=1.5em,
+    xrightmargin=1.5em,
+    aboveskip=1em,
+    belowskip=1em,
+    showstringspaces=false,
+    columns=fullflexible,
+    keepspaces=true,
+    breaklines=true,
+    postbreak=\mbox{\textcolor{gray}{$\hookrightarrow$}\space}
+}
+\lstset{style=hpcblock}
+
+
 \input{assignment.sty}
 \begin{document}
 
 
 \setassignment
 
-\serieheader{High-Performance Computing Lab}{Institute of Computing}{Student: FULL NAME}{Discussed with: FULL NAME}{Solution for Project 5}{}
+\serieheader{High-Performance Computing Lab}{Institute of Computing}{Student: Paolo Deidda}{Discussed with: FULL NAME}{Solution for Project 5}{}
 \newline
 
 \assignmentpolicy
 
-\section{Parallel Space Solution of a nonlinear PDE using MPI
-	[in total 60 points]}
+\tableofcontents
+\newpage
+
+% =============================================================================
+\section{Parallel Space Solution of a nonlinear PDE using MPI [in total 60 points]}
+% =============================================================================
 
 \subsection{Initialize/finalize MPI and welcome message [5 Points]}
+Output:
+\lstinputlisting[
+    language=C++,
+    % numbers=left,
+    % caption={Welcome message update in main.cpp},
+    captionpos=b,
+    label={lst:mergeCritical},
+    % linerange={0},
+    % firstnumber=111
+]{../Skeleton_codes/mini_app/out_ex1_1.txt}
 
 \subsection{Domain decomposition [10 Points]}
 
+I use a two–dimensional Cartesian domain decomposition:
+
+\begin{itemize}
+    \item \textbf{Process grid creation.}  
+    I obtain a balanced $d_x \times d_y$ grid using \texttt{MPI\_Dims\_create}, which guarantees that the process grid is as close to square as possible for any number of processes~$P$.
+
+    \item \textbf{Cartesian topology.}  
+    I build the logical topology with \texttt{MPI\_Cart\_create}, so that each process can identify its coordinates and its four neighbors through \texttt{MPI\_Cart\_coords} and \texttt{MPI\_Cart\_shift}.
+
+    \item \textbf{Subdomain sizes.}  
+    The global domain $n \times n$ is partitioned into rectangular subdomains.  
+    Local sizes $(n_x, n_y)$ are computed from $(d_x, d_y)$, and any remainder is distributed across the first processes in each direction so that subdomain sizes differ by at most one cell.
+
+    \item \textbf{Load balancing.}  
+    With this decomposition all processes receive almost the same number of grid points $N = n_x n_y$.
+
+    \item \textbf{Communication overhead.}  
+    In a 2D layout, the amount of halo data exchanged with neighbors grows only as $\mathcal{O}(n_x + n_y)$, while work grows as $\mathcal{O}(n_x n_y)$.  
+    This results in a lower communication-to-computation ratio than a 1D decomposition.
+\end{itemize}
+
 \subsection{Linear algebra kernels [5 Points]}
+
+Only two kernels required MPI parallelization:
+
+\begin{itemize}
+    \item \textbf{hpc\_dot}: computes a global inner product.  
+    I added \texttt{MPI\_Allreduce} to combine the partial sums from all ranks.
+
+    \item \textbf{hpc\_norm2}: computes the global 2-norm.  
+    I used \texttt{MPI\_Allreduce} to sum the local squared values before taking the square root.
+\end{itemize}
+
+All other \texttt{hpc\_xxx} functions operate purely on local data (vector updates, axpy, copy, scale) and therefore do not require communication or any MPI modification.
 
 \subsection{The diffusion stencil: Ghost cells exchange [10 Points]}
 
+I implemented the ghost-cell exchange using \textbf{non-blocking point-to-point communication} so that communication and computation can overlap.  
+The steps and MPI calls used are:
+
+\begin{itemize}
+    \item \textbf{Packing send buffers.}  
+    Before communication, each process copies its local boundary data into four buffers: \texttt{buffN}, \texttt{buffS}, \texttt{buffE}, \texttt{buffW}.
+
+    \item \textbf{Posting non-blocking receives: \texttt{MPI\_Irecv}.}  
+    For every existing neighbor (north, south, east, west), I post an \texttt{MPI\_Irecv} on the corresponding receive buffer (\texttt{bndN}, \texttt{bndS}, \texttt{bndE}, \texttt{bndW}).  
+    Since \texttt{MPI\_Irecv} is non-blocking, control returns immediately without waiting for the message.
+
+    \item \textbf{Posting non-blocking sends: \texttt{MPI\_Isend}.}  
+    After the receives, each process posts the matching \texttt{MPI\_Isend} using the packed buffers.  
+    Being non-blocking, these sends also do not stop execution.
+
+    \item \textbf{Overlap of communication and computation.}  
+    Thanks to the non-blocking operations, the stencil computation on all \textbf{interior points} (i.e.\ grid points that do not require ghost data) can proceed while data is in transit.  
+    Only boundary points depend on the incoming ghost values, so they are computed later.
+
+    \item \textbf{Waiting for completion: \texttt{MPI\_Waitall}.}  
+    After finishing the interior region, all pending communications are completed with a single \texttt{MPI\_Waitall}.  
+    Once the ghost buffers are updated, the stencil is applied safely to the boundary and corner points.
+\end{itemize}
+
+A blocking version (\texttt{MPI\_Send}, \texttt{MPI\_Recv}, or \texttt{MPI\_Sendrecv}) would force each process to wait for neighbors before continuing, preventing overlap and reducing performance.  
+Using \texttt{MPI\_Irecv}, \texttt{MPI\_Isend}, and \texttt{MPI\_Waitall} allows the solver to hide communication costs behind the interior computation, improving overall efficiency.
+
+
 \subsection{Implement parallel I/O [10 Points]}
+
+I implemented the final output using \textbf{MPI-IO} so that all processes write
+their local subdomains into a single global binary file.  
+The steps are:
+
+\begin{itemize}
+    \item \textbf{MPI\_File\_open:}  
+    The file is opened collectively by all ranks in write-only mode.
+
+    \item \textbf{Offset computation:}  
+    Each process computes its byte offset inside the global $n \times n$ array
+    using its global start indices $(\text{start}_x, \text{start}_y)$ provided by
+    the domain decomposition.
+
+    \item \textbf{Derived datatype:}  
+    I created a derived MPI datatype using \texttt{MPI\_Type\_contiguous} to
+    represent a full local row of $n_x$ doubles, simplifying the write calls.
+
+    \item \textbf{MPI\_File\_write\_at:}  
+    Each process writes its $n_y$ local rows into the correct position in the
+    global file without any file locking or coordination between processes.
+
+    \item \textbf{Metadata:}  
+    Only rank 0 writes the accompanying \texttt{.bov} visualization header.
+\end{itemize}
+
+This method produces a single binary array that contains the full global
+solution, with no need for post-processing or intermediate files.
 
 \subsection{Strong scaling [10 Points]}
 
 \subsection{Weak scaling [10 Points]}
 
-
+% =============================================================================
 \section{Python for High-Performance Computing [in total 25 points]}
+% =============================================================================
 
 \subsection{Sum of ranks: MPI collectives [5 Points]}
 
@@ -37,7 +171,29 @@
 
 \subsection{A self-scheduling example: Parallel Mandelbrot [15 Points]}
 
+% =============================================================================
 \section{Task:  Quality of the Report [15 Points]}
+% =============================================================================
 
+
+
+% \begin{figure}[H]
+%     \centering
+%     \begin{subfigure}[b]{0.48\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/serial/output.png}
+%         \caption{Concentration at final time for a low resolution grid ($n=128$).}
+%         \label{fig:lowres}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.48\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/strong_scaling/output.png}
+%         \caption{Concentration at final time for a high resolution grid ($n=1024$).}
+%         \label{fig:highres}
+%     \end{subfigure}
+%     \caption{Simulation results for two different grid resolutions.}
+%     \label{fig:resolutions}
+% \end{figure}
 
 \end{document}

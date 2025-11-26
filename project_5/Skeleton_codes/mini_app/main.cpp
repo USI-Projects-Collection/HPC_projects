@@ -19,6 +19,11 @@
 #include <cstring>
 #include <stdio.h>
 
+
+#ifdef _OPENMP
+    #include <omp.h>
+#endif
+
 #include "data.h"
 #include "linalg.h"
 #include "operators.h"
@@ -31,12 +36,61 @@ using namespace operators;
 using namespace stats;
 
 // =============================================================================
+/*
+    Field &u:               
+        e' il campo da scrivere su disco, la sol numerica del sottodominio locale    di questo processo (NON tutta la griglia.
+    SubDomain &domain:      
+        informazioni sulla decomposizione, tipo startx, starty, endx, endy, nx, ny...
+    Discretization &options:
+        informazioni sulla discretizzazione globale, tipo nx, nt, dx, dt...
+*/
 void write_binary(std::string fname, Field &u, SubDomain &domain,
-                  Discretization &options) {
-    // TODO: Implement output with MPI-IO
-    FILE* output = fopen(fname.c_str(), "w");
-    fwrite(u.data(), sizeof(double), options.nx * options.nx, output);
-    fclose(output);
+                  Discretization &options)
+{  
+    // DONE: Implement output with MPI-IO
+
+    // Create MPI file handle
+    MPI_File fh;
+    MPI_File_open(MPI_COMM_WORLD, fname.c_str(), // nome del file in char* perche MPI e' in C
+                  MPI_MODE_CREATE | MPI_MODE_WRONLY, // modalita' di apertura del file
+                  MPI_INFO_NULL, &fh); 
+
+    // Global grid size
+    int NX = options.nx;
+    int NY = options.nx;  // square domain
+
+    // Local subdomain size
+    int nx = domain.nx;
+    int ny = domain.ny;
+
+    // Compute byte offset where this rank must write
+    /*
+        in pratica nel file i dati sono memorizzati in un array 1D che rappresenta la griglia globale
+        per cui per calcolare l'offset di partenza di scrittura di questo processo
+        bisogna calcolare quanti byte ci sono prima di questo sottodominio
+    */
+    MPI_Offset offset =
+        (MPI_Offset)(domain.starty - 1) * NX * sizeof(double)
+      + (MPI_Offset)(domain.startx - 1) * sizeof(double);
+
+    // Define derived datatype: one row of local data
+    MPI_Datatype file_row;
+    MPI_Type_contiguous(nx, MPI_DOUBLE, &file_row); // Crea un tipo MPI che rappresenta nx elementi MPI_DOUBLE consecutivi in memoria. un riga locale
+    MPI_Type_commit(&file_row); // Finalizza il ripo rendendolo utilizzabile nelle chiamate MPI
+
+
+    /*
+        Questo ciclo scrive riga per riga il sottodominio LOCALE nel file
+    */
+    for (int j = 0; j < ny; j++) {
+        MPI_File_write_at(fh,
+                          offset + j * NX * sizeof(double),
+                          &u(j,0), 1, file_row,
+                          MPI_STATUS_IGNORE);
+    }
+
+    MPI_Type_free(&file_row);
+    MPI_File_close(&fh);
 }
 
 // read command line arguments
@@ -108,21 +162,31 @@ int main(int argc, char* argv[]) {
     int max_newton_iters = 50;
     double tolerance     = 1.e-6;
 
-    // TODO: initialize MPI
-    int size = 1, rank = 0;
+    // initialize MPI
+    MPI_Init(&argc, &argv);
+    int rank, size;
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    MPI_Comm_size(MPI_COMM_WORLD, &size);
 
     // TODO: initialize sub-domain (data.{h,cpp})
     domain.init(rank, size, options);
     // domain.print(); // for debugging
-    int nx = domain.nx;
+    int nx = domain.nx; // nx is local sub-domain size in x direction specifically is the number of grid points in x direction for each sub-domain
     int ny = domain.ny;
-    int N  = domain.N;
+    int N  = domain.N; // N is total number of grid points, nx * ny would have been too clear
     int nt  = options.nt;
 
-    // TODO: Modify welcome message
     std::cout << std::string(80, '=') << std::endl;
     std::cout << "                      Welcome to mini-stencil!" << std::endl;
+
+#ifdef _OPENMP
+    std::cout << "version   :: C++ OpenMP" << std::endl;
+    int threads = omp_get_max_threads();
+#else
     std::cout << "version   :: C++ Serial" << std::endl;
+    int threads = 1;
+#endif
+    std::cout << "threads   :: " << threads << std::endl;
     std::cout << "mesh      :: " << options.nx << " * " << options.nx
                                  << " dx = " << options.dx << std::endl;
     std::cout << "time      :: " << nt << " time steps from 0 .. "
@@ -233,12 +297,12 @@ int main(int argc, char* argv[]) {
     ////////////////////////////////////////////////////////////////////
 
     // binary data
-    // TODO: Implement write_binary using MPI-IO
+    // DONE: Implement write_binary using MPI-IO
     write_binary("output.bin", y_old, domain, options);
 
     // metadata
-    // TODO: Only once process should do the following
-    {
+    // DONE: Only once process should do the following
+    if (rank == 0) {
         std::ofstream fid("output.bov");
         fid << "TIME: " << options.nt*options.dt << std::endl;
         fid << "DATA_FILE: output.bin" << std::endl;
@@ -257,8 +321,8 @@ int main(int argc, char* argv[]) {
 
     // print table summarizing results
     double timespent = time_end - time_start;
-    // TODO: Only once process should do the following
-    {
+    // DONE: Only once process should do the following
+    if (rank == 0){
         std::cout << std::string(80, '-') << std::endl;
         std::cout << "simulation took " << timespent << " seconds" << std::endl;
         std::cout << int(iters_cg)
@@ -276,7 +340,9 @@ int main(int argc, char* argv[]) {
         std::cout << "Goodbye!" << std::endl;
     }
 
-    // TODO: finalize MPI
+    // DONE: finalize MPI
+    MPI_Comm_free(&domain.comm_cart);
+    MPI_Finalize();
 
     return 0;
 }
