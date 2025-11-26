@@ -47,7 +47,7 @@ void SubDomain::init(int mpi_rank, int mpi_size,
     domx = coords[1] + 1;
 
     // DONE: set neighbours for all directions using MPI_Cart_shift
-    MPI_Cart_shift(comm_cart, 0, 1, &neighbour_north, &neighbour_south); // shift along dimension 0 (y direction)
+    MPI_Cart_shift(comm_cart, 0, 1, &neighbour_south, &neighbour_north); // shift along dimension 0 (y direction)
     MPI_Cart_shift(comm_cart, 1, 1, &neighbour_west,  &neighbour_east); // shift along dimension 1 (x direction)
 
     int nx_global = discretization.nx;
