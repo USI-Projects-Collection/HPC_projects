@@ -1,15 +1,15 @@
 ================================================================================
                       Welcome to mini-stencil!
-version   :: C++ Serial
+version   :: C++ MPI
 threads   :: 1
-mesh      :: 30 * 30 dx = 0.0344828
-time      :: 30 time steps from 0 .. 10
+mesh      :: 10 * 10 dx = 0.111111
+time      :: 10 time steps from 0 .. 10
 iteration :: CG 300, Newton 50, tolerance 1e-06
 ================================================================================
 --------------------------------------------------------------------------------
-simulation took 0.002047 seconds
-301 conjugate gradient iterations, at rate of 147044 iters/second
+simulation took 0.000143 seconds
+301 conjugate gradient iterations, at rate of 2.1049e+06 iters/second
 1 newton iterations
 --------------------------------------------------------------------------------
-### 1, 30, 30, 301, 1, 0.002047 ###
+### 1, 10, 10, 301, 1, 0.000143 ###
 Goodbye!

@@ -176,25 +176,27 @@ int main(int argc, char* argv[]) {
     int N  = domain.N; // N is total number of grid points, nx * ny would have been too clear
     int nt  = options.nt;
 
-    std::cout << std::string(80, '=') << std::endl;
-    std::cout << "                      Welcome to mini-stencil!" << std::endl;
+    if (rank == 0) {
+        std::cout << std::string(80, '=') << std::endl;
+        std::cout << "                      Welcome to mini-stencil!" << std::endl;
 
-#ifdef _MPI
-    std::cout << "version   :: C++ MPI" << std::endl;
-    int threads = size;
-#else
-    std::cout << "version   :: C++ Serial" << std::endl;
-    int threads = 1;
-#endif
-    std::cout << "threads   :: " << threads << std::endl;
-    std::cout << "mesh      :: " << options.nx << " * " << options.nx
-                                 << " dx = " << options.dx << std::endl;
-    std::cout << "time      :: " << nt << " time steps from 0 .. "
-                                       << options.nt*options.dt << std::endl;
-    std::cout << "iteration :: " << "CG "          << max_cg_iters
-                                 << ", Newton "    << max_newton_iters
-                                 << ", tolerance " << tolerance << std::endl;
-    std::cout << std::string(80, '=') << std::endl;
+    #ifdef _MPI
+        std::cout << "version   :: C++ MPI" << std::endl;
+        int threads = size;
+    #else
+        std::cout << "version   :: C++ Serial" << std::endl;
+        int threads = 1;
+    #endif
+        std::cout << "threads   :: " << threads << std::endl;
+        std::cout << "mesh      :: " << options.nx << " * " << options.nx
+                                    << " dx = " << options.dx << std::endl;
+        std::cout << "time      :: " << nt << " time steps from 0 .. "
+                                        << options.nt*options.dt << std::endl;
+        std::cout << "iteration :: " << "CG "          << max_cg_iters
+                                    << ", Newton "    << max_newton_iters
+                                    << ", tolerance " << tolerance << std::endl;
+        std::cout << std::string(80, '=') << std::endl;
+    }
 
     // allocate global fields
     y_new.init(nx, ny);
