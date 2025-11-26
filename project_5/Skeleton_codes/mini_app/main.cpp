@@ -55,7 +55,6 @@ void write_binary(std::string fname, Field &u, SubDomain &domain,
                   MPI_MODE_CREATE | MPI_MODE_WRONLY, // modalita' di apertura del file
                   MPI_INFO_NULL, &fh); 
     
-    if (domain.rank == 0) std::cout << "File opened successfully." << std::endl;
 
     // Global grid size
     int NX = options.nx;
@@ -66,28 +65,21 @@ void write_binary(std::string fname, Field &u, SubDomain &domain,
     int ny = domain.ny;
 
     // Create a subarray datatype to describe the local part of the global array
-    if (domain.rank == 0) std::cout << "Creating subarray type..." << std::endl;
     MPI_Datatype filetype;
     int gsizes[2] = {NY, NX};
     int lsizes[2] = {ny, nx};
     int starts[2] = {domain.starty - 1, domain.startx - 1};
 
     MPI_Type_create_subarray(2, gsizes, lsizes, starts, MPI_ORDER_C, MPI_DOUBLE, &filetype);
+
     MPI_Type_commit(&filetype);
 
-    // Set the file view
-    if (domain.rank == 0) std::cout << "Setting file view..." << std::endl;
     MPI_File_set_view(fh, 0, MPI_DOUBLE, filetype, "native", MPI_INFO_NULL);
 
-    // Write all data in a single collective call
-    if (domain.rank == 0) std::cout << "Writing all data..." << std::endl;
     MPI_File_write_all(fh, u.data(), nx * ny, MPI_DOUBLE, MPI_STATUS_IGNORE);
-    if (domain.rank == 0) std::cout << "Write all data completed." << std::endl;
 
     MPI_Type_free(&filetype);
-    if (domain.rank == 0) std::cout << "Closing file..." << std::endl;
     MPI_File_close(&fh);
-    if (domain.rank == 0) std::cout << "File closed." << std::endl;
 }
 
 // read command line arguments
@@ -168,7 +160,7 @@ int main(int argc, char* argv[]) {
     // TODO: initialize sub-domain (data.{h,cpp})
     domain.init(rank, size, options);
     // domain.print(); // for debugging
-    if (rank == 0) std::cout << "Domain initialized. Printing neighbors..." << std::endl;
+    // if (rank == 0) std::cout << "Domain initialized. Printing neighbors..." << std::endl;
     domain.print();
 
     int nx = domain.nx; // nx is local sub-domain size in x direction specifically is the number of grid points in x direction for each sub-domain
@@ -247,7 +239,7 @@ int main(int argc, char* argv[]) {
 
     // main time loop
     for (int timestep = 1; timestep <= nt; timestep++) {
-        if (rank == 0 && timestep % 10 == 0) std::cout << "Starting step " << timestep << std::endl;
+        // if (rank == 0 && timestep % 10 == 0) std::cout << "Starting step " << timestep << std::endl;
 
         // set y_new and y_old to be the solution
         hpc_copy(y_old, y_new);
@@ -305,7 +297,7 @@ int main(int argc, char* argv[]) {
     // binary data
     // DONE: Implement write_binary using MPI-IO
     MPI_Barrier(MPI_COMM_WORLD);
-    if (rank == 0) std::cout << "All ranks reached write_binary." << std::endl;
+    // if (rank == 0) std::cout << "All ranks reached write_binary." << std::endl;
     write_binary("output.bin", y_old, domain, options);
     
 
