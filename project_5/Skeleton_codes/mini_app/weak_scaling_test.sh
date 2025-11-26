@@ -16,7 +16,7 @@ make
 NT=100
 TF=0.005
 
-BASE_RESOLUTIONS=(64 128 256 512 1024)
+BASE_RESOLUTIONS=(64 128 256)
 PROCS=(1 2 4 8 16)
 
 echo "Starting weak scaling tests" > weak_scaling_results.txt
