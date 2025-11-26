@@ -16,7 +16,7 @@ dims = MPI.Compute_dims(size, 2)
 # ---------------------------------------------------------
 # 2. Create Cartesian Topology
 # ---------------------------------------------------------
-# periods=[True, True] abilita i bordi periodici (ghost cells concettuali)
+# periods=[True, True] indica che la griglia è periodica in entrambe le direzioni (torus).
 # reorder=False mantiene i rank originali se possibile
 cart_comm = comm.Create_cart(dims, periods=[True, True], reorder=False)
 
@@ -49,7 +49,7 @@ topo_info = (f"Rank {rank:02d} | Coords {coords} | "
 # 5. Exchange Ranks (Verifica Comunicazione)
 # ---------------------------------------------------------
 # Scambiamo il nostro rank con i 4 vicini per verificare la connessione.
-# Usiamo sendrecv per evitare deadlock (equivalente sicuro di Send + Recv)
+# Usiamo sendrecv per evitare deadlock
 
 # SCAMBIO ASSE VERTICALE
 # Invio al SUD, Ricevo dal NORD
@@ -63,22 +63,12 @@ recv_from_west = cart_comm.sendrecv(sendobj=rank, dest=nbr_east, source=nbr_west
 # Invio all'OVEST, Ricevo dall'EST
 recv_from_east = cart_comm.sendrecv(sendobj=rank, dest=nbr_west, source=nbr_east)
 
-comm_check = (f"Rank {rank:02d} VERIFY Recv: "
-                f"From N={recv_from_north:02d}, S={recv_from_south:02d}, "
-                f"W={recv_from_west:02d}, E={recv_from_east:02d}")
-
 # ---------------------------------------------------------
 # Raccolta e Stampa ordinata (solo per il report)
 # ---------------------------------------------------------
 # Raccogliamo tutto sul rank 0 per stampare in ordine e non accavallare l'output
 all_topo = comm.gather(topo_info, root=0)
-all_comm = comm.gather(comm_check, root=0)
 
 if rank == 0:
-    print(f"--- Grid Dimensions: {dims} ---")
-    print("--- Topology Setup ---")
     for line in sorted(all_topo):
-        print(line)
-    print("\n--- Ghost Exchange Verification (Ranks) ---")
-    for line in sorted(all_comm):
         print(line)

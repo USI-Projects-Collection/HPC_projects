@@ -166,7 +166,7 @@ Higher resulution images can be found in their respective folders in \href{../Sk
     \begin{subfigure}[b]{0.32\textwidth}
         \centering
         \includegraphics[width=\textwidth]{../../project_3/Skeleton_codes/mini_app/strong_scaling/strong_scaling_time_vs_threads.png}
-        % \caption{openMP project 3}
+        % \caption{openMP (project 3)}
         \label{fig:lowres}
     \end{subfigure}
     \hfill
@@ -187,7 +187,7 @@ Higher resulution images can be found in their respective folders in \href{../Sk
     \begin{subfigure}[b]{0.32\textwidth}
         \centering
         \includegraphics[width=\textwidth]{../../project_3/Skeleton_codes/mini_app/strong_scaling/strong_scaling_speedup.png}
-        \caption{openMP project 3}
+        \caption{openMP (project 3)}
         \label{fig:highres}
     \end{subfigure}
     \hfill
@@ -231,7 +231,7 @@ Higher resulution images can be found in their respective folders in \href{../Sk
     \begin{subfigure}[b]{0.32\textwidth}
         \centering
         \includegraphics[width=\textwidth]{../../project_3/Skeleton_codes/mini_app/weak_scaling/weak_scaling_time_vs_threads.png}
-        % \caption{openMP project 3}
+        % \caption{openMP (project 3)}
         \label{fig:lowres}
     \end{subfigure}
     \hfill
@@ -252,7 +252,7 @@ Higher resulution images can be found in their respective folders in \href{../Sk
     \begin{subfigure}[b]{0.32\textwidth}
         \centering
         \includegraphics[width=\textwidth]{../../project_3/Skeleton_codes/mini_app/weak_scaling/weak_scaling_efficiency.png}
-        \caption{openMP project 3}
+        \caption{openMP (project 3)}
         \label{fig:highres}
     \end{subfigure}
     \hfill
@@ -324,6 +324,28 @@ The output confirms the correctness of both implementations:
 ]{../Skeleton_codes/hpc_python/python_58120.out}
 
 \subsection{Ghost cell exchange between neighboring processes [5 Points]}
+
+In this task, we replicated the 2D Cartesian topology and ghost cell exchange mechanism using the \texttt{mpi4py} library. The implementation relies on four key functions to manage the domain decomposition and communication:
+
+\begin{itemize}
+    \item \texttt{MPI.Compute\_dims(size, 2)}: Automatically calculates the optimal grid dimensions based on the number of available processes. In our test case with $P=8$, it generated a $4 \times 2$ grid.
+    \item \texttt{comm.Create\_cart(dims, periods=[True, True])}: Creates a new communicator with a Cartesian topology. The \texttt{periods} argument enables periodic boundaries (torus) in both vertical and horizontal directions.
+    \item \texttt{cart\_comm.Shift(direction, disp=1)}: Queries the topology to determine the ranks of neighbors. It returns the source (neighbor in the negative direction) and destination (neighbor in the positive direction) for data shifting.
+    \item \texttt{cart\_comm.sendrecv(...)}: Performs a blocking send and receive operation simultaneously. This is safer than separate blocking send/recv calls as it automatically handles buffering to prevent deadlocks during the cyclic exchange.
+\end{itemize}
+
+\textbf{Verification:}
+The script was executed with 8 processes and generated a $4 \times 2$ grid. The output confirms the correct topological setup and data exchange. For example, \textbf{Rank 0} (coordinates $[0,0]$) correctly identifies its North neighbor as \textbf{Rank 6} (coordinates $[3,0]$), confirming that the vertical boundary wraps around periodically. The verification step confirms that the data received matches the rank of the topological neighbors.
+
+\lstinputlisting[
+    % language=Python,
+    % numbers=left,
+    % caption={Welcome message update in main.cpp},
+    % captionpos=b,
+    % label={lst:mergeCritical},
+    % linerange={},
+    % firstnumber=111
+]{../Skeleton_codes/hpc_python/ghost/python_58125.out}
 
 \subsection{A self-scheduling example: Parallel Mandelbrot [15 Points]}
 
