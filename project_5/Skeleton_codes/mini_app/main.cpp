@@ -73,29 +73,22 @@ void write_binary(std::string fname, Field &u, SubDomain &domain,
         (MPI_Offset)(domain.starty - 1) * NX * sizeof(double)
       + (MPI_Offset)(domain.startx - 1) * sizeof(double);
 
-    // Define derived datatype: one row of local data
-    MPI_Datatype file_row;
-    MPI_Type_contiguous(nx, MPI_DOUBLE, &file_row); // Crea un tipo MPI che rappresenta nx elementi MPI_DOUBLE consecutivi in memoria. un riga locale
-    MPI_Type_commit(&file_row); // Finalizza il ripo rendendolo utilizzabile nelle chiamate MPI
+
 
 
     /*
         Questo ciclo scrive riga per riga il sottodominio LOCALE nel file
     */
-    std::cout << "Rank " << domain.rank << " writing binary output..." << std::endl;
+    // if (domain.rank == 0) std::cout << "Writing binary output..." << std::endl;
     for (int j = 0; j < ny; j++) {
-        if (j % 10 == 0) std::cout << "Rank " << domain.rank << " writing row " << j << std::endl;
         MPI_File_write_at(fh,
                           offset + j * NX * sizeof(double),
-                          &u(0,j), 1, file_row,
+                          &u(0,j), nx, MPI_DOUBLE,
                           MPI_STATUS_IGNORE);
     }
-    std::cout << "Rank " << domain.rank << " finished loop." << std::endl;
 
-    MPI_Type_free(&file_row);
-    std::cout << "Rank " << domain.rank << " closing file." << std::endl;
     MPI_File_close(&fh);
-    std::cout << "Rank " << domain.rank << " binary output written." << std::endl;
+    // if (domain.rank == 0) std::cout << "Binary output written." << std::endl;
 }
 
 // read command line arguments
