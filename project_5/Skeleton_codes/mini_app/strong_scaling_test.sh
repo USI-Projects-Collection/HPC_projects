@@ -19,5 +19,5 @@ TF=0.005
 PROCS=(1 2 4 8 16)
 
 for P in "${PROCS[@]}"; do
-    srun --ntasks=$P ./mini_app $N $NT $TF | tee -a strong_results.txt
+    srun --ntasks=$P ./mini $N $NT $TF | tee -a strong_results.txt
 done
