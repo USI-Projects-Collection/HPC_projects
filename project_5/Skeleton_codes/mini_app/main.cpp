@@ -82,15 +82,17 @@ void write_binary(std::string fname, Field &u, SubDomain &domain,
     /*
         Questo ciclo scrive riga per riga il sottodominio LOCALE nel file
     */
+    if (domain.rank == 0) std::cout << "Writing binary output..." << std::endl;
     for (int j = 0; j < ny; j++) {
         MPI_File_write_at(fh,
                           offset + j * NX * sizeof(double),
-                          &u(j,0), 1, file_row,
+                          &u(0,j), 1, file_row,
                           MPI_STATUS_IGNORE);
     }
 
     MPI_Type_free(&file_row);
     MPI_File_close(&fh);
+    if (domain.rank == 0) std::cout << "Binary output written." << std::endl;
 }
 
 // read command line arguments

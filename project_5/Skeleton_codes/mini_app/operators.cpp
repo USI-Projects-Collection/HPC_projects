@@ -45,7 +45,7 @@ void diffusion(data::Field const& s_old, data::Field const& s_new,
     MPI_Request requests[8];
     int req_count = 0;
     
-    std::cout << "Rank " << domain.rank << " entering diffusion" << std::endl;
+    // std::cout << "Rank " << domain.rank << " entering diffusion" << std::endl;
 
 
     // North/South: buffers have length nx

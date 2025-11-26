@@ -20,13 +20,7 @@ dt=0.005
 
 
 for N in "${NS[@]}"; do
-    echo "---------------------------" | tee -a strong_results.txt
-    echo "Grid size N = $N" | tee -a strong_results.txt
-
     for P in "${PROCS[@]}"; do
-        echo "=== Running with $P processes ===" | tee -a strong_results.txt
-
-        srun --ntasks=$P ./main $N $t_steps $dt | tee -a strong_results.txt
+        srun --ntasks=$P ./main $N $t_steps $dt
     done
-    echo "" | tee -a strong_results.txt
 done
