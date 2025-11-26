@@ -161,7 +161,7 @@ int main(int argc, char* argv[]) {
     domain.init(rank, size, options);
     // domain.print(); // for debugging
     // if (rank == 0) std::cout << "Domain initialized. Printing neighbors..." << std::endl;
-    domain.print();
+    // domain.print();
 
     int nx = domain.nx; // nx is local sub-domain size in x direction specifically is the number of grid points in x direction for each sub-domain
     int ny = domain.ny;
