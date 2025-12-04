@@ -16,6 +16,17 @@ TAG_DONE      = 3 # done       message tag
 def manager(comm, tasks):
     """
     The manager.
+
+    Parameters
+    ----------
+    comm : mpi4py.MPI communicator
+        MPI communicator
+    tasks : list of objects with a do_task() method perfroming the task
+        List of tasks to accomplish
+
+    Returns
+    -------
+    ... ToDo ...
     """
     size = comm.Get_size()
     num_workers = size - 1
@@ -72,6 +83,11 @@ def manager(comm, tasks):
 def worker(comm):
     """
     The worker.
+
+    Parameters
+    ----------
+    comm : mpi4py.MPI communicator
+        MPI communicator
     """
     while True:
         status = MPI.Status()
@@ -91,7 +107,22 @@ def worker(comm):
 def readcmdline(rank):
     """
     Read command line arguments
+
+    Parameters
+    ----------
+    rank : int
+        Rank of calling MPI process
+
+    Returns
+    -------
+    nx : int
+        number of gridpoints in x-direction
+    ny : int
+        number of gridpoints in y-direction
+    ntasks : int
+        number of tasks
     """
+    # report usage
     if len(sys.argv) != 4:
         if rank == MANAGER:
             print("Usage: manager_worker nx ny ntasks")
@@ -101,11 +132,14 @@ def readcmdline(rank):
         sys.exit()
 
     nx = int(sys.argv[1])
-    if nx < 1: sys.exit("nx must be a positive integer")
+    if nx < 1: 
+        sys.exit("nx must be a positive integer")
     ny = int(sys.argv[2])
-    if ny < 1: sys.exit("ny must be a positive integer")
+    if ny < 1: 
+        sys.exit("ny must be a positive integer")
     ntasks = int(sys.argv[3])
-    if ntasks < 1: sys.exit("ntasks must be a positive integer")
+    if ntasks < 1: 
+        sys.exit("ntasks must be a positive integer")
 
     return nx, ny, ntasks
 
@@ -117,8 +151,6 @@ if __name__ == "__main__":
     size    = comm.Get_size()
     my_rank = comm.Get_rank()
 
-    # read command line arguments (everyone reads them to keep consistent, 
-    # though technically only manager needs them for setup)
     nx, ny, ntasks = readcmdline(my_rank)
 
     # ------------------------------------------------------
@@ -130,7 +162,7 @@ if __name__ == "__main__":
         # start timer
         timespent = - time.perf_counter()
 
-        # Create tasks
+        # trying out ... YOUR MANAGER-WORKER IMPLEMENTATION HERE ...
         x_min = -2.
         x_max  = +1.
         y_min  = -1.5

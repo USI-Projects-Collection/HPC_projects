@@ -48,10 +48,12 @@
 \section{Parallel Space Solution of a nonlinear PDE using MPI [in total 60 points]}
 % =============================================================================
 
+Image solution for this exercise can seen in Figure~\ref{fig:ex1}.
+
 \subsection{Initialize/finalize MPI and welcome message [5 Points]}
 Output:
 \lstinputlisting[
-    language=C++,
+    language=bash,
     % numbers=left,
     % caption={Welcome message update in main.cpp},
     captionpos=b,
@@ -69,7 +71,7 @@ I use a two–dimensional Cartesian domain decomposition:
     I obtain a balanced $d_x \times d_y$ grid using \texttt{MPI\_Dims\_create}, which guarantees that the process grid is as close to square as possible for any number of processes~$P$.
 
     \item \textbf{Cartesian topology.}  
-    I build the logical topology with \texttt{MPI\_Cart\_create}, so that each process can identify its coordinates and its four neighbors through \texttt{MPI\_Cart\_coords} and \texttt{MPI\_Cart\_shift}.
+    I build the topology with \texttt{MPI\_Cart\_create} so that each process can identify its coordinates and its four neighbors through the apposite \texttt{MPI\_Cart\_coords} and \texttt{MPI\_Cart\_shift} functions.
 
     \item \textbf{Subdomain sizes.}  
     The global domain $n \times n$ is partitioned into rectangular subdomains.  
@@ -123,39 +125,19 @@ The steps and MPI calls used are:
     Once the ghost buffers are updated, the stencil is applied safely to the boundary and corner points.
 \end{itemize}
 
-A blocking version (\texttt{MPI\_Send}, \texttt{MPI\_Recv}, or \texttt{MPI\_Sendrecv}) would force each process to wait for neighbors before continuing, preventing overlap and reducing performance.  
-Using \texttt{MPI\_Irecv}, \texttt{MPI\_Isend}, and \texttt{MPI\_Waitall} allows the solver to hide communication costs behind the interior computation, improving overall efficiency.
+With blocking functions like \texttt{MPI\_Send}, \texttt{MPI\_Recv}, or \texttt{MPI\_Sendrecv}, every process has to wait for its neighbors to finish before it can move on, which really slows things down. But by using \texttt{MPI\_Isend}, \texttt{MPI\_Irecv}, and \texttt{MPI\_Waitall}, the solver can work on the calculations while it's waiting for communication, which helps boost efficiency.
 
 
 \subsection{Implement parallel I/O [10 Points]}
 
-I implemented the final output using \textbf{MPI-IO} so that all processes write
-their local subdomains into a single global binary file.  
-The steps are:
+In the \texttt{write\_binary} function, I handle parallel output using MPI-I/O file views. Instead of figuring out byte offsets for each row by hand, I create a derived datatype that aligns the local subdomain straight onto the global grid structure.
 
-\begin{itemize}
-    \item \textbf{MPI\_File\_open:}  
-    The file is opened collectively by all ranks in write-only mode.
+The main feature here is \texttt{MPI\_Type\_create\_subarray}, which sets up a non-contiguous data layout. With the global dimensions of ($N \times N$) and the local coordinates ($\text{start}_x, \text{start}_y$), MPI takes care of calculating the displacement in the file automatically. In simple terms, this determines where we'll write in the global offset:
+\[
+\text{Offset} = (\text{start}_y \times N_{\text{global}} + \text{start}_x) \times \text{sizeof(double)}
+\]
 
-    \item \textbf{Offset computation:}  
-    Each process computes its byte offset inside the global $n \times n$ array
-    using its global start indices $(\text{start}_x, \text{start}_y)$ provided by
-    the domain decomposition.
-
-    \item \textbf{Derived datatype:}  
-    I created a derived MPI datatype using \texttt{MPI\_Type\_contiguous} to
-    represent a full local row of $n_x$ doubles, simplifying the write calls.
-
-    \item \textbf{MPI\_File\_write\_at:}  
-    Each process writes its $n_y$ local rows into the correct position in the
-    global file without any file locking or coordination between processes.
-
-    \item \textbf{Metadata:}  
-    Only rank 0 writes the accompanying \texttt{.bov} visualization header.
-\end{itemize}
-
-This method produces a single binary array that contains the full global
-solution, with no need for post-processing or intermediate files.
+By using this datatype with \texttt{MPI\_File\_set\_view}, processes can call \texttt{MPI\_File\_write\_all} to write their whole block together. This setup lets the MPI library fine-tune disk access while keeping the global order of the matrix intact. As a result, we end up with one binary array that holds the complete global solution, eliminating the need for any extra processing or temporary files.
 
 \newpage
 \subsection{Strong scaling [10 Points]}
@@ -188,39 +170,40 @@ Higher resulution images can be found in their respective folders in \href{../Sk
         \centering
         \includegraphics[width=\textwidth]{../../project_3/Skeleton_codes/mini_app/strong_scaling/strong_scaling_speedup.png}
         \caption{openMP (project 3)}
-        \label{fig:highres}
+        \label{fig:a1}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.32\textwidth}
         \centering
         \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/strong_scaling/strong_scaling_speedup.png}
         \caption{MPI multi task over 1 node}
-        \label{fig:highres}
+        \label{fig:b1}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.32\textwidth}
         \centering
         \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/strong_scaling_muliti_node/strong_scaling_speedup.png}
         \caption{MPI 1 task over multiple nodes}
-        \label{fig:highres}
+        \label{fig:c1}
     \end{subfigure}
     \caption{\textit{Strong} scaling results: \textbf{Above} time over number of threads - \textbf{Below} efficiency over number of threads.}
     \label{fig:strong_scaling}
 \end{figure}
 
-Figure~\ref{fig:strong_scaling} presents the strong scaling results, comparing the OpenMP implementation (a), MPI on a single node (b), and MPI distributed across multiple nodes (c). The top row displays the time to solution, while the bottom row illustrates the speedup ($T_1/T_N$).
+Figure~\ref{fig:strong_scaling} shows the results for strong scaling, comparing three setups: the OpenMP implementation \ref{fig:a1} MPI on a single node \ref{fig:b1}, and MPI spread across multiple nodes \ref{fig:c1}. The top row presents the time it took to reach a solution, while the bottom row illustrates the speedup ($T_1/T_N$).
 
 \textbf{Comparison with OpenMP (Single Node):}
-The MPI implementation executed on a single node (b) exhibits a scaling profile remarkably similar to the OpenMP version (a). For large grid sizes ($n=1024$), both implementations achieve near-linear speedup up to 16 processes, with the MPI version showing slightly superior performance (reaching a speedup of $\approx 13\times$ vs. $\approx 11\times$ for OpenMP). This suggests that the overhead of MPI internal memory copying is comparable to, or potentially handled better than, the thread synchronization and false sharing overheads inherent in the OpenMP shared-memory model.
+Looking at MPI on a single node: The MPI setup running on one node \ref{fig:b1} has a scaling profile that's pretty similar to the OpenMP version \ref{fig:a1}. When we work with larger grid sizes ($n=1024$), both setups manage to achieve almost linear speedup up to 16 processes, with MPI showing a slight edge in performance (reaching a speedup of $\approx 13\times$ vs. $\approx 11\times$ for OpenMP). This indicates that the overhead from MPI's internal memory copying either compares or is better managed than the thread synchronization that come with the OpenMP shared-memory model.
 
 \textbf{Distributed Memory Performance (Multi-Node):}
 The multi-node MPI configuration (c) highlights the critical impact of network latency. 
 \begin{itemize}
-    \item \textbf{Large Grids ($n=1024$):} The computation scales excellently, achieving the highest linearity among the three test cases. The high computation-to-communication ratio effectively hides the network overhead.
-    \item \textbf{Small Grids ($n \le 128$):} Performance degrades significantly. For $n=64$, the speedup drops below 1.0 immediately, meaning the parallel execution is slower than the serial one. This occurs because the sub-domains are too small; the fixed cost of network latency and halo exchange dominates the negligible computational work available per rank.
+    \item \textbf{Large Grids ($n=1024$):} The computations scale impressively, hitting the highest linearity among the three cases tested. The effective computation-to-communication ratio does a great job of masking the overhead from the network.
+    \item \textbf{Small Grids ($n \le 128$):} Performance takes a significant hit. When $n=64$, the speedup drops below 1.0 right away, indicating that parallel execution ends up slower than doing it serially. This happens because the sub-domains are too small; the fixed costs associated with network latency and halo exchanges overshadow the small amount of computational work available per rank.
 \end{itemize}
 
-In summary, while MPI matches OpenMP efficiency within a node, the multi-node scalability is strictly bound by the problem size. Distributed parallelism is only beneficial when the local domain size remains large enough to amortize the cost of inter-node communication.
+In summary, while MPI performs just as well as OpenMP within a single node, its scalability across multiple nodes really rely on the size of the problem. Distributed parallelism proves advantageous only when the local domain size is large enough to offset the costs associated with communication between nodes.
+
 
 \newpage
 \subsection{Weak scaling [10 Points]}
@@ -253,40 +236,44 @@ Higher resulution images can be found in their respective folders in \href{../Sk
         \centering
         \includegraphics[width=\textwidth]{../../project_3/Skeleton_codes/mini_app/weak_scaling/weak_scaling_efficiency.png}
         \caption{openMP (project 3)}
-        \label{fig:highres}
+        \label{fig:a2}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.32\textwidth}
         \centering
         \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/weak_scaling/weak_scaling_efficiency.png}
         \caption{MPI multi task over 1 node}
-        \label{fig:highres}
+        \label{fig:b2}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.32\textwidth}
         \centering
         \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/weak_scaling_multi_node/weak_scaling_efficiency.png}
         \caption{MPI 1 task over multiple nodes}
-        \label{fig:highres}
+        \label{fig:c2}
     \end{subfigure}
     \caption{\textit{Weak} scaling results: \textbf{Above} time over number of threads - \textbf{Below} efficiency over number of threads.}
     \label{fig:weak_scaling}
 \end{figure}
 
-Figure~\ref{fig:weak_scaling} illustrates the weak scaling performance, where the problem size increases proportionally with the number of processing elements ($N$) to maintain a constant workload per process. Ideally, the time to solution should remain constant (flat line), corresponding to an efficiency of 1.0.
+Figure~\ref{fig:weak_scaling} shows how weak scaling performs when the problem size grows along with the number of processing elements ($N$), which helps keep a consistent workload for each process. Ideally, we want the time it takes to reach a solution to stay the same as a flat line; an efficiency of  $\approx 1$.
 
 \textbf{Single-Node Bottlenecks (OpenMP vs. MPI):}
-Both the OpenMP implementation (a) and the single-node MPI execution (b) exhibit a significant deviation from ideal weak scaling. As $N$ increases, the runtime rises steadily, causing efficiency to drop below 0.4 for $N=16$. 
-This behavior indicates that the system is \textbf{memory-bound}. Although the computational work per core is constant, the \textit{aggregate} memory bandwidth requirement increases with $N$. Since all processes on a single node compete for the same shared memory bus, the bandwidth saturates, creating a bottleneck that slows down all processes simultaneously. The similarity between (a) and (b) confirms that this hardware limitation affects both parallelization models equally.
+Both the OpenMP implementation \ref{fig:a2} and the single-node MPI run \ref{fig:b2} show a notable drop from the ideal weak scaling. As $N$ increases, the runtime goes up steadily, causing the efficiency to drop below 0.4 at $N=16.$ 
+This suggests that the system is \textbf{memory-bound}. Even though the computational workload per core stays constant, the total memory bandwidth needed increases with N. Since all processes on a single node are competing for the same shared memory bus, the bandwidth fills up, leading to a bottleneck that slows down all processes at once. The similarity between \ref{fig:a2} and \ref{fig:b2} indicates that this hardware limitation impacts both parallel models equally.
 
 \textbf{Multi-Node Scaling and Network Overhead:}
-The multi-node configuration (c) presents a dual behavior dependent on the base resolution:
+The multi-node configuration \ref{fig:c2} presents a dual behavior dependent on the base resolution:
 \begin{itemize}
-    \item \textbf{Small Base ($n=64$):} Performance is poor. The efficiency drops sharply to $\approx 0.1$ immediately. The local sub-domain is too small to justify the fixed overhead of network latency (inter-node communication), making the execution latency-bound.
-    \item \textbf{Large Base ($n=256$):} Interestingly, the multi-node setup scales \textit{better} than the single-node setup. The runtime slope for the green line in (c) is flatter than in (b). This is because distributing tasks across multiple nodes provides access to aggregated memory bandwidth (each node has its own memory bus). Unlike the single-node case, the computation is not throttled by memory contention, provided the local problem size is large enough to hide the network communication costs.
+    \item \textbf{Small Base ($n=64$):} 
+    The performance is quite poor here. Right off the bat, the efficiency drops to $\approx 0.1$ immediately. The local sub-domain is just too small to make the fixed overhead of network latency (inter-node communication) worthwhile, which results in execution being limited by latency.
+    \item \textbf{Large Base ($n=256$):} 
+    Interestingly, the multi-node configuration performs better than the single-node setup. The runtime slope for the green line in \ref{fig:c2} is less steep than in \ref{fig:b2}. This is because spreading tasks across multiple nodes means access to combined memory bandwidth, as each node has its own memory bus. Unlike the single-node scenario, the computation isn't held back by memory contention, provided the local problem size is large enough to offset the costs of network communication.
 \end{itemize}
 
-In conclusion, while single-node scaling is limited by hardware memory bandwidth, multi-node scaling is limited only by network latency. Consequently, the multi-node approach is superior for large-scale problems where high memory throughput is required.
+In conclusion, while single-node scaling is held back by hardware memory bandwidth, multi-node scaling is mainly limited by network latency. So, the multi-node approach is definitely better for large-scale problems that need high memory throughput.
+
+
 
 \newpage
 % =============================================================================
@@ -299,10 +286,10 @@ Two different communication approaches: generic \textit{object serialization} vs
 
 \begin{itemize}
     \item \textbf{Pickle-based communication (\texttt{sum\_ranks\_pickle.py}):} 
-    I utilized the lowercase \texttt{comm.allreduce} method. This approach allows sending arbitrary Python objects (in this case, simple integers) but relies on the \texttt{pickle} module for serialization and deserialization. While flexible, this introduces significant overhead compared to native C operations.
-    
+    I used the lowercase \texttt{comm.allreduce} method, which lets us send any Python objects, like simple integers. However, it needs the \texttt{pickle} module for both serialization and deserialization. While it offers great flexibility, it does come with some considerable overhead compared to native C operations.
+        
     \item \textbf{Buffer-based communication (\texttt{sum\_ranks\_buffer.py}):} 
-    I utilized the uppercase \texttt{comm.Allreduce} method combined with \texttt{numpy} arrays explicitly typed as integers (\texttt{dtype='i'}). This method bypasses Python's overhead by passing memory pointers directly to the underlying MPI C implementation, resulting in significantly higher performance suitable for HPC workloads.
+    I used the uppercase \texttt{comm.Allreduce} method along with \texttt{numpy} arrays that are typed as integers (\texttt{dtype='i'}). This to avoid Python's overhead by directly passing memory pointers to the MPI C implementation beneath, leading to a much higher performance that's perfect for high-performance computing workloads.
 \end{itemize}
 
 \textbf{Verification:} with $P=8$ processes the expected result is the sum of integers from 0 to 7:
@@ -325,20 +312,20 @@ The output confirms the correctness of both implementations:
 
 \subsection{Ghost cell exchange between neighboring processes [5 Points]}
 
-In this task, we replicated the 2D Cartesian topology and ghost cell exchange mechanism using the \texttt{mpi4py} library. The implementation relies on four key functions to manage the domain decomposition and communication:
+In this task, I recreated the 2D Cartesian topology and the ghost cell exchange mechanism using the \texttt{mpi4py} library. This implementation is built on four important functions that help manage the domain decomposition and communication:
 
 \begin{itemize}
-    \item \texttt{MPI.Compute\_dims(size, 2)}: Automatically calculates the optimal grid dimensions based on the number of available processes. In our test case with $P=8$, it generated a $4 \times 2$ grid.
+    \item \texttt{MPI.Compute\_dims(size, 2)}: Automatically calculates the optimal grid dimensions based on the number of available processes. In my test case with $P=8$, it generated a $4 \times 2$ grid.
     \item \texttt{comm.Create\_cart(dims, periods=[True, True])}: Creates a new communicator with a Cartesian topology. The \texttt{periods} argument enables periodic boundaries (torus) in both vertical and horizontal directions.
     \item \texttt{cart\_comm.Shift(direction, disp=1)}: Queries the topology to determine the ranks of neighbors. It returns the source (neighbor in the negative direction) and destination (neighbor in the positive direction) for data shifting.
     \item \texttt{cart\_comm.sendrecv(...)}: Performs a blocking send and receive operation simultaneously. This is safer than separate blocking send/recv calls as it automatically handles buffering to prevent deadlocks during the cyclic exchange.
 \end{itemize}
 
 \textbf{Verification:}
-The script was executed with 8 processes and generated a $4 \times 2$ grid. The output confirms the correct topological setup and data exchange. For example, \textbf{Rank 0} (coordinates $[0,0]$) correctly identifies its North neighbor as \textbf{Rank 6} (coordinates $[3,0]$), confirming that the vertical boundary wraps around periodically. The verification step confirms that the data received matches the rank of the topological neighbors.
+The script was executed with 8 processes, which produced a $4 \times 2$ grid. The output shows that the topological setup and data exchange are correct. For instance, \textbf{Rank 0} (coordinates $[0,0]$) accurately recognizes its North neighbor as \textbf{Rank 6} (coordinates $[3,0]$), demonstrating that the vertical boundary wraps around periodically. Additionally, the verification step confirms that the data received matches the rank of the topological neighbors.
 
 \lstinputlisting[
-    % language=Python,
+    language=bash,
     % numbers=left,
     % caption={Welcome message update in main.cpp},
     % captionpos=b,
@@ -347,8 +334,66 @@ The script was executed with 8 processes and generated a $4 \times 2$ grid. The 
     % firstnumber=111
 ]{../Skeleton_codes/hpc_python/ghost/python_58125.out}
 
+
 \subsection{A self-scheduling example: Parallel Mandelbrot [15 Points]}
 
+In this project, I implemented a load-balancing system using \texttt{mpi4py} for the \textit{Manager-Worker} model. This approach works really well for the Mandelbrot set, where the computational load per pixel can differ a lot—like, pixels inside the set need maximum iterations to calculate, but those outside can diverge in no time.
+
+\textbf{Implementation Details:}
+The logic is divided based on the MPI rank:
+\begin{itemize}
+    \item \textbf{Manager (Rank 0):} 
+    The system keeps a queue of tasks. It starts by sending one task to each worker with \texttt{comm.send}. Then, it gets into a loop, waiting for \textit{any} worker to finish a task. As soon as it gets a result back, it sends a new task to that worker right away. When there are no more tasks left in the queue, it sends a termination signal \texttt{TAG\_DONE}.
+    \item \textbf{Workers (Rank > 0):} 
+    Execute an infinite loop waiting for messages. Upon receiving a task, they compute the Mandelbrot patch and send the object back. The loop terminates only upon receiving \texttt{TAG\_DONE}.
+\end{itemize}
+
+\textbf{Scaling Analysis:}
+As requested the study was done on a $4001 \times 4001$ area using between 2 and 16 workers, looking at two different granularities: 50 tasks and 100 tasks. The results are all in Table~\ref{tab:mandel_scaling}.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Workers} & \textbf{Total Procs} & \textbf{Time (50 Tasks)} & \textbf{Time (100 Tasks)} \\ \hline
+2  & 3  & 13.49 s & 13.43 s \\ \hline
+4  & 5  & 8.00 s  & 7.51 s \\ \hline
+8  & 9  & 4.78 s  & 4.56 s \\ \hline
+16 & 17 & 3.56 s  & \textbf{3.21 s} \\ \hline
+\end{tabular}
+\caption{Runtime comparison for different task granularities ($4001^2$ grid).}
+\label{tab:mandel_scaling}
+\end{table}
+
+\textbf{Observations:}
+\begin{enumerate}
+    \item \textbf{Load Balancing Benefits:} 
+    The configuration with 100 tasks consistently beats the one with just 50. With 16 workers, breaking it down into 100 tasks gives you $\approx 10\%$ boost in performance 3.21 seconds compared to 3.56 seconds.
+    \item \textbf{Granularity Impact:} 
+    With only 50 tasks for those 16 workers, each is handling $\approx 3$ patches on average. That can lead to a few workers getting overloaded with tougher tasks, which we call 'stragglers.' But when you bump it up to 100 tasks, with each worker managing avg $\approx 6$, it balances things out. Faster workers can tackle easier patches, while others deal with the harder ones, reducing the chances of everyone just sitting around waiting at the end of the simulation.
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.37\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../Skeleton_codes/mini_app/output.png}
+        \vspace{2mm}
+        \caption{ex1 - Nonlinear PDE}
+        \label{fig:ex1}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../Skeleton_codes/hpc_python/ManagerWorker/mandelbrot.png}
+        \vspace{2mm}
+        \caption{ex 2.3 - Mandelbrot set}
+        \label{fig:ex2_3}
+    \end{minipage}
+\end{figure}
+
+
+\newpage
 % =============================================================================
 \section{Task:  Quality of the Report [15 Points]}
 % =============================================================================
