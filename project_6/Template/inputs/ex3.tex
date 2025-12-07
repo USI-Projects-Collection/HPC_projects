@@ -1,0 +1,31 @@
+% Ex 3
+
+\section{Task: Implement various graph partitioning algorithms [25 points]}
+
+
+\begin{itemize}
+
+\item Run in Matlab the script \texttt{Bench\_bisection.m} and familiarize yourself with the Matlab codes in the directory \texttt{Part\_Toolbox}. An overview of all functions and scripts is offered in \texttt{Contents.m}. 
+
+\item Implement \textbf{spectral graph bisection} based on the entries of the Fiedler eigenvector. Use the incomplete Matlab file \texttt{bisection\_spectral.m} for your solution.
+
+\item Implement \textbf{inertial graph bisection}. For a graph with 2D coordinates, this inertial bisection constructs a line such that half the nodes are on one side of the line, and half are on the other.
+Use the incomplete Matlab file \texttt{bisection\_inertial.m} for your solution.
+ 
+\item Report the bisection edgecut for all toy meshes that are either generated or loaded in the script \\ "Bench\_bisection.m." Use Table~\ref{table:bisection} to report these results.
+
+\begin{table}[h]
+\caption{Bisection results}
+\centering
+\begin{tabular}{l|r|r|r|r} \hline\hline 
+Mesh             &  Coordinate           & Metis 5.0.2  & Spectral & Inertial  \\ \hline
+mesh1e1          &   18                   &             &          &           \\             
+mesh2e1          &   37                   &             &          &           \\ 
+netz4504\_dual   &                        &             &          &           \\ 
+stufe            &                        &             &          &           \\ 
+\hline \hline
+\end{tabular}
+\label{table:bisection}
+\end{table}
+
+\end{itemize}
