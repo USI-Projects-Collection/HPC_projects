@@ -70,14 +70,61 @@ for c = 1:nc
     coords = params.coords;
     % 2. Recursive routines
     % i. Spectral    
+    [map_spec_8, sep_spec_8] = rec_bisection('bisection_spectral', nlevels_a, W, coords, 0);
+    [map_spec_16, sep_spec_16] = rec_bisection('bisection_spectral', nlevels_b, W, coords, 0);
     % ii. Metis
+    [map_metis_8, sep_metis_8] = rec_bisection('bisection_metis', nlevels_a, W, coords, 0);
+    [map_metis_16, sep_metis_16] = rec_bisection('bisection_metis', nlevels_b, W, coords, 0);
     % iii. Coordinate    
+    [map_coord_8, sep_coord_8] = rec_bisection('bisection_coordinate', nlevels_a, W, coords, 0);
+    [map_coord_16, sep_coord_16] = rec_bisection('bisection_coordinate', nlevels_b, W, coords, 0);
     % iv. Inertial
+    [map_inertial_8, sep_inertial_8] = rec_bisection('bisection_inertial', nlevels_a, W, coords, 0);
+    [map_inertial_16, sep_inertial_16] = rec_bisection('bisection_inertial', nlevels_b, W, coords, 0);
+
     % 3. Calculate number of cut edges
+    run_spec_8 = size(sep_spec_8, 1);
+    run_spec_16 = size(sep_spec_16, 1);
+    run_metis_8 = size(sep_metis_8, 1);
+    run_metis_16 = size(sep_metis_16, 1);
+    run_coord_8 = size(sep_coord_8, 1);
+    run_coord_16 = size(sep_coord_16, 1);
+    run_inertial_8 = size(sep_inertial_8, 1);
+    run_inertial_16 = size(sep_inertial_16, 1);
+
     % 4. Visualize the partitioning result
+    if strcmp(cases{c}, 'crack.mat')
+        
+        %  Spectral 
+        figure;
+        gplotmap(W, coords, map_spec_16);
+        title('Spectral Partitioning of crack.mat, 16 parts');
     
+        %  METIS recursive bisection 
+        figure;
+        gplotmap(W, coords, map_metis_16);
+        title('METIS Recursive Partitioning of crack.mat, 16 parts');
     
-    fprintf('%6d %6d %10d %6d %10d %6d %10d %6d\n',0,0,...
-    0,0,0,0,0,0);
+        %  Coordinate bisection 
+        figure;
+        gplotmap(W, coords, map_coord_16);
+        title('Coordinate Partitioning of crack.mat, 16 parts');
+    
+        %  Inertial bisection 
+        figure;
+        gplotmap(W, coords, map_inertial_16);
+        title('Inertial Partitioning of crack.mat, 16 parts');
+    
+    end
+
+    
+    fprintf('%6d %6d %10d %6d %10d %6d %10d %6d\n', ...
+            run_spec_8, run_spec_16, ...
+            run_metis_8, run_metis_16, ...
+            run_coord_8, run_coord_16, ...
+            run_inertial_8, run_inertial_16);
+    
+    % fprintf('%6d %6d %10d %6d %10d %6d %10d %6d\n',0,0,...
+    % 0,0,0,0,0,0);
     
 end

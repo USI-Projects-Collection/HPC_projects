@@ -14,35 +14,54 @@ function [part1,part2] = bisection_inertial(A,xy,picture)
 % bisection_inertial(A,xy,1) also draws a picture.
 
 
-disp(' ');
-disp(' HPC Lab at USI:   ');
-disp(' Implement inertial bisection');
-disp(' ');
+% disp(' ');
+% disp(' HPC Lab at USI:   ');
+% disp(' Implement inertial bisection');
+% disp(' ');
 
 
 % Steps
 % 1. Calculate the center of mass.
+c = mean(xy,1);  % 1x2 vector
+% Shift coordinates: center of mass is at origin
+X = xy - c;
 % 2. Construct the matrix M.
 %  (Consult the pdf of the assignment for the creation of M) 
+ M = X'*X;   %(2x2 inertia matrix)
 % 3. Calculate the smallest eigenvector of M.  
+[V, D] = eig(M);
+[~, idx] = min(diag(D));
+v = V(:,idx);                 % 2x1 eigenvector
 % 4. Find the line L on which the center of mass lies.
+% The line is normal to the eigenvector v and passes through the center of mass.
+% normal vector 'v' == smallest eigenvector of M, already computed.
+% all points 'p' on the line dot(p - c, v) = 0.
+
 % 5. Partition the points around the line L.
 %   (you may use the function partition.m)
-
-
-% <<<< Dummy implementation to generate a partitioning
-n   = size(A,1);
-map = zeros(n,1);
-map(1:round((n/2)))     = 0; 
-map((round((n/2))+1):n) = 1;
-
-
-[part1,part2] = other(map);
+% "partition" uses the normal vector 'v' vec to determine which 
+% side of L each point in 'xy' is.
+[part1, part2] = partition(xy, v);
 
 if picture == 1
     gplotpart(A,xy,part1);
-    title('Inertial bisection (dummy) using the Fiedler Eigenvector');
+    title('Inertial bisection');
 end
+
+
+% <<<< Dummy implementation to generate a partitioning
+% n   = size(A,1);
+% map = zeros(n,1);
+% map(1:round((n/2)))     = 0; 
+% map((round((n/2))+1):n) = 1;
+
+
+% [part1,part2] = other(map);
+
+% if picture == 1
+%     gplotpart(A,xy,part1);
+%     title('Inertial bisection (dummy) using the Fiedler Eigenvector');
+% end
 
 % Dummy implementation to generate a partitioning >>>>
 
