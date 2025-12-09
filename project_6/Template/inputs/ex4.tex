@@ -1,7 +1,7 @@
 % Ex 4
 
 
-\section{Task: Recursively bisecting meshes [15 points]}
+\subsection{Task: Recursively bisecting meshes [15 points]}
 
 The recursive bisecion algorithm is implemented in the file \texttt{rec\_bisection.m} of the toolbox. Utilize this function within the script \texttt{Bench\_rec\_bisection.m} to recursively bisect the finite element meshes loaded within the script in 8 and 16 subgraphs. Use your inertial and spectral partitioning implementations, as well as the coordinate partitioning and the METIS bisection routine. Summarize your results in~\ref{table:Rec_bisection}. Finally, visualize the results for $p= 16$ for the case "crack".
 
@@ -17,20 +17,4 @@ The recursive bisecion algorithm is implemented in the file \texttt{rec\_bisecti
  crack           &                       &                 &            &           \\ \hline \hline
 \end{tabular}
 \label{table:Rec_bisection}
-\end{table}
-
-
-\section{Task: Comparing recursive bisection to direct $k$-way partitioning [10 points]}
-
-Use the incomplete \texttt{Bench\_metis.m} for your implementation. Compare the cut obtained from Metis 5.0.2 after applying recursive bisection and direct multiway partitioning for the graphs in question. Consult the Metis manual, and type \texttt{help metismex} in your MATLAB command line to familiarize yourself with the way the Metis recursive and direct multiway partitioning functionalities should be invoked. Summarize your results in Table~\ref{table:Compare_Metis} for 16 and 32 partitions. Comment on your results. Was this behavior anticipated? Visualize the partitioning results for both graphs for 32 partitions.
-
-\begin{table}[h]
-\caption{Comparing the number of cut edges for recursive bisection and direct multiway partitioning in Metis 5.0.2.}
-\centering
-\begin{tabular}{l|r|r|r|r|r|r|r|r} \hline\hline 
-Partitions       &   Luxemburg           & usroads-48 &  Greece &  Switzerland &  Vietnam  &  Norway &  Russia  \\ \hline
- 16              &                       &            &         &              &           &         &          \\             
- 32              &                       &            &         &              &           &         &          \\ \hline \hline
-\end{tabular}              
-\label{table:Compare_Metis}
 \end{table}

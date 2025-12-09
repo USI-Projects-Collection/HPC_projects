@@ -29,141 +29,128 @@
 % %   ii.  The second eigenvector projected on the coordinate system space of graphs.
 % %   iii. The spectral bi-partitioning results using the spectral coordinates of each graph.
 
+
 clc; clear; close all;
 
-% add necessary paths
 try
     run('addpaths_GP.m');
 catch
-    warning('addpaths_GP.m non trovato. Esegui dalla cartella Source.');
+    warning('addpaths_GP.m non trovato.');
 end
 
 % Directory dataset
 mesh_dir = '../Datasets/2d_meshes/';
 
-%% ---------------------------------------------------------
-%% 1. Analisi Autovettori su 'airfoil1' (Task 2.6.1)
-%% ---------------------------------------------------------
-fprintf('--- PART 1: Analisi Autovettori airfoil1 ---\n');
+% Creazione cartella per salvare i risultati
+output_dir = 'Risultati_Task2_6';
+if ~exist(output_dir, 'dir')
+    mkdir(output_dir);
+end
 
-% Caricamento dati
+%% --- PUNTO 1: Analisi Autovettori su 'airfoil1' ---
+fprintf('--- Elaborazione airfoil1 (Eigenvectors) ---\n');
+
 data = load([mesh_dir 'airfoil1.mat']);
-A = data.Problem.A;
-xy = data.Problem.aux.coord;
+if isfield(data, 'Problem'), A = data.Problem.A; else, A = data.A; end
 
-% Calcolo primi 2 autovettori (v1, v2)
-% v1 corrisponde a lambda ~ 0
 [L, vals, V] = compute_laplacian_eigs(A, 2);
 v1 = V(:,1); 
 v2 = V(:,2); 
 
-% Plot richiesto dal punto 1
-figure('Name', 'Task 2.6.1 - Airfoil Eigenvectors');
+f1 = figure('Name', 'Airfoil Eigenvectors', 'Visible', 'on'); % 'off' per non vederle apparire
 subplot(2,1,1);
 plot(v1, 'LineWidth', 1.5);
 title(['1° Autovettore (v_1). \lambda_1 \approx ' num2str(vals(1), '%.2e')]);
-ylabel('Valore'); xlabel('Indice Nodo'); grid on;
+grid on; axis tight;
 
 subplot(2,1,2);
 plot(v2, 'LineWidth', 1.5);
-title(['2° Autovettore (v_2 Fiedler). \lambda_2 \approx ' num2str(vals(2), '%.4f')]);
-ylabel('Valore'); xlabel('Indice Nodo'); grid on;
+title(['2° Autovettore (Fiedler). \lambda_2 \approx ' num2str(vals(2), '%.4f')]);
+grid on; axis tight;
+
+% Salva e chiudi
+saveas(f1, fullfile(output_dir, '1_Airfoil_Eigenvectors.png'));
+fprintf(' -> Salvato 1_Airfoil_Eigenvectors.png\n');
+% close(f1); % Decommenta se vuoi chiuderla subito
 
 
-%% ---------------------------------------------------------
-%% 2. & 3. Proiezioni 3D e Spectral Drawing (Task 2.6.2 & 2.6.3)
-%% ---------------------------------------------------------
-% Lista grafi richiesti: mesh3e1, barth4, 3elt, crack
+%% --- PUNTO 2 & 3: Proiezioni e Spectral Drawing ---
 graphs_list = {'mesh3e1', 'barth4', '3elt', 'crack'};
 
-fprintf('\n--- PART 2 & 3: Visualizzazione Grafi ---\n');
+fprintf('\n--- Elaborazione Grafi (3D e Spectral) ---\n');
 
 for i = 1:length(graphs_list)
     gname = graphs_list{i};
-    fprintf('Elaborazione: %s...\n', gname);
+    fprintf('Grafo: %s...\n', gname);
     
-    % Caricamento robusto
+    % Caricamento
     try
         data = load([mesh_dir gname '.mat']);
         if isfield(data, 'Problem')
             A = data.Problem.A;
-            % Alcuni file hanno coords in Problem.aux.coord, altri in xy o coords
-            if isfield(data.Problem, 'aux'), xy_spatial = data.Problem.aux.coord;
-            else, xy_spatial = data.xy; end
+            if isfield(data.Problem, 'aux'), xy = data.Problem.aux.coord; else, xy = data.xy; end
         else
-            A = data.A;
-            xy_spatial = data.coords; 
+            A = data.A; xy = data.coords;
         end
     catch
-        warning(['File non trovato: ' gname]); continue;
+        warning(['Saltato ' gname]); continue;
     end
     
-    % Calcolo primi 3 autovettori (v1, v2, v3)
-    % Ci serve v3 per lo Spectral Drawing (Punto 3)
+    % Calcolo Autovettori (v2, v3)
     [L, vals, V] = compute_laplacian_eigs(A, 3);
     v2 = V(:,2);
     v3 = V(:,3);
     
-    % Calcolo partizione spettrale (per colorare i due gruppi)
+    % Calcolo partizione (per i colori)
     threshold = median(v2);
     part1 = find(v2 < threshold);
     
-    % --- CREAZIONE FIGURA COMBINATA ---
-    figure('Name', ['Task 2.6 - ' gname], 'Position', [50, 50, 1200, 500]);
-    
-    % [SINISTRA] Punto 2: Proiezione Fiedler su Coordinate Spaziali (3D)
-    subplot(1, 2, 1);
-    % Usiamo scatter3: X,Y fisiche, Z = v2. Colore = v2
-    scatter3(xy_spatial(:,1), xy_spatial(:,2), v2, 12, v2, 'filled');
+    % --- FIGURA A: Proiezione 3D (Coordinate Fisiche + Colore Fiedler) ---
+    fA = figure('Name', [gname ' Physical'], 'Visible', 'on');
+    scatter3(xy(:,1), xy(:,2), v2, 12, v2, 'filled');
     colormap('jet'); colorbar;
-    title(['Fiedler Vector (v_2) su Coordinate Fisiche: ' gname]);
-    xlabel('x'); ylabel('y'); zlabel('v_2 value');
+    title(['Physical Coords + Fiedler (Z): ' gname]);
     view(-30, 30); axis equal;
+    saveas(fA, fullfile(output_dir, [gname '_Physical_3D.png']));
+    fprintf(' -> Salvato %s_Physical_3D.png\n', gname);
+    % close(fA); 
     
-    % [DESTRA] Punto 3: Spectral Drawing (x=v2, y=v3)
-    subplot(1, 2, 2);
+    % --- FIGURA B: Spectral Drawing (Coordinate v2, v3) ---
+    fB = figure('Name', [gname ' Spectral'], 'Visible', 'on');
     xy_spectral = [v2, v3];
     
-    % Usiamo gplotpart per visualizzare il taglio nel dominio spettrale
+    % !! Attenzione: cancella la figura corrente, quindi deve stare da sola
     try
         gplotpart(A, xy_spectral, part1);
-        title(['Spectral Layout (x=v_2, y=v_3): ' gname]);
-        xlabel('v_2'); ylabel('v_3');
+        title(['Spectral Layout (v_2, v_3): ' gname]);
         axis tight;
+        saveas(fB, fullfile(output_dir, [gname '_Spectral.png']));
+        fprintf(' -> Salvato %s_Spectral.png\n', gname);
     catch
-        % Fallback se gplotpart fallisce
-        scatter(v2, v3, 10, 'k', 'filled');
+        warning('Errore gplotpart');
     end
+    % close(fB);
 end
 
-fprintf('\nCalcolo completato. Figure generate.\n');
 
-
-%% --- FUNZIONE LOCALE PER IL CALCOLO (Da copiare in fondo al file) ---
+%% --- FUNZIONE CALCOLO ---
 function [L, vals, V] = compute_laplacian_eigs(A, k)
     n = size(A,1);
-    
-    % 1. Construct Graph Laplacian
     degrees = sum(A, 2);
     D = spdiags(degrees, 0, n, n);
     L = D - A;
-    L = (L + L') / 2; % Assicura simmetria numerica
+    L = (L + L') / 2; 
     
-    % 2. Compute Eigenvectors (Smallest Magnitude)
-    % Usiamo 'sm' (Smallest Magnitude) con un sigma piccolo o 0
     opts.issym = 1; 
     opts.isreal = 1;
-    opts.tol = 1e-6;
+    opts.tol = 1e-5; % Tolleranza un po' più lasca per velocità
     
-    % Calcoliamo k autovettori
     try
         [V, D_val] = eigs(L, k, 'sm', opts);
     catch
-        % Fallback per matrici piccole o problematiche
         [V, D_val] = eigs(L, k, 0, opts);
     end
     
-    % Ordina per autovalori crescenti (lambda1, lambda2...)
     vals = diag(D_val);
     [vals, idx] = sort(vals);
     V = V(:, idx);

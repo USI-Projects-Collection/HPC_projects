@@ -1,0 +1,57 @@
+% Ex 6
+
+\subsection{Task: Utilizing graph eigenvectors [25 points]}
+
+In this section, we analyze the spectral properties of the graph Laplacian matrix $L$ and their application to graph drawing and partitioning.
+
+We computed the first two eigenvectors ($v_1, v_2$) associated with the smallest eigenvalues of the Laplacian for the \texttt{airfoil1} graph. The results are shown in Figure~\ref{fig:airfoil_eig}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../Part_Toolbox/Source/Risultati_Task2_6/1_Airfoil_Eigenvectors.png}
+    \caption{First and Second Eigenvectors of the \texttt{airfoil1} graph Laplacian.}
+    \label{fig:airfoil_eig}
+\end{figure}
+
+\textbf{Comment on visual results:} 
+This behavior is fully expected. 
+\begin{itemize}
+    \item The first eigenvector $v_1$ (top plot) corresponds to the eigenvalue $\lambda_1 \approx 0$ (computed as $3.14e^{-16}$). Since the graph is connected, the multiplicity of the zero eigenvalue is 1, and the associated eigenvector is constant ($v_1 = c \cdot \mathbf{1}$).
+    \item The second eigenvector $v_2$ (bottom plot) is the \textit{Fiedler Vector}. It is orthogonal to $v_1$ and its values vary smoothly across the graph indices, crossing zero. This variation provides the heuristic for spectral bisection: nodes with $v_2 < 0$ belong to one partition, and nodes with $v_2 \ge 0$ to the other.
+\end{itemize}
+
+\subsection{Fiedler Vector Projection (Physical Space)}
+We visualized the values of the Fiedler vector ($v_2$) by projecting them onto the physical coordinate system of four different meshes. The value of $v_2$ is represented by both the Z-axis height and the color map.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\linewidth]{../Part_Toolbox/Source/Risultati_Task2_6/mesh3e1_Physical_3D.png}
+        \caption{mesh3e1}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\linewidth]{../Part_Toolbox/Source/Risultati_Task2_6/crack_Physical_3D.png}
+        \caption{crack}
+    \end{subfigure}
+    \caption{Projection of the Fiedler vector ($v_2$) values onto the physical coordinates of the meshes. The color gradient shows how the spectral value varies smoothly across the geometry, identifying the optimal cut.}
+    \label{fig:physical_3d}
+\end{figure}
+
+\subsection{Spectral Graph Drawing}
+Finally, we performed spectral graph drawing by utilizing the second ($v_2$) and third ($v_3$) eigenvectors as Cartesian coordinates ($x, y$) for the nodes. The results for \texttt{3elt} and \texttt{barth4} are shown below.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\linewidth]{../Part_Toolbox/Source/Risultati_Task2_6/3elt_Spectral.png}
+        \caption{3elt Spectral Layout}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\linewidth]{../Part_Toolbox/Source/Risultati_Task2_6/barth4_Spectral.png}
+        \caption{barth4 Spectral Layout}
+    \end{subfigure}
+    \caption{Spectral Graph Drawing using coordinates $(v_2, v_3)$. The colors (Cyan/Yellow) represent the bisection cut. In this spectral space, nodes are clustered by connectivity rather than physical distance, making the partition boundary appear as a clear line.}
+    \label{fig:spectral_drawing}
+\end{figure}
+
+The spectral layout reveals the intrinsic topology of the graphs. Nodes that are highly connected are placed close together in this space, "unfolding" the graph such that the bisection cut appears geometrically simple.
