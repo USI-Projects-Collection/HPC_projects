@@ -20,7 +20,7 @@ This behavior is fully expected.
     \item The second eigenvector $v_2$ (bottom plot) is the \textit{Fiedler Vector}. It is orthogonal to $v_1$ and its values vary smoothly across the graph indices, crossing zero. This variation provides the heuristic for spectral bisection: nodes with $v_2 < 0$ belong to one partition, and nodes with $v_2 \ge 0$ to the other.
 \end{itemize}
 
-\subsection{Fiedler Vector Projection (Physical Space)}
+\subsubsection*{Fiedler Vector Projection (Physical Space)}
 We visualized the values of the Fiedler vector ($v_2$) by projecting them onto the physical coordinate system of four different meshes. The value of $v_2$ is represented by both the Z-axis height and the color map.
 
 \begin{figure}[H]
@@ -37,7 +37,7 @@ We visualized the values of the Fiedler vector ($v_2$) by projecting them onto t
     \label{fig:physical_3d}
 \end{figure}
 
-\subsection{Spectral Graph Drawing}
+\subsubsection*{Spectral Graph Drawing}
 Finally, we performed spectral graph drawing by utilizing the second ($v_2$) and third ($v_3$) eigenvectors as Cartesian coordinates ($x, y$) for the nodes. The results for \texttt{3elt} and \texttt{barth4} are shown below.
 
 \begin{figure}[H]
