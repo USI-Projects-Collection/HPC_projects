@@ -1,16 +1,40 @@
-% Ex 5
+% Ex 2.5
 
 \subsection{Task: Comparing recursive bisection to direct $k$-way partitioning [10 points]}
 
-Use the incomplete \texttt{Bench\_metis.m} for your implementation. Compare the cut obtained from Metis 5.0.2 after applying recursive bisection and direct multiway partitioning for the graphs in question. Consult the Metis manual, and type \texttt{help metismex} in your MATLAB command line to familiarize yourself with the way the Metis recursive and direct multiway partitioning functionalities should be invoked. Summarize your results in Table~\ref{table:Compare_Metis} for 16 and 32 partitions. Comment on your results. Was this behavior anticipated? Visualize the partitioning results for both graphs for 32 partitions.
+Script \texttt{Bench\_metis.m} is used to compare two Metis strategies for obtaining a $k$-way partition: recursive bisection and direct multiway partitioning.  
+We apply both methods to the chosen graphs for $k = 16$ and $k = 32$.
+The recursive strategy involves splitting the graph into two subgraphs repeatedly, while the direct method calculates the entire $k$-way partition using Metis’ multilevel refinement process.
+The goal is to evaluate how the two methods differ in terms of edge-cut and determine whether the observed behavior aligns with expectations based on the underlying algorithmic design.  
+The resulting cut values are reported in Table~\ref{table:metis_comparison}.
 
 \begin{table}[h]
-\caption{Comparing the number of cut edges for recursive bisection and direct multiway partitioning in Metis 5.0.2.}
-\centering
-\begin{tabular}{l|r|r|r|r|r|r|r|r} \hline\hline 
-Partitions       &   Luxemburg           & usroads-48 &  Greece &  Switzerland &  Vietnam  &  Norway &  Russia  \\ \hline
- 16              &                       &            &         &              &           &         &          \\             
- 32              &                       &            &         &              &           &         &          \\ \hline \hline
-\end{tabular}              
-\label{table:Compare_Metis}
+    \centering
+    \caption{Comparing the number of cut edges for recursive bisection and direct multiway partitioning in Metis 5.0.2.}
+    \vspace{0.2cm}
+    \begin{tabular}{l|cc|cc} 
+    \hline\hline
+    K- time & \multicolumn{2}{c|}{k = 16} & \multicolumn{2}{c}{k = 32} \\
+    \hline
+    Country & Rec & Kway & Rec & Kway \\
+    \hline
+    Luxemburg       & 191 & 185 & 317 & 304 \\
+    US (usroads-48) & 585 & 545 & 983 & 921 \\
+    Greece          & 318 & 301 & 500 & 486 \\
+    Switzerland     & 318 & 301 & 500 & 486 \\
+    Vietnam         & 270 & 231 & 445 & 418 \\
+    Norway          & 271 & 241 & 509 & 436 \\
+    Russia          & 572 & 551 & 941 & 931 \\
+    \hline\hline
+    \end{tabular}
+    \label{table:metis_comparison}
 \end{table}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.24\textwidth]{../Part_Toolbox/image/ex2_task5/LU_road.png}
+    \includegraphics[width=0.35\textwidth]{../Part_Toolbox/image/ex2_task5/RU_road.png}
+    \includegraphics[width=0.35\textwidth]{../Part_Toolbox/image/ex2_task5/US_road.png}
+    \caption{Metis recursive vs.\ direct $k$-way visualizations for $k=32$.}
+    \label{fig:metis_k32_placeholders}
+\end{figure}

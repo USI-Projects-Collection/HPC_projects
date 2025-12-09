@@ -1,31 +1,36 @@
 % Ex 3
-
+\newpage
 \subsection{Task: Implement various graph partitioning algorithms [25 points]}
 
+Script \texttt{Bench\_bisection.m} runs a series of benchmark tests and visualizations on different toy meshes. Most of the intermediate displays are meant for later use, so I won't go into detail about them here. If you take a look at the script, you'll see how each mesh is loaded and processed, which helps make sure that all the meshes included in the assignment show up in the final table.
 
-\begin{itemize}
+The spectral bisection method was implemented in \texttt{bisection\_spectral.m}.
+This method is based on the graph Laplacian, as outlined in the theoretical framework, so it uses a symmetric adjacency matrix.
+The relevant partitioning information is extracted from the Fiedler eigenvector, obtained by computing the two smallest eigenvalues via \texttt{eigs} with the option \texttt{'smallestreal'} to improve numerical robustness.
 
-\item Run in Matlab the script \texttt{Bench\_bisection.m} and familiarize yourself with the Matlab codes in the directory \texttt{Part\_Toolbox}. An overview of all functions and scripts is offered in \texttt{Contents.m}. 
+The inertial bisection routine was completed in \texttt{bisection\_inertial.m}.
+In this method, the dividing line is set up to go through the center of mass of the coordinates. The direction of this line is guided by the eigenvector linked to the smallest eigenvalue of the inertia matrix, helping to achieve a well balanced geometric partition.
 
-\item Implement \textbf{spectral graph bisection} based on the entries of the Fiedler eigenvector. Use the incomplete Matlab file \texttt{bisection\_spectral.m} for your solution.
-
-\item Implement \textbf{inertial graph bisection}. For a graph with 2D coordinates, this inertial bisection constructs a line such that half the nodes are on one side of the line, and half are on the other.
-Use the incomplete Matlab file \texttt{bisection\_inertial.m} for your solution.
- 
-\item Report the bisection edgecut for all toy meshes that are either generated or loaded in the script \\ "Bench\_bisection.m." Use Table~\ref{table:bisection} to report these results.
-
-\begin{table}[h]
-\caption{Bisection results}
-\centering
-\begin{tabular}{l|r|r|r|r} \hline\hline 
-Mesh             &  Coordinate           & Metis 5.0.2  & Spectral & Inertial  \\ \hline
-mesh1e1          &   18                   &             &          &           \\             
-mesh2e1          &   37                   &             &          &           \\ 
-netz4504\_dual   &                        &             &          &           \\ 
-stufe            &                        &             &          &           \\ 
-\hline \hline
-\end{tabular}
-\label{table:bisection}
+\begin{table}[H]
+    \centering
+    \caption{Bisection results}
+    \label{tab:bisection_results}
+    \vspace{0.2cm}
+    \begin{tabular}{lcccc}
+        \hline
+        \textbf{Mesh} & \textbf{Coordinate} & \textbf{Metis 5.0.2} & \textbf{Spectral} & \textbf{Inertial} \\
+        \hline
+        mesh1e1       & 18  & 18  & 18  & 19  \\
+        mesh2e1       & 37  & 34  & 35  & 37  \\
+        mesh3e1       & 19  & 20  & 22  & 19  \\
+        mesh3em5      & 19  & 20  & 142 & 19  \\
+        airfoil1      & 94  & 93  & 132 & 124 \\
+        netz4504\_dual& 25  & 19  & 23  & 39  \\
+        stufe         & 16  & 17  & 16  & 40  \\
+        3elt          & 172 & 96  & 117 & 182 \\
+        barth4        & 206 & 111 & 127 & 253 \\
+        ukerbe1       & 32  & 36  & 28  & 88  \\
+        crack         & 353 & 220 & 233 & 323 \\
+        \hline
+    \end{tabular}
 \end{table}
-
-\end{itemize}

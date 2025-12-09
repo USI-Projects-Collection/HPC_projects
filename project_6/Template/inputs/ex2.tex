@@ -1,20 +1,30 @@
 % Ex 2
 
-\subsection{Task:  Construct adjacency matrices
-from connectivity data [10 points]}
+\subsection{Task:  Construct adjacency matrices from connectivity data [10 points]}
 
+We used the script \texttt{Source/read\_csv\_graphs.m} to handle the raw connectivity data that was given in CSV format. This dataset contains road networks from various countries, where the nodes represent intersections and the edges signify road segments.
 
-Run the Matlab script
-\texttt{src/read\_csv\_graphs.m} and complete
-the
-missing sections of the code. Your goal is to
-\begin{itemize}
-    \item read the .csv files in MATLAB,
-    \item construct the adjacency matrix
-    $\mathbf{W} \in R^{n\times n}$ and
-    the node coordinate list $C \in
-    R^{n\times 2}$, where $n$ is the number of nodes, and 
-    \item visualize the graphs using the
-    function
-    \texttt{src/Visualization/gplotg.m}
-\end{itemize}
+The procedure consisted of parsing the coordinate files provided to build the list $C \in \mathbb{R}^{n \times 2}$ and the adjacency files to construct the sparse matrix $\mathbf{W} \in \mathbb{R}^{n \times n}$. A crucial part of this construction was making sure the adjacency matrix was symmetric, which is necessary for the spectral partitioning algorithms we would be using later on. In the source code, we achieved this symmetry by applying the following transformation:
+\begin{equation}
+    \mathbf{W} = \frac{\mathbf{W} + \mathbf{W}^T}{2}
+\end{equation}
+This step fixes any directional issues in the raw data, ensuring that the graph is treated as undirected.
+
+We saved the processed sparse matrices and coordinates into binary .mat files for quicker loading in the next tasks. Then, we visualized the road networks for Vietnam and Norway using the plotting tools provided. The visualizations of these networks are displayed in Figure~\ref{fig:maps_no_vn}.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.3\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../Part_Toolbox/image/ex2/VN_map.png}
+        \caption{Vietnam road network}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{../Part_Toolbox/image/ex2/NO_map.png}
+        \caption{Norway road network}
+    \end{subfigure}
+    \caption{Visual representation of the constructed graphs for Vietnam and Norway. The nodes are plotted according to their geographical coordinates.}
+    \label{fig:maps_no_vn}
+\end{figure}

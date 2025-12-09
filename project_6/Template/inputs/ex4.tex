@@ -1,20 +1,26 @@
-% Ex 4
+% Ex 2.4
 
 
 \subsection{Task: Recursively bisecting meshes [15 points]}
 
-The recursive bisecion algorithm is implemented in the file \texttt{rec\_bisection.m} of the toolbox. Utilize this function within the script \texttt{Bench\_rec\_bisection.m} to recursively bisect the finite element meshes loaded within the script in 8 and 16 subgraphs. Use your inertial and spectral partitioning implementations, as well as the coordinate partitioning and the METIS bisection routine. Summarize your results in~\ref{table:Rec_bisection}. Finally, visualize the results for $p= 16$ for the case "crack".
+The recursive bisection algorithm is implemented in \texttt{rec\_bisection.m}.  
+Using the script \texttt{Bench\_rec\_bisection.m}, each mesh is recursively partitioned into 8 and 16 subgraphs.  
+At each level of recursion, the chosen bisection method comes into play, helping us see how different strategies like spectral, Metis, coordinate-based, and inertial affect the overall edge-cut during the hierarchical breakdown. You can find a summary of the edge-cut values for all scenarios in Table~\ref{table:Rec_bisection}.  
+The visual inspection requested for the case \emph{crack} with \(p = 16\) is also performed within the same script.
 
 \begin{table}[h]
 \caption{Edge-cut results for recursive bi-partitioning.}
 \centering
-\begin{tabular}{l|r|r|r|r|r} \hline\hline 
- Case            &  Spectral             &  Metis 5.0.2    & Coordinate & Inertial  \\ \hline
- mesh3e1         &                       &                 &            &           \\             
- airfoil1        &                       &                 &            &           \\ 
- 3elt            &                       &                 &            &           \\ 
- barth4          &                       &                 &            &           \\ 
- crack           &                       &                 &            &           \\ \hline \hline
+\begin{tabular}{l|rr|rr|rr|rr} \hline\hline
+\multirow{2}{*}{Graph} & \multicolumn{2}{c|}{Spectral} & \multicolumn{2}{c|}{Metis 5.0.2} & \multicolumn{2}{c|}{Coordinate} & \multicolumn{2}{c}{Inertial} \\ 
+ & 8 & 16 & 8 & 16 & 8 & 16 & 8 & 16 \\ \hline
+airfoil1        & 397 & 631 & 318 & 561 & 516 & 819 & 1276 & 2531 \\
+netz4504\_dual  & 111 & 185 & 96  & 159 & 127 & 198 & 237  & 483  \\
+stufe           & 128 & 243 & 108 & 193 & 123 & 227 & 265  & 495  \\
+3elt            & 469 & 752 & 418 & 699 & 733 & 1168 & 881 & 1608 \\
+barth4          & 549 & 835 & 470 & 743 & 875 & 1306 & 1299 & 2353 \\
+ukerbe1         & 126 & 236 & 147 & 245 & 225 & 374 & 435 & 785 \\
+crack           & 883 & 1419 & 808 & 1275 & 1343 & 1860 & 1706 & 3447 \\ \hline\hline
 \end{tabular}
 \label{table:Rec_bisection}
 \end{table}
