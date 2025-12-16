@@ -49,7 +49,7 @@ print("Saved: test_perf/benchmark_loglog.png")
 # ============================================================================
 
 processes = np.array([1, 2, 4, 8, 16])
-solve_times = np.array([18.470274, 9.900865, 5.335374, 3.474227, 1.819943])
+solve_times = np.array([18.631, 9.847, 5.417, 3.481, 1.809])  # KSPSolve times from logs
 
 speedup = solve_times[0] / solve_times
 efficiency = speedup / processes * 100
