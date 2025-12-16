@@ -57,7 +57,7 @@
 
 \subsection{Boundary problem above in Python [25 points]}
 
-We implemented a 2D Poisson solver for the boundary value problem:
+I implemented a 2D Poisson solver for the boundary value problem:
 \[
 -\Delta u = f \quad \text{in } \Omega = [0,1]^2
 \]
@@ -75,7 +75,7 @@ The matrix $A$ is a block tridiagonal matrix of size $n^2 \times n^2$ with the s
 
 \subsection{Boundary problem above in PETSc [25 points]}
 
-We reimplemented the same problem using PETSc for parallel scalability.
+I reimplemented the same problem using PETSc for parallel scalability.
 
 \textbf{Approach:}
 \begin{itemize}
@@ -88,9 +88,10 @@ We reimplemented the same problem using PETSc for parallel scalability.
 
 The PETSc implementation enables scaling to multiple processors while maintaining the same numerical discretization as the Python reference.
 
+\newpage
 \subsection{Validate and Visualize [10 points]}
 
-We validated both implementations by cross-comparing the numerical solutions from Python (SciPy) and PETSc solvers. Since the source term $f(x,y) = 20$ is constant, there is no closed-form analytical solution, so validation is performed by ensuring both implementations produce identical results.
+I checked both implementations by comparing the numerical results from the Python (SciPy) and PETSc solvers. Since the source term $f(x,y) = 20$ is constant, there isn't a closed-form analytical solution. So, I validated the accuracy by making sure both approaches gave the same results.
 
 \subsubsection*{Visualization}
 
@@ -167,9 +168,10 @@ Table~\ref{tab:validation} summarizes the solution norms and solver times for a 
 
 All Python solvers produce identical $L_2$ norms (57.5457), confirming consistency among the different solution methods. The PETSc solver reports a different norm (51.7557) due to differences in how the grid points are counted: PETSc uses DMDA which includes boundary points in the discretization, while Python solves only for interior points. Both solutions are mathematically equivalent when accounting for this grid interpretation.
 
+\newpage
 \subsection{Performance Benchmark [15 points]}
 
-We benchmarked the solvers across different grid sizes to evaluate their scalability. Table~\ref{tab:perf} shows the solve times for each method.
+I benchmarked the solvers across different grid sizes to evaluate their scalability. Table~\ref{tab:perf} shows the solve times for each method.
 
 \begin{table}[H]
     \centering
@@ -207,7 +209,7 @@ We benchmarked the solvers across different grid sizes to evaluate their scalabi
                      
 \subsection{Strong Scaling [10 points]}
 
-We performed a strong scaling study using the PETSc solver with CG method on a fixed problem size of $1024 \times 1024$ grid points, varying the number of MPI processes from 1 to 16.
+The strong scaling study used the PETSc solver with CG method on a fixed problem size of $1024 \times 1024$ grid points, varying the number of MPI processes from 1 to 16.
 
 \begin{table}[H]
     \centering
@@ -226,24 +228,12 @@ We performed a strong scaling study using the PETSc solver with CG method on a f
     \end{tabular}
 \end{table}
 
-\textbf{Observations:}
-\begin{itemize}
-    \item The solver achieves a speedup of $10.15\times$ with 16 processes, corresponding to 63.4\% parallel efficiency.
-    \item Efficiency remains above 85\% up to 4 processes, then decreases due to communication overhead.
-    \item The sub-linear scaling is expected for iterative solvers due to:
-    \begin{itemize}
-        \item Global reductions in dot products and norms (VecNorm, VecTDot)
-        \item Increased number of CG iterations with domain decomposition
-        \item Communication overhead in matrix-vector products (VecScatter)
-    \end{itemize}
-\end{itemize}
-
 The strong scaling behavior demonstrates that PETSc provides reasonable parallel efficiency for this problem size, making it suitable for large-scale simulations where single-processor execution time is prohibitive.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.95\textwidth]{../src/poisson/test_scale/scaling_loglog.png}
-    \caption{Strong scaling results: (left) Speedup vs. number of processes on log-log scale, (right) Parallel efficiency vs. number of processes.}
+    \caption{Strong scaling results}
     \label{fig:scaling}
 \end{figure}
 
