@@ -1,14 +1,4 @@
 #!/bin/bash
-#SBATCH --job-name=poisson_val
-#SBATCH --nodes=1
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=1
-#SBATCH --time=00:10:00
-#SBATCH --output=val_%j.out
-#SBATCH --error=val_%j.err
-
-# Load modules
-module load gcc openmpi petsc python numpy
 
 # This script tests if the code runs correctly. The norm of the solution must be the same!
 
