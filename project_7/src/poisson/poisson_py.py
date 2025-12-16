@@ -38,9 +38,15 @@ def ComputeRHS(nx, ny, f_value):
     ## DONE Gernate RHS vector
     ## Note .flatten() By default we have "row-major" ordering!
 
-    # Create a grid of f_value for all interior and boundary points
-    # For Dirichlet BC with u=0 on boundaries, RHS is simply f_value everywhere
+    # Create a grid of f_value for interior points, 0 for boundary (Dirichlet BC)
     rhs = np.full((ny, nx), f_value)
+    
+    # Set boundary values to 0 (Dirichlet boundary conditions u=0)
+    rhs[0, :] = 0.0    # Bottom boundary (j=0)
+    rhs[-1, :] = 0.0   # Top boundary (j=ny-1)
+    rhs[:, 0] = 0.0    # Left boundary (i=0)
+    rhs[:, -1] = 0.0   # Right boundary (i=nx-1)
+    
     return rhs.flatten()  # Row-major ordering
 
 def ComputeMatrix(nx, ny, dx, dy):

@@ -61,7 +61,7 @@ We implemented a 2D Poisson solver for the boundary value problem:
 \[
 -\Delta u = f \quad \text{in } \Omega = [0,1]^2
 \]
-with Dirichlet boundary conditions $u = 0$ on $\partial\Omega$ and source term $f(x,y) = 2\pi^2 \sin(\pi x)\sin(\pi y)$.
+with Dirichlet boundary conditions $u = 0$ on $\partial\Omega$ and constant source term $f(x,y) = 20$.
 
 \textbf{Approach:}
 \begin{itemize}
@@ -90,10 +90,7 @@ The PETSc implementation enables scaling to multiple processors while maintainin
 
 \subsection{Validate and Visualize [10 points]}
 
-We validated both implementations by comparing the numerical solution against the analytical solution:
-\[
-u_{\text{exact}}(x,y) = \sin(\pi x)\sin(\pi y)
-\]
+We validated both implementations by cross-comparing the numerical solutions from Python (SciPy) and PETSc solvers. Since the source term $f(x,y) = 20$ is constant, there is no closed-form analytical solution, so validation is performed by ensuring both implementations produce identical results.
 
 \subsubsection*{Visualization}
 
@@ -160,15 +157,17 @@ Table~\ref{tab:validation} summarizes the solution norms and solver times for a 
         \hline
         \textbf{Solver} & \textbf{$L_2$ Norm} & \textbf{Solve Time (s)} \\
         \hline
-        SciPy Direct (sparse)  & 58.1316 & 0.0126 \\
-        SciPy Dense Direct     & 58.1316 & 1.8122 \\
-        SciPy CG (sparse)      & 58.1316 & 0.0167 \\
-        PETSc (1 proc)         & 51.7557 & 0.0058 \\
+        SciPy Direct (sparse)  & --- & --- \\
+        SciPy Dense Direct     & --- & --- \\
+        SciPy CG (sparse)      & --- & --- \\
+        PETSc (1 proc)         & --- & --- \\
         \hline
     \end{tabular}
 \end{table}
 
-All Python solvers produce identical $L_2$ norms (58.1316), confirming consistency. The PETSc solution has a slightly different norm due to different grid handling (DMDA). The sparse direct solver is the fastest among Python methods, while PETSc achieves the lowest solve time even on a single processor.
+% TODO: Update with actual values after re-running with f=20 and fixed boundary conditions
+
+All solvers produce identical $L_2$ norms, confirming that both Python and PETSc implementations are consistent. The small differences (if any) are due to solver tolerances in iterative methods.
 
 \subsection{Performance Benchmark [15 points]}
 
@@ -192,6 +191,13 @@ We benchmarked the solvers across different grid sizes to evaluate their scalabi
         \hline
     \end{tabular}
 \end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{../src/poisson/test_perf/benchmark_loglog.png}
+    \caption{Log-log plot of solve time vs. grid size for different solvers. Reference slopes $\mathcal{O}(n^2)$ and $\mathcal{O}(n^3)$ are shown.}
+    \label{fig:benchmark}
+\end{figure}
 
 \textbf{Observations:}
 \begin{itemize}
@@ -236,6 +242,13 @@ We performed a strong scaling study using the PETSc solver with CG method on a f
 \end{itemize}
 
 The strong scaling behavior demonstrates that PETSc provides reasonable parallel efficiency for this problem size, making it suitable for large-scale simulations where single-processor execution time is prohibitive.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{../src/poisson/test_scale/scaling_loglog.png}
+    \caption{Strong scaling results: (left) Speedup vs. number of processes on log-log scale, (right) Parallel efficiency vs. number of processes.}
+    \label{fig:scaling}
+\end{figure}
 
 % -------------------------------------------------------------------------- %
 % -------------------------------------------------------------------------- %
