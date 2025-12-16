@@ -68,31 +68,34 @@ def ComputeMatrix(nx, ny, dx, dy):
         for i in range(nx):
             row = j * nx + i  # Current row in the matrix (row-major)
             
-            # Diagonal entry (central point)
-            row_indices.append(row)
-            col_indices.append(row)
-            data.append(cc)
-            
-            # Left neighbor (i-1, j)
-            if i > 0:
+            # Boundary points: Apply Dirichlet BC (u = 0) with identity row
+            if i == 0 or i == nx - 1 or j == 0 or j == ny - 1:
+                row_indices.append(row)
+                col_indices.append(row)
+                data.append(1.0)
+            else:
+                # Interior points: 5-point stencil for Laplacian
+                # Diagonal entry (central point)
+                row_indices.append(row)
+                col_indices.append(row)
+                data.append(cc)
+                
+                # Left neighbor (i-1, j)
                 row_indices.append(row)
                 col_indices.append(row - 1)
                 data.append(-cx)
-            
-            # Right neighbor (i+1, j)
-            if i < nx - 1:
+                
+                # Right neighbor (i+1, j)
                 row_indices.append(row)
                 col_indices.append(row + 1)
                 data.append(-cx)
-            
-            # Bottom neighbor (i, j-1)
-            if j > 0:
+                
+                # Bottom neighbor (i, j-1)
                 row_indices.append(row)
                 col_indices.append(row - nx)
                 data.append(-cy)
-            
-            # Top neighbor (i, j+1)
-            if j < ny - 1:
+                
+                # Top neighbor (i, j+1)
                 row_indices.append(row)
                 col_indices.append(row + nx)
                 data.append(-cy)
