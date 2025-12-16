@@ -16,7 +16,7 @@
 
 
 # Load modules
-module load gcc openmpi petsc python
+module load gcc openmpi petsc python numpy  
 
 LOG_FILE=log.log
 > $LOG_FILE 

@@ -8,7 +8,7 @@
 #SBATCH --error=val_%j.err
 
 # Load modules
-module load gcc openmpi petsc python
+module load gcc openmpi petsc python numpy
 
 # This script tests if the code runs correctly. The norm of the solution must be the same!
 

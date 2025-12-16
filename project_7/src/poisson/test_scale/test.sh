@@ -9,7 +9,7 @@
 #SBATCH --error=scale_%j.err
 
 # Load modules
-module load gcc openmpi petsc
+module load gcc openmpi petsc numpy python
 
 # Strong Scaling for performance of PETSc with "-ksp_type cg"
 
