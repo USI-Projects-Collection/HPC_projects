@@ -1,16 +1,51 @@
 \documentclass[unicode,11pt,a4paper,oneside,numbers=endperiod,openany]{scrartcl}
 
 \usepackage{amsmath}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{csvsimple}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{inconsolata}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\lstdefinestyle{hpcblock}{
+    basicstyle=\ttfamily\footnotesize,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    rulecolor=\color{gray!60},
+    xleftmargin=1.5em,
+    xrightmargin=1.5em,
+    aboveskip=1em,
+    belowskip=1em,
+    showstringspaces=false,
+    columns=fullflexible,
+    keepspaces=true,
+    breaklines=true,
+    postbreak=\mbox{\textcolor{gray}{$\hookrightarrow$}\space}
+}
+\lstset{style=hpcblock}
+
+
+
 \input{assignment.sty}
 \begin{document}
 
 
 \setassignment
 
-\serieheader{High-Performance Computing Lab}{Institute of Computing}{Student: FULL NAME}{Discussed with: FULL NAME}{Solution for Project 7}{}
+\serieheader{High-Performance Computing Lab}{Institute of Computing}{Student: Paolo Deidda}{Discussed with: FULL NAME}{Solution for Project 7}{}
 \newline
 
 \assignmentpolicy
+
+\tableofcontents
+\newpage
 
 % -------------------------------------------------------------------------- %
 % -------------------------------------------------------------------------- %
@@ -35,7 +70,7 @@
 % --- Report Quality ------------------------------------------------------- %
 % -------------------------------------------------------------------------- %
 % -------------------------------------------------------------------------- %
-
+\newpage
 \section{Task: Quality of the Report [15 Points] }
 
 
