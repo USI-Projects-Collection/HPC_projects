@@ -1,5 +1,17 @@
 #!/bin/bash
 
+#SBATCH --job-name=poisson_scale
+#SBATCH --nodes=1
+#SBATCH --ntasks=16
+#SBATCH --cpus-per-task=1
+#SBATCH --time=01:00:00
+#SBATCH --output=scale_%j.out
+#SBATCH --error=scale_%j.err
+#SBATCH --exclusive
+
+# Load modules
+module load gcc openmpi petsc
+
 # Strong Scaling for performance of PETSc with " -ksp_type cg" :
 
 # TODO: Nothing, just run the script.
