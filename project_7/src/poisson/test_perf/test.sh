@@ -1,10 +1,22 @@
 #!/bin/bash
 
+#SBATCH --job-name=poisson_perf
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --time=00:30:00
+#SBATCH --output=perf_%j.out
+#SBATCH --error=perf_%j.err
+
 # Test the runtime performance of:
 # - PETSc: using using CG solve " -ksp_type cg "
 # - sp_dir: Scipy Direct Sparse Solver (uses COLAMD)
 # - dn_dir: Numpy dense solver using LAPACK routine _gesv.
 # - sp_cg: Scipy CG
+
+
+# Load modules
+module load gcc openmpi petsc python
 
 LOG_FILE=log.log
 > $LOG_FILE 

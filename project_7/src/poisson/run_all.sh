@@ -1,12 +1,16 @@
 #!/bin/bash
 
-cd ./test_perf
-./test.sh
+echo "Submitting validation test..."
+cd ./test_val
+sbatch test.sh
 
+echo "Submitting performance test..."
+cd ../test_perf
+sbatch test.sh
+
+echo "Submitting scaling test..."
 cd ../test_scale
-./test.sh
-
-cd ../test_val
-./test.sh
+sbatch test.sh
 
 cd ..
+echo "All jobs submitted. Use 'squeue' to check status."
