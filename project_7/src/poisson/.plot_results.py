@@ -13,11 +13,11 @@ import numpy as np
 grid_sizes = np.array([8, 16, 32, 64, 128, 256, 512])
 n_squared = grid_sizes ** 2  # Total unknowns
 
-# Solve times from test_perf output
-scipy_direct = np.array([0.000320, 0.000835, 0.003371, 0.014570, 0.074122, 0.442920, 3.040594])
-scipy_dense = np.array([0.000537, 0.001324, 0.041605, 1.808445, 99.097132, np.nan, np.nan])
-scipy_cg = np.array([0.000501, 0.001025, 0.002536, 0.009114, 0.048808, 0.357634, 3.225408])
-petsc = np.array([0.000126, 0.000092, 0.000476, 0.003308, 0.025979, 0.207763, 1.948708])
+# Solve times from test_perf output (updated after f=20 fix)
+scipy_direct = np.array([0.000330, 0.000836, 0.003394, 0.014853, 0.075022, 0.437504, 3.030984])
+scipy_dense = np.array([0.000511, 0.001532, 0.041742, 1.810213, 99.087367, np.nan, np.nan])
+scipy_cg = np.array([0.000386, 0.001003, 0.002403, 0.008899, 0.048608, 0.357021, 3.232414])
+petsc = np.array([0.000115, 0.000141, 0.000522, 0.003345, 0.026019, 0.207321, 2.175918])
 
 fig1, ax1 = plt.subplots(figsize=(10, 7))
 
@@ -49,7 +49,7 @@ print("Saved: test_perf/benchmark_loglog.png")
 # ============================================================================
 
 processes = np.array([1, 2, 4, 8, 16])
-solve_times = np.array([18.679978, 10.778899, 5.306495, 3.462232, 1.808753])
+solve_times = np.array([18.470274, 9.900865, 5.335374, 3.474227, 1.819943])
 
 speedup = solve_times[0] / solve_times
 efficiency = speedup / processes * 100
