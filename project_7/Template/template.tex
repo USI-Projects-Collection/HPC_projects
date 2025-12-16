@@ -166,7 +166,7 @@ Table~\ref{tab:validation} summarizes the solution norms and solver times for a 
     \end{tabular}
 \end{table}
 
-All Python solvers produce identical $L_2$ norms (57.5457), confirming consistency among the different solution methods. The PETSc solver reports a different norm (51.7557) due to differences in how the grid points are counted: PETSc uses DMDA which includes boundary points in the discretization, while Python solves only for interior points. Both solutions are mathematically equivalent when accounting for this grid interpretation.
+All the Python solvers come up with the same $L_2$ norm (57.5457), which shows that the different methods are consistent with each other. On the other hand, the PETSc solver reports a different norm (51.7557) because it counts grid points differently: PETSc uses DMDA, which includes boundary points in its discretization, while the Python solvers focus only on the interior points.
 
 \newpage
 \subsection{Performance Benchmark [15 points]}
