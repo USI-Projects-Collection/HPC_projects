@@ -106,4 +106,4 @@ print(f"{'Procs':<8} {'Time (s)':<12} {'Speedup':<10} {'Efficiency':<12}")
 for i, p in enumerate(processes):
     print(f"{p:<8} {solve_times[i]:<12.4f} {speedup[i]:<10.2f} {efficiency[i]:<10.1f}%")
 
-plt.show()
+# plt.show()
