@@ -71,7 +71,7 @@ def draw_3d(path, model, save=True):
         plt.show()
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": 
 
     if len(sys.argv) != 2:
         print("Usage: python draw.py  <FILENAME with out .dat .info>")
